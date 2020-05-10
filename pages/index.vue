@@ -1,15 +1,18 @@
 <template>
   <div>
+    <my-instagram></my-instagram>
     <my-footer></my-footer>
   </div>
 </template>
 
 <script>
 import Footer from '@/components/Footer';
+import Instagram from '@/components/Instagram';
 
 export default {
   components: {
     'my-footer': Footer,
+    'my-instagram': Instagram,
   },
 };
 </script>
