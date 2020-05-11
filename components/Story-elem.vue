@@ -1,109 +1,133 @@
 <template>
-    <section class="stories">
+  <section class="stories">
     <h2 class="stories__header">Истории неизлечимых привычек</h2>
     <div class="stories-list">
       <div class="story-element">
-        <img class="story-element__photo" src="" alt="Фото человека с историей">
+        <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Тен</span>
-        <span class="story-element__text">Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.</span>
+        <span class="story-element__text"
+          >Я всегда читаю книги с конца, - и это не лечится, в отличие от
+          рака.</span
+        >
       </div>
       <div class="story-element">
-        <img class="story-element__photo" src="" alt="Фото человека с историей">
+        <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Познер</span>
-        <span class="story-element__text">Я боюсь акул — и, в отличии от рака, это не лечится.</span>
+        <span class="story-element__text"
+          >Я боюсь акул — и, в отличии от рака, это не лечится.</span
+        >
       </div>
       <div class="story-element">
-        <img class="story-element__photo" src="" alt="Фото человека с историей">
+        <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Александр Тарханов</span>
-        <span class="story-element__text">Я не могу победить свою пунктуальность в отличии от рака.</span>
+        <span class="story-element__text"
+          >Я не могу победить свою пунктуальность в отличии от рака.</span
+        >
       </div>
       <div class="story-element">
-        <img class="story-element__photo" src="" alt="Фото человека с историей">
+        <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Тен</span>
-        <span class="story-element__text">Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.</span>
+        <span class="story-element__text"
+          >Я всегда читаю книги с конца, - и это не лечится, в отличие от
+          рака.</span
+        >
       </div>
       <div class="story-element">
-        <img class="story-element__photo" src="" alt="Фото человека с историей">
+        <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Тен</span>
-        <span class="story-element__text">Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.</span>
+        <span class="story-element__text"
+          >Я всегда читаю книги с конца, - и это не лечится, в отличие от
+          рака.</span
+        >
       </div>
       <div class="story-element">
-        <img class="story-element__photo" src="" alt="Фото человека с историей">
+        <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Познер</span>
-        <span class="story-element__text">Я боюсь акул — и, в отличии от рака, это не лечится.</span>
+        <span class="story-element__text"
+          >Я боюсь акул — и, в отличии от рака, это не лечится.</span
+        >
       </div>
       <div class="story-element">
-        <img class="story-element__photo" src="" alt="Фото человека с историей">
+        <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Александр Тарханов</span>
-        <span class="story-element__text">Я не могу победить свою пунктуальность в отличии от рака.</span>
+        <span class="story-element__text"
+          >Я не могу победить свою пунктуальность в отличии от рака.</span
+        >
       </div>
       <div class="story-element">
-        <img class="story-element__photo" src="" alt="Фото человека с историей">
+        <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Тен</span>
-        <span class="story-element__text">Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.</span>
+        <span class="story-element__text"
+          >Я всегда читаю книги с конца, - и это не лечится, в отличие от
+          рака.</span
+        >
       </div>
     </div>
-
   </section>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {};
 </script>
-   
-<style  scoped>
-     .stories {
-    padding: 0 60px;
-    background-color: #FFFFFF;
-    /* display: flex;
-    flex-direction: column; */
-    justify-content: space-between;
-    max-width: 1320px;
 
+<style scoped>
+.stories {
+  margin: 0 60px;
+  background-color: #ffffff;
+  justify-content: space-between;
+  max-width: 1440px;
 }
 
 .story-element {
-    display: flex;
-    flex-direction: column;
-    padding-left: 40px;
-    padding-right: 40px;
-    
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 70px;
 }
+
 .story-element__photo {
-    width: 300px;
-    height: 300px;
-    background-color: #EDEDED;
+  width: 300px;
+  height: 300px;
+  background-color: #ededed;
+  margin-bottom: 20px;
 }
 
 .stories__header {
-    max-width: 413px;
-    max-height: 72px;
-    color: #000000;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 36px;
+  max-width: 413px;
+  max-height: 72px;
+  color: #000000;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 36px;
+  padding-bottom: 70px;
 }
-.stories-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-    
 
+.stories-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .story-element__name {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 22px;
-    color: #000000;
-
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 22px;
+  color: #000000;
+  margin-bottom: 14px;
 }
-    
+
+.story-element__text {
+  width: 250px;
+  height: 36px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #666666;
+}
 </style>
