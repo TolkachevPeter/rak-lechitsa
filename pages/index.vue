@@ -1,15 +1,14 @@
 <template>
-  <div>
-    <my-footer></my-footer>
-  </div>
+
+  <div class="container"></div>
 </template>
 
 <script>
-import Footer from '@/components/Footer';
+import Header from '~/components/Header';
 
 export default {
   components: {
-    'my-footer': Footer,
+    Header,
   },
 };
 </script>
