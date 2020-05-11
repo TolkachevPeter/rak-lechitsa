@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Button from '~/components/ui/Button';
+import Button from '~/components/ui/Button_header';
 import Menu from '~/components/Menu';
 export default {
   components: {
