@@ -24,6 +24,7 @@
         <p class="popup__policy" :class="{ showPolicy: needPolicy }">
           {{ policyText }}
 
+
           <a href="../policy" class="popup__policy-link">{{ policyLink }}</a>
         </p>
       </div>
