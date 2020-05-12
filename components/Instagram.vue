@@ -56,7 +56,7 @@ export default {};
 .instagram {
   padding-top: 100px;
   margin: 0px auto 0;
-  background: #fbfbfb;
+  /* background: #fbfbfb; */
   max-width: 1440px;
 }
 

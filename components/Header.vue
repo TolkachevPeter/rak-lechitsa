@@ -5,9 +5,14 @@
     </h2>
     <div class="header__links">
       <header-nav />
+      <!-- 
       <header-button @click class="header__button"
         >Рассказать историю</header-button
       >
+       -->
+      <header-button class="header__button" :theme="'grey'">
+        Рассказать историю
+      </header-button>
     </div>
   </header>
 </template>
