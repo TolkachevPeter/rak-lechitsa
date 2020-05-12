@@ -1,18 +1,9 @@
 <template>
-
   <div class="container"></div>
 </template>
 
-<script>
-import Header from '~/components/Header';
+<script></script>
 
-export default {
-  components: {
-    Header,
-
-  },
-};
-</script>
 
 <style>
 .container {
