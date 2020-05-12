@@ -2,10 +2,7 @@
   <div class="container"></div>
 </template>
 
-<script>
-
-};
-</script>
+<script></script>
 
 <style>
 .container {
