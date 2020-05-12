@@ -1,68 +1,68 @@
 <template>
   <section class="stories">
     <h2 class="stories__header">Истории неизлечимых привычек</h2>
-    <ul class="stories stories-list">
-      <li class="story-element">
+    <div class="stories stories-list">
+      <div class="story-element">
         <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Тен</span>
         <span class="story-element__text"
           >Я всегда читаю книги с конца, - и это не лечится, в отличие от
           рака.</span
         >
-      </li>
-      <li class="story-element">
+      </div>
+      <div class="story-element">
         <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Познер</span>
         <span class="story-element__text"
           >Я боюсь акул — и, в отличии от рака, это не лечится.</span
         >
-      </li>
-      <li class="story-element">
+      </div>
+      <div class="story-element">
         <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Александр Тарханов</span>
         <span class="story-element__text"
           >Я не могу победить свою пунктуальность в отличии от рака.</span
         >
-      </li>
-      <li class="story-element">
+      </div>
+      <div class="story-element">
         <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Тен</span>
         <span class="story-element__text"
           >Я всегда читаю книги с конца, - и это не лечится, в отличие от
           рака.</span
         >
-      </li>
-      <li class="story-element">
+      </div>
+      <div class="story-element">
         <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Тен</span>
         <span class="story-element__text"
           >Я всегда читаю книги с конца, - и это не лечится, в отличие от
           рака.</span
         >
-      </li>
-      <li class="story-element">
+      </div>
+      <div class="story-element">
         <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Познер</span>
         <span class="story-element__text"
           >Я боюсь акул — и, в отличии от рака, это не лечится.</span
         >
-      </li>
-      <li class="story-element">
+      </div>
+      <div class="story-element">
         <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Александр Тарханов</span>
         <span class="story-element__text"
           >Я не могу победить свою пунктуальность в отличии от рака.</span
         >
-      </li>
-      <li class="story-element">
+      </div>
+      <div class="story-element">
         <img class="story-element__photo" src alt="Фото человека с историей" />
         <span class="story-element__name">Владимир Тен</span>
         <span class="story-element__text"
           >Я всегда читаю книги с конца, - и это не лечится, в отличие от
           рака.</span
         >
-      </li>
-    </ul>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -72,18 +72,20 @@ export default {};
 
 <style scoped>
 .stories {
-  margin: 0;
+  margin: 0 auto;
   background-color: #ffffff;
   display: flex;
   flex-flow: column nowrap;
-  max-width: 1440px;
+  max-width: 1320px;
+  padding-top: 100px;
 }
 
 .story-element {
   display: flex;
   flex-direction: column;
   padding-bottom: 70px;
-  margin: 0 40px 0 0;
+  /* margin: 0 40px 0 0; */
+  margin: 0;
 }
 
 .story-element__photo {
@@ -95,26 +97,28 @@ export default {};
 
 .stories__header {
   max-width: 413px;
-  max-height: 72px;
+  /* max-height: 72px; */
   color: #000000;
-  font-family: Inter;
+  /* font-family: Inter; */
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
   margin-bottom: 70px;
-  padding: 0 60px;
+  padding: 0;
 }
 
 .stories-list {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
   margin: 0;
-  padding: 0 20px 0 60px;
+  /* padding: 0 20px 0 0px; */
+  padding: 0;
 }
 
 .story-element__name {
-  font-family: Inter;
+  /* font-family: Inter; */
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
@@ -126,7 +130,7 @@ export default {};
 .story-element__text {
   width: 250px;
   height: 36px;
-  font-family: Inter;
+  /* font-family: Inter; */
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
