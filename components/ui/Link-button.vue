@@ -11,8 +11,8 @@ export default {};
 <style scoped>
 .link-button {
   max-width: 1320px;
-  height: 82px;
-  margin: 0 60px;
+  margin: 0 auto;
+  min-height: 82px;
   background: #fbfbfb;
   display: flex;
   justify-content: center;
@@ -24,10 +24,11 @@ export default {};
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  align-self: center;
   color: #000000;
   text-decoration: none;
+}
+.link-button__text:hover {
+  text-decoration: underline;
 }
 </style>
