@@ -43,11 +43,10 @@
           </ul>
         </nav>
       </div>
-    </div>
-
-    <div class="footer__copyrights">
-      <p class="footer__project">Рак Лечится 2020</p>
-      <p class="footer__copyright">Сделано студентами Яндекс Практикум</p>
+      <div class="footer__copyrights">
+        <p class="footer__project">Рак Лечится 2020</p>
+        <p class="footer__copyright">Сделано студентами Яндекс Практикум</p>
+      </div>
     </div>
   </footer>
 </template>
@@ -60,7 +59,6 @@ export default {};
 .footer {
   padding-top: 60px;
   margin: 0px auto 0;
-
   background: #fbfbfb;
 }
 
@@ -69,7 +67,8 @@ export default {};
   flex-wrap: wrap;
   justify-content: space-between;
   position: relative;
-  max-width: 90%;
+  width: 90%;
+  max-width: 1320px;
   margin: 0 auto;
 }
 .thank-you {
@@ -125,13 +124,14 @@ export default {};
 }
 
 .footer__copyrights {
+  width: 100%;
   margin: 110px auto 0px;
   padding-bottom: 60px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   position: relative;
-  max-width: 90%;
+  /* max-width: 90%; */
 }
 .footer__project {
   font-family: Inter;
