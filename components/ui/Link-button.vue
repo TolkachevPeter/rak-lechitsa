@@ -1,11 +1,15 @@
 <template>
   <div class="link-button">
-    <a class="link-button__text" href="URL">Больше статей</a>
+    <a class="link-button__text" :href="url">
+      <slot></slot>
+    </a>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ['url'],
+};
 </script>
 
 <style scoped>

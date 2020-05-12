@@ -8,7 +8,7 @@
     </tagline>
     <story-elem />
     <div class="link-button_index">
-      <link-button />
+      <link-button url="/stories/">Больше статей</link-button>
     </div>
     <tagline>
       РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ В ИНСТАГРАМ
