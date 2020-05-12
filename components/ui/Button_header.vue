@@ -14,7 +14,7 @@ export default {
   props: ['theme'],
   computed: {
     styleChange() {
-      console.log(`button_theme_` + this.theme);
+      // console.log(`button_theme_` + this.theme);
       return `button_theme_` + this.theme;
     },
   },
