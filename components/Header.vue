@@ -5,7 +5,7 @@
     </h2>
     <div class="header__links">
       <header-nav />
-      <header-button @click="" class="header__button"
+      <header-button @click class="header__button"
         >Рассказать историю</header-button
       >
     </div>
@@ -29,9 +29,11 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1440px;
+  /* max-width: 1440px; */
+  max-width: 1320px;
   width: 100%;
-  padding: 18px 4%;
+  /* padding: 18px 4%; */
+  padding: 18px 0;
   border-bottom: 1px solid #e8e8e8;
 }
 .header__title {
