@@ -50,73 +50,6 @@
 
 <script>
 export default {};
-
-// const initialCards = [
-//   {
-//     link:
-//       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-//   },
-//   {
-//     link:
-//       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-//   },
-//   {
-//     link:
-//       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-//   },
-//   {
-//     link:
-//       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-//   },
-//   {
-//     link:
-//       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-//   },
-//   {
-//     link:
-//       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-//   },
-//   {
-//     link:
-//       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/khrebet-nurgush.jpg',
-//   },
-//   {
-//     link:
-//       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/tulinovka.jpg',
-//   },
-//   {
-//     link:
-//       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/zheltukhin-island.jpg',
-//   },
-//   {
-//     link:
-//       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/vladivostok.jpg',
-//   },
-// ];
-
-// const placeList = document.querySelector('.two-columns__photo');
-
-// // Функции
-// //Функция добавления карточки
-// function addCard(placeUrl) {
-//   // Переменные для функции
-
-//   //сначала создаем контенер для карточки
-//   const newCardContainer = document.createElement('div');
-//   newCardContainer.className = 'place-card';
-//   placeList.append(newCardContainer);
-
-//   // задаем ссылку для карточки
-//   const linkElement = document.createElement('div');
-//   linkElement.className = 'place-card__image';
-//   linkElement.setAttribute('style', `background-image: url(${placeUrl})`); //тут может быть ошибка
-//   newCardContainer.append(linkElement); //тут тоже
-// }
-
-// // вызов функции для добавление карточек.
-// for (let i = 0; i < initialCards.length; i++) {
-//   addCard(initialCards[i].link);
-// }
 </script>
 
 <style scoped>
@@ -124,16 +57,18 @@ export default {};
   padding-top: 100px;
   margin: 0px auto 0;
   background: #fbfbfb;
+  max-width: 1440px;
 }
 
 .two-columns {
   display: flex;
   justify-content: space-between;
-  max-width: 90%;
+  max-width: 95%;
   margin: 0 auto;
 }
 .two-columns__text {
-  max-width: 340px;
+  margin-left: 23px;
+  max-width: 630px;
 }
 .two-columns__name {
   font-family: Inter;
@@ -156,26 +91,23 @@ export default {};
 .two-columns__photo {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 110px;
+  margin-left: 130px;
 }
 
 .place-card__image {
-  height: 170px;
+  height: 195px;
   background-size: cover;
   background-position: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   position: relative;
-  margin: 30px;
+  margin-right: 30px;
+  margin-bottom: 30px;
 }
 
 .place-card__image::after {
   content: '';
   display: block;
-  width: 170px;
-  height: 170px;
+  width: 195px;
+  height: 195px;
   background-color: rgba(0, 0, 0, 0.3);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
 </style>
