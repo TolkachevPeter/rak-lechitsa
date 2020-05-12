@@ -56,14 +56,14 @@ export default {};
 .instagram {
   padding-top: 100px;
   margin: 0px auto 0;
-  /* background: #fbfbfb; */
-  max-width: 1440px;
+  max-width: 1320px;
+  width: 100%;
 }
 
 .two-columns {
   display: flex;
   justify-content: space-between;
-  max-width: 95%;
+  max-width: 100%;
   margin: 0 auto;
 }
 .two-columns__text {
@@ -91,7 +91,8 @@ export default {};
 .two-columns__photo {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 130px;
+  justify-content: space-between;
+  margin-left: 110px;
 }
 
 .place-card__image {
@@ -99,7 +100,7 @@ export default {};
   background-size: cover;
   background-position: center;
   position: relative;
-  margin-right: 30px;
+  /* margin-right: 30px; */
   margin-bottom: 30px;
 }
 
