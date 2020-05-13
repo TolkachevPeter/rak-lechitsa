@@ -1,32 +1,34 @@
 <template>
   <section class="about">
-    <h2 class="about__title">#РАКЛЕЧИТСЯ</h2>
-    <div class="about__subtitle-container">
+    <div class="container">
+      <h2 class="about__title">#РАКЛЕЧИТСЯ</h2>
+      <!-- <div class="about__subtitle-container"> -->
       <h3 class="about__subtitle">О проекте</h3>
-    </div>
-    <div class="about__container">
-      <div class="about__column">
-        <p class="about__text">{{ aboutProject }}</p>
-      </div>
-      <div class="about__column">
-        <p
-          class="about__var"
-          :class="{ about__var_type_active: isActive1 }"
-          @click="changeVar(1)"
-        >
-          Рак Лечится
-        </p>
-        <p
-          class="about__var"
-          :class="{ about__var_type_active: isActive2 }"
-          @click="changeVar(2)"
-        >
-          Фонд Хабенского
-        </p>
-      </div>
-      <div class="about__column">
-        <p class="about__text">{{ varText1 }}</p>
-        <p class="about__text">{{ varText2 }}</p>
+      <!-- </div> -->
+      <div class="about__container">
+        <div class="about__column">
+          <p class="about__text">{{ aboutProject }}</p>
+        </div>
+        <div class="about__column">
+          <p
+            class="about__var"
+            :class="{ about__var_type_active: isActive1 }"
+            @click="changeVar(1)"
+          >
+            Рак Лечится
+          </p>
+          <p
+            class="about__var"
+            :class="{ about__var_type_active: isActive2 }"
+            @click="changeVar(2)"
+          >
+            Фонд Хабенского
+          </p>
+        </div>
+        <div class="about__column">
+          <p class="about__text">{{ varText1 }}</p>
+          <p class="about__text">{{ varText2 }}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -113,14 +115,15 @@ export default {
   padding-top: 0;
   margin-bottom: 32px;
 }
-.about__subtitle-container {
-  max-width: 1320px;
+/* .about__subtitle-container {
+   max-width: 1320px; 
   width: 90%;
 }
+ */
 .about__container {
-  width: 90%;
-  max-width: 1320px;
-  margin: 0 auto;
+  /* width: 90%; */
+  /* max-width: 1320px; */
+  /* margin: 0 auto; */
   display: grid;
   grid-template-columns: 25% 1fr 48%;
   column-gap: 40px;
@@ -158,5 +161,19 @@ export default {
   font-weight: 500;
   color: #ffffff;
   cursor: default;
+}
+.container {
+  margin: 0 auto;
+  max-width: 1320px;
+}
+@media (max-width: 1440px) {
+  .container {
+    max-width: 92%;
+  }
+}
+@media (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+  }
 }
 </style>

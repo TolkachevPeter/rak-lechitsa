@@ -1,51 +1,53 @@
 <template>
   <footer class="footer">
-    <div class="footer__three-columns">
-      <h3 class="thank-you">
-        Спасибо всем, кто помог состояться этому проекту
-      </h3>
-      <div class="footer__column">
-        <nav class="menu">
-          <ul class="menu__items">
-            <li class="menu__item">
-              <a href="#" class="menu__link">Главная</a>
-            </li>
-            <li class="menu__item">
-              <a href="#" class="menu__link">Истории</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+    <div class="container">
+      <div class="footer__three-columns">
+        <h3 class="thank-you">
+          Спасибо всем, кто помог состояться этому проекту
+        </h3>
+        <div class="footer__column">
+          <nav class="menu">
+            <ul class="menu__items">
+              <li class="menu__item">
+                <a href="#" class="menu__link">Главная</a>
+              </li>
+              <li class="menu__item">
+                <a href="#" class="menu__link">Истории</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
 
-      <div class="footer__column footer__column_content-info">
-        <nav class="menu">
-          <ul class="menu__items menu__items_column">
-            <li class="menu__item">
-              Мы в
-              <a
-                href="https://www.instagram.com/raklechitsa/"
-                target="_blank"
-                class="menu__link"
-                >Инстаграме</a
-              >
-              и
-              <a
-                href="https://www.youtube.com/results?search_query=%23%D1%8D%D1%82%D0%BE%D0%BD%D0%B5%D0%BB%D0%B5%D1%87%D0%B8%D1%82%D1%81%D1%8F"
-                target="_blank"
-                class="menu__link"
-                >Youtube</a
-              >
-            </li>
-            <!-- Тут будет попап, но его еще нет в макете -->
-            <li class="menu__item">
-              <a href="#" target="_blank" class="menu__link">Поделитесь ↗</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div class="footer__copyrights">
-        <p class="footer__project">Рак Лечится 2020</p>
-        <p class="footer__copyright">Сделано студентами Яндекс Практикум</p>
+        <div class="footer__column footer__column_content-info">
+          <nav class="menu">
+            <ul class="menu__items menu__items_column">
+              <li class="menu__item">
+                Мы в
+                <a
+                  href="https://www.instagram.com/raklechitsa/"
+                  target="_blank"
+                  class="menu__link"
+                  >Инстаграме</a
+                >
+                и
+                <a
+                  href="https://www.youtube.com/results?search_query=%23%D1%8D%D1%82%D0%BE%D0%BD%D0%B5%D0%BB%D0%B5%D1%87%D0%B8%D1%82%D1%81%D1%8F"
+                  target="_blank"
+                  class="menu__link"
+                  >Youtube</a
+                >
+              </li>
+              <!-- Тут будет попап, но его еще нет в макете -->
+              <li class="menu__item">
+                <a href="#" target="_blank" class="menu__link">Поделитесь ↗</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer__copyrights">
+          <p class="footer__project">Рак Лечится 2020</p>
+          <p class="footer__copyright">Сделано студентами Яндекс Практикум</p>
+        </div>
       </div>
     </div>
   </footer>
@@ -58,7 +60,7 @@ export default {};
 <style scoped>
 .footer {
   padding-top: 60px;
-  margin: 0px auto 0;
+  margin: 0 auto;
   background: #fbfbfb;
 }
 
@@ -67,9 +69,10 @@ export default {};
   flex-wrap: wrap;
   justify-content: space-between;
   position: relative;
-  width: 90%;
-  max-width: 1320px;
-  margin: 0 auto;
+  /* width: 90%;
+  max-width: 1320px; 
+  margin: 0 auto;*/
+  width: 100%;
 }
 .thank-you {
   font-family: Inter;
@@ -148,5 +151,19 @@ export default {};
   font-size: 18px;
   line-height: 100%;
   color: #898989;
+}
+.container {
+  margin: 0 auto;
+  max-width: 1320px;
+}
+@media (max-width: 1439px) {
+  .container {
+    max-width: 91.5%;
+  }
+}
+@media (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+  }
 }
 </style>

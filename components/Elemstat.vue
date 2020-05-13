@@ -63,7 +63,7 @@ export default {
   align-items: flex-start;
   flex-direction: column;
   width: 100%;
-  max-width: 1320px;
+  /* max-width: 1320px; */
   margin: auto;
   min-height: 600px;
   background: #ffffff;
