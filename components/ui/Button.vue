@@ -25,4 +25,8 @@ export default {};
   cursor: pointer;
   border: none;
 }
+.button:hover {
+  background: #613a93;
+  opacity: 0.9;
+}
 </style>

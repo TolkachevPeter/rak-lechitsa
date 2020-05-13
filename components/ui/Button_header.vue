@@ -34,6 +34,11 @@ export default {
 .button:focus {
   outline: none;
 }
+
+.button:hover {
+  opacity: 0.7;
+}
+
 .button_theme_violet {
   color: #fff;
   background: #613a93;

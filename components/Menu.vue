@@ -45,4 +45,7 @@ export default {
   text-decoration: none;
   color: black;
 }
+.nav__link:hover {
+  opacity: 0.7;
+}
 </style>

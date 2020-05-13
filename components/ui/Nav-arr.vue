@@ -28,10 +28,15 @@ export default {};
   background-color: #fbfbfb;
   cursor: pointer;
 }
+.arr__container:hover {
+  background: #f4f4f4;
+}
+
 .arrow {
   width: 11.5px;
   height: 11.5px;
 }
+
 .arrow_left {
   transform: rotate(-45deg);
 }

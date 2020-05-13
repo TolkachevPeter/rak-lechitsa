@@ -22,6 +22,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
 }
 .tagline__text {
   width: 100%;
