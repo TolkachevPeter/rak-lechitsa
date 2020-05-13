@@ -48,4 +48,14 @@ export default {
 .nav__link:hover {
   opacity: 0.7;
 }
+@media (max-width: 1280px) {
+  .nav__link {
+    font-size: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+}
 </style>
