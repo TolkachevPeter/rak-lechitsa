@@ -1,32 +1,24 @@
 <template>
-  <button class="button">
+  <button class="popup-button">
     <slot></slot>
   </button>
 </template>
 
-<script>
-export default {};
-</script>
-
 <style scoped>
-.button {
-  width: 280px;
+.popup-button {
+  width: 226px;
   height: 52px;
   background: #613a93;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border: none;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
   color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  border: none;
-}
-.button:hover {
-  background: #613a93;
-  opacity: 0.9;
 }
 </style>

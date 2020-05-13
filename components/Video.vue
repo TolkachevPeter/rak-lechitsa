@@ -1,23 +1,29 @@
 <template>
   <section class="video">
-    <div class="video__column">
-      <h2 class="video__title">
-        {{ title }}
-      </h2>
-      <p class="video__subtitle">
-        {{ subtitle }}
-      </p>
-      <arr class="video__pagination" />
-    </div>
-    <div class="video__column">
-      <div class="video__iframe">
-        <play />
+    <div class="video-container">
+      <div class="video__column">
+        <h2 class="video__title">
+          {{ title }}
+        </h2>
+        <p class="video__subtitle">
+          {{ subtitle }}
+        </p>
+        <arr class="video__pagination" />
       </div>
-      <span class="video__channel"
-        >Все видео вы можете найте на нашем
-        <a href="" class="video__channel video__channel-link">YouTube канале</a
-        >.</span
-      >
+      <div class="video__column">
+        <div class="video__iframe">
+          <play />
+        </div>
+        <span class="video__channel"
+          >Все видео вы можете найте на нашем
+          <a
+            href="https://www.youtube.com/results?search_query=%23%D1%8D%D1%82%D0%BE%D0%BD%D0%B5%D0%BB%D0%B5%D1%87%D0%B8%D1%82%D1%81%D1%8F"
+            class="video__channel video__channel-link"
+            target="_blank"
+            >YouTube канале</a
+          >.</span
+        >
+      </div>
     </div>
   </section>
 </template>
@@ -46,21 +52,32 @@ export default {
 
 <style scoped>
 .video {
+  display: flex;
+  width: 100%;
+}
+
+.video-container {
   display: grid;
   grid-template-columns: 1fr calc(65% - 40px);
   column-gap: 40px;
   padding-top: 100px;
   padding-bottom: 74px;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
 }
+
 .video__pagination {
   margin-top: 150px;
 }
+
 .video__title {
   font-family: Inter;
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
 }
+
 .video__subtitle {
   font-family: Inter;
   font-weight: normal;
@@ -84,15 +101,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
-/* .video__iframe-item {
-  border: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-} */
+
 .video__channel {
   font-family: Inter;
   font-weight: normal;
@@ -101,6 +110,7 @@ export default {
   color: #666666;
   margin-top: 10px;
 }
+
 .video__channel-link {
 }
 </style>

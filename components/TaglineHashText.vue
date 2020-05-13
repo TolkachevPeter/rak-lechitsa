@@ -1,5 +1,5 @@
 <template>
-  <span class="taglineHastext"> #ЭТОНЕЛЕЧИТСЯ </span>
+  <span class="taglineHastext">#ЭТОНЕЛЕЧИТСЯ </span>
 </template>
 
 <script>

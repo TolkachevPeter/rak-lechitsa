@@ -71,7 +71,8 @@ export default {
 
 <style scoped>
 .tellStory__container {
-  width: 92%;
+  width: 100%;
+  max-width: 1320px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 25% 1fr 48%;
