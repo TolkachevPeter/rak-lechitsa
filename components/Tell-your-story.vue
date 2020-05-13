@@ -1,29 +1,31 @@
 <template>
   <section class="tellStory">
-    <div class="tellStory__container">
-      <div class="tellStory__column">
-        <h2 class="title">{{ title }}</h2>
-        <p class="subtitle">{{ subtitle }}</p>
-      </div>
-      <div class="tellStory__column">
-        <p
-          class="tellStory__var"
-          :class="{ tellStory__var_type_active: isActive1 }"
-          @click="changeVar(1)"
-        >
-          1-й вариант
-        </p>
-        <p
-          class="tellStory__var"
-          :class="{ tellStory__var_type_active: isActive2 }"
-          @click="changeVar(2)"
-        >
-          2-й вариант
-        </p>
-      </div>
-      <div class="tellStory__column">
-        <p class="subtitle tellStory__select-var">{{ varText }}</p>
-        <submit-btn class="btn">{{ btnText }}</submit-btn>
+    <div class="container">
+      <div class="tellStory__container">
+        <div class="tellStory__column">
+          <h2 class="title">{{ title }}</h2>
+          <p class="subtitle">{{ subtitle }}</p>
+        </div>
+        <div class="tellStory__column">
+          <p
+            class="tellStory__var"
+            :class="{ tellStory__var_type_active: isActive1 }"
+            @click="changeVar(1)"
+          >
+            1-й вариант
+          </p>
+          <p
+            class="tellStory__var"
+            :class="{ tellStory__var_type_active: isActive2 }"
+            @click="changeVar(2)"
+          >
+            2-й вариант
+          </p>
+        </div>
+        <div class="tellStory__column">
+          <p class="subtitle tellStory__select-var">{{ varText }}</p>
+          <submit-btn class="btn">{{ btnText }}</submit-btn>
+        </div>
       </div>
     </div>
   </section>
@@ -72,8 +74,8 @@ export default {
 <style scoped>
 .tellStory__container {
   width: 100%;
-  max-width: 1320px;
-  margin: 0 auto;
+  /* max-width: 1320px;
+  margin: 0 auto; */
   display: grid;
   grid-template-columns: 25% 1fr 48%;
   column-gap: 40px;
@@ -126,5 +128,19 @@ export default {
 }
 .btn {
   margin-top: 78px;
+}
+.container {
+  margin: 0 auto;
+  max-width: 1320px;
+}
+@media (max-width: 1440px) {
+  .container {
+    max-width: 92%;
+  }
+}
+@media (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+  }
 }
 </style>

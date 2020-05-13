@@ -1,22 +1,28 @@
 <template>
   <div>
     <banner />
-    <my-video />
-    <tagline>
-      И В ОТЛИЧИЕ ОТ РАКА,
-      <hashtext />
-    </tagline>
-    <story-elem />
-    <div class="link-button_index">
-      <link-button url="/stories/">Больше статей</link-button>
+    <div class="container">
+      <my-video />
+      <tagline>
+        И В ОТЛИЧИЕ ОТ РАКА,
+        <hashtext />
+      </tagline>
+      <story-elem />
+      <div class="link-button_index">
+        <link-button url="/stories/">Больше статей</link-button>
+      </div>
+      <tagline>
+        РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ В ИНСТАГРАМ
+        <hashtext />
+      </tagline>
+      <instagram />
     </div>
-    <tagline>
-      РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ В ИНСТАГРАМ
-      <hashtext />
-    </tagline>
-    <instagram />
+
     <tell-your-story />
-    <elemstat />
+    <div class="container">
+      <elemstat />
+    </div>
+
     <about />
   </div>
 </template>
@@ -60,15 +66,21 @@ export default {
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 .link-button_index {
   margin-bottom: 100px;
+}
+.container {
+  margin: 0 auto;
+  max-width: 1320px;
+}
+@media (max-width: 1440px) {
+  .container {
+    max-width: 92%;
+  }
+}
+@media (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+  }
 }
 </style>
