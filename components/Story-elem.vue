@@ -5,7 +5,7 @@
       <li class="story-element" v-for="story in stories" :key="story.id">
         <img
           class="story-element__photo"
-          v-bind:src="story.photo"
+          v-bind:src="story.photo_url"
           v-bind:alt="story.photo_alt"
         />
         <span class="story-element__name">{{ story.name }}</span>
@@ -22,7 +22,7 @@ export default {
       stories: [
         {
           story_id: 1,
-          photo: '',
+          photo_url: '',
           photo_alt: 'Фото человека с историей',
           name: 'Владимир Тен',
           story_text:
@@ -30,14 +30,14 @@ export default {
         },
         {
           story_id: 2,
-          photo: '',
+          photo_url: '',
           photo_alt: 'Фото человека с историей',
           name: 'Владимир Познер',
           story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
         },
         {
           story_id: 3,
-          photo: '',
+          photo_url: '',
           photo_alt: 'Фото человека с историей',
           name: 'Александр Тарханов',
           story_text:
@@ -45,7 +45,7 @@ export default {
         },
         {
           story_id: 4,
-          photo: '',
+          photo_url: '',
           photo_alt: 'Фото человека с историей',
           name: 'Владимир Тен',
           story_text:
@@ -53,14 +53,14 @@ export default {
         },
         {
           story_id: 5,
-          photo: '',
+          photo_url: '',
           photo_alt: 'Фото человека с историей',
           name: 'Владимир Познер',
           story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
         },
         {
           story_id: 6,
-          photo: '',
+          photo_url: '',
           photo_alt: 'Фото человека с историей',
           name: 'Александр Тарханов',
           story_text:
@@ -68,7 +68,7 @@ export default {
         },
         {
           story_id: 7,
-          photo: '',
+          photo_url: '',
           photo_alt: 'Фото человека с историей',
           name: 'Владимир Тен',
           story_text:
@@ -76,7 +76,7 @@ export default {
         },
         {
           story_id: 8,
-          photo: '',
+          photo_url: '',
           photo_alt: 'Фото человека с историей',
           name: 'Владимир Познер',
           story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
