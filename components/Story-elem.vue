@@ -1,73 +1,90 @@
 <template>
   <section class="stories">
     <h2 class="stories__header">Истории неизлечимых привычек</h2>
-    <div class="stories stories-list">
-      <div class="story-element">
-        <img class="story-element__photo" src alt="Фото человека с историей" />
-        <span class="story-element__name">Владимир Тен</span>
-        <span class="story-element__text"
-          >Я всегда читаю книги с конца, - и это не лечится, в отличие от
-          рака.</span
-        >
-      </div>
-      <div class="story-element">
-        <img class="story-element__photo" src alt="Фото человека с историей" />
-        <span class="story-element__name">Владимир Познер</span>
-        <span class="story-element__text"
-          >Я боюсь акул — и, в отличии от рака, это не лечится.</span
-        >
-      </div>
-      <div class="story-element">
-        <img class="story-element__photo" src alt="Фото человека с историей" />
-        <span class="story-element__name">Александр Тарханов</span>
-        <span class="story-element__text"
-          >Я не могу победить свою пунктуальность в отличии от рака.</span
-        >
-      </div>
-      <div class="story-element">
-        <img class="story-element__photo" src alt="Фото человека с историей" />
-        <span class="story-element__name">Владимир Тен</span>
-        <span class="story-element__text"
-          >Я всегда читаю книги с конца, - и это не лечится, в отличие от
-          рака.</span
-        >
-      </div>
-      <div class="story-element">
-        <img class="story-element__photo" src alt="Фото человека с историей" />
-        <span class="story-element__name">Владимир Тен</span>
-        <span class="story-element__text"
-          >Я всегда читаю книги с конца, - и это не лечится, в отличие от
-          рака.</span
-        >
-      </div>
-      <div class="story-element">
-        <img class="story-element__photo" src alt="Фото человека с историей" />
-        <span class="story-element__name">Владимир Познер</span>
-        <span class="story-element__text"
-          >Я боюсь акул — и, в отличии от рака, это не лечится.</span
-        >
-      </div>
-      <div class="story-element">
-        <img class="story-element__photo" src alt="Фото человека с историей" />
-        <span class="story-element__name">Александр Тарханов</span>
-        <span class="story-element__text"
-          >Я не могу победить свою пунктуальность в отличии от рака.</span
-        >
-      </div>
-      <div class="story-element">
-        <img class="story-element__photo" src alt="Фото человека с историей" />
-        <span class="story-element__name">Владимир Тен</span>
-        <span class="story-element__text"
-          >Я всегда читаю книги с конца, - и это не лечится, в отличие от
-          рака.</span
-        >
-      </div>
-    </div>
+    <ul class="stories stories-list">
+      <li class="story-element" v-for="story in stories" :key="story.id">
+        <img
+          class="story-element__photo"
+          v-bind:src="story.photo_url"
+          v-bind:alt="story.photo_alt"
+        />
+        <span class="story-element__name">{{ story.name }}</span>
+        <span class="story-element__text">{{ story.story_text }}</span>
+      </li>
+    </ul>
   </section>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      stories: [
+        {
+          story_id: 1,
+          photo_url: '',
+          photo_alt: 'Фото человека с историей',
+          name: 'Владимир Тен',
+          story_text:
+            'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
+        },
+        {
+          story_id: 2,
+          photo_url: '',
+          photo_alt: 'Фото человека с историей',
+          name: 'Владимир Познер',
+          story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
+        },
+        {
+          story_id: 3,
+          photo_url: '',
+          photo_alt: 'Фото человека с историей',
+          name: 'Александр Тарханов',
+          story_text:
+            'Я не могу победить свою пунктуальность в отличии от рака.',
+        },
+        {
+          story_id: 4,
+          photo_url: '',
+          photo_alt: 'Фото человека с историей',
+          name: 'Владимир Тен',
+          story_text:
+            'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
+        },
+        {
+          story_id: 5,
+          photo_url: '',
+          photo_alt: 'Фото человека с историей',
+          name: 'Владимир Познер',
+          story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
+        },
+        {
+          story_id: 6,
+          photo_url: '',
+          photo_alt: 'Фото человека с историей',
+          name: 'Александр Тарханов',
+          story_text:
+            'Я не могу победить свою пунктуальность в отличии от рака.',
+        },
+        {
+          story_id: 7,
+          photo_url: '',
+          photo_alt: 'Фото человека с историей',
+          name: 'Владимир Тен',
+          story_text:
+            'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
+        },
+        {
+          story_id: 8,
+          photo_url: '',
+          photo_alt: 'Фото человека с историей',
+          name: 'Владимир Познер',
+          story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style scoped>
