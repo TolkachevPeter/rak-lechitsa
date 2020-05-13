@@ -14,12 +14,13 @@ export default {};
 .section__title {
   /* max-width: 300px; */
   /* width: 22%; */
+  text-align: center;
   color: #000000;
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
-  text-align: left;
+  /* text-align: left; */
   padding: 0;
   margin: 0;
 }

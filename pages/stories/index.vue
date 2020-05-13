@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <sectiontitle>Истории неизлечимых привычек</sectiontitle>
-    <linkbutton :url="'1'" class="linkbutton_stories"
+    <linkbutton :url="'stories/1'" class="linkbutton_stories"
       >Cсылка на историю 1</linkbutton
     >
   </div>
