@@ -22,13 +22,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 1320px;
+  /* max-width: 1320px; */
   width: 100%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 .tagline__text {
   width: 100%;
   max-width: 750px;
   text-align: center;
+}
+
+@media (min-width: 1280px) {
+  .tagline {
+    font-size: 28px;
+  }
+}
+@media (min-width: 1024px) {
+  .tagline {
+    min-height: 80px;
+    font-size: 24px;
+    line-height: 40px;
+  }
+}
+@media (min-width: 768px) {
+  .tagline {
+    font-size: 22px;
+    line-height: 36px;
+  }
+}
+@media (min-width: 320px) {
+  .tagline {
+    font-size: 16px;
+    line-height: 18px;
+  }
 }
 </style>

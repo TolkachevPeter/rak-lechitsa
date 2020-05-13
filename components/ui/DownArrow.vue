@@ -13,6 +13,15 @@ export default {};
   min-width: 36px;
   min-height: 12px;
   color: #ffffff;
-  margin-top: 237px;
+  /* margin-top: 237px; */
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+}
+@media (max-width: 320px) {
+  .banner-arrow {
+    bottom: 30px;
+  }
 }
 </style>

@@ -49,9 +49,17 @@ export default {
   color: #121212;
   line-height: 19px;
 }
+@media screen and (max-width: 1280px) {
+  .button {
+    font-size: 16px;
+  }
+}
 @media screen and (max-width: 768px) {
   .button_theme_violet {
     padding: 14px 40px;
+  }
+  .button {
+    display: none;
   }
 }
 </style>
