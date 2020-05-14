@@ -9,34 +9,34 @@
           {{ subtitle }}
         </p>
         <!-- <arr class="video__pagination" /> -->
-        <div class="video__pagination">
-          <div class="arr__container">
-            <div class="arrow arrow_left arrow_disabled"></div>
-          </div>
-          <div class="arr__container">
-            <div class="arrow arrow_right arrow_enabled"></div>
-          </div>
-        </div>
-      </div>
-      <div class="video__column video__for-mobile">
-        <div class="arr__container arr__mobile arr_mobile_left">
+        <!-- <div class="video__pagination"> -->
+        <div class="arr__container go-left">
           <div class="arrow arrow_left arrow_disabled"></div>
         </div>
+        <div class="arr__container go-right">
+          <div class="arrow arrow_right arrow_enabled"></div>
+        </div>
+        <!-- </div> -->
+      </div>
+      <div class="video__column video__for-mobile">
+        <!-- <div class="arr__container arr__mobile arr_mobile_left">
+          <div class="arrow arrow_left arrow_disabled"></div>
+        </div> -->
         <div class="video__iframe">
           <play />
         </div>
-        <div class="arr__container arr__mobile arr_mobile_rigth">
+        <!-- <div class="arr__container arr__mobile arr_mobile_rigth">
           <div class="arrow arrow_right arrow_enabled"></div>
-        </div>
-        <span class="video__channel"
-          >Все видео вы можете найте на нашем
+        </div> -->
+        <p class="video__channel">
+          Все видео вы можете найте на нашем
           <a
             href="https://www.youtube.com/results?search_query=%23%D1%8D%D1%82%D0%BE%D0%BD%D0%B5%D0%BB%D0%B5%D1%87%D0%B8%D1%82%D1%81%D1%8F"
-            class="video__channel video__channel-link"
+            class="video__channel-link"
             target="_blank"
             >YouTube канале</a
-          >.</span
-        >
+          >.
+        </p>
       </div>
     </div>
   </section>
@@ -69,7 +69,6 @@ export default {
   display: flex;
   width: 100%;
 }
-
 .video-container {
   display: grid;
   grid-template-columns: 1fr calc(65% - 40px);
@@ -79,18 +78,6 @@ export default {
   width: 100%;
   position: relative;
 }
-
-.video__pagination {
-  position: absolute;
-  left: 0;
-  bottom: 100px;
-  display: flex;
-  flex-direction: row;
-}
-/* .arr {
-  display: flex;
-  flex-direction: row;
-} */
 .arr__container {
   width: 40px;
   height: 40px;
@@ -104,16 +91,20 @@ export default {
 .arr__container:hover {
   background: #f4f4f4;
 }
-
-.arr__mobile {
-  display: none;
+.go-left {
+  position: absolute;
+  left: 0;
+  bottom: 100px;
 }
-
+.go-right {
+  position: absolute;
+  left: 40px;
+  bottom: 100px;
+}
 .arrow {
   width: 11.5px;
   height: 11.5px;
 }
-
 .arrow_left {
   transform: rotate(-45deg);
 }
@@ -148,7 +139,6 @@ export default {
 }
 .video__iframe {
   min-height: 450px;
-  position: relative;
   background-image: url('../static/Pozner_1920_1080.jpg');
   background-size: cover;
   display: flex;
@@ -178,8 +168,12 @@ export default {
     padding-top: 90px;
     padding-bottom: 64px;
   }
-  .video__pagination {
+  .go-left,
+  .go-right {
     bottom: 90px;
+  }
+  .video__iframe {
+    min-height: 400px;
   }
 }
 @media (max-width: 1024px) {
@@ -198,8 +192,12 @@ export default {
     grid-template-columns: 1fr calc(65% - 30px);
     column-gap: 30px;
   }
-  .video__pagination {
+  .go-left,
+  .go-right {
     bottom: 80px;
+  }
+  .video__iframe {
+    min-height: 314px;
   }
 }
 @media (max-width: 768px) {
@@ -209,13 +207,11 @@ export default {
     align-items: center;
     padding-bottom: 44px;
   }
-  .video__pagination {
-    display: none;
-  }
   .video__title {
     font-size: 24px;
     line-height: 28px;
     max-width: 380px;
+    text-align: center;
   }
   .video__subtitle {
     font-size: 13px;
@@ -224,49 +220,50 @@ export default {
     max-width: 380px;
   }
   .video__for-mobile {
-    /* display: grid;
-    grid-template-columns: 1fr 84% 1fr;
-    column-gap: 14px;
-    align-items: center; */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    position: relative;
-    margin-top: 60px;
+    width: 84%;
+    margin: 60px auto;
   }
   .video__iframe {
-    width: 84%;
-    margin: 0 auto;
+    width: 100%;
+    min-height: 300px;
   }
-  .arr__mobile {
-    display: flex;
+  .go-left {
+    bottom: 270px;
   }
-  .arr_mobile_left {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    z-index: 2;
+  .go-right {
+    left: calc(100% - 40px);
+    bottom: 270px;
   }
-  .arr_mobile_rigth {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    z-index: 2;
-  }
-
   .video__channel {
-    display: none;
+    width: 100%;
+    text-align: left;
   }
 }
 @media (max-width: 420px) {
+  .video-container {
+    padding-bottom: 50px;
+  }
   .video__iframe {
-    width: 100%;
     min-height: 150px;
   }
-  .arr__mobile {
+  .video__for-mobile {
+    width: 100%;
+    margin: 40px auto;
+  }
+  .go-left {
+    bottom: 145px;
     background-color: transparent;
+  }
+  .go-right {
+    left: calc(100% - 40px);
+    bottom: 145px;
+    background-color: transparent;
+  }
+  .video__channel {
+    display: none;
   }
 }
 </style>
