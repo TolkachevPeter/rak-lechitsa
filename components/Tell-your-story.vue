@@ -6,7 +6,7 @@
           <h2 class="title">{{ title }}</h2>
           <p class="subtitle">{{ subtitle }}</p>
         </div>
-        <div class="tellStory__column">
+        <div class="tellStory__column var__column">
           <p
             class="tellStory__var"
             :class="{ tellStory__var_type_active: isActive1 }"
@@ -74,8 +74,6 @@ export default {
 <style scoped>
 .tellStory__container {
   width: 100%;
-  /* max-width: 1320px;
-  margin: 0 auto; */
   display: grid;
   grid-template-columns: 25% 1fr 48%;
   column-gap: 40px;
@@ -138,9 +136,66 @@ export default {
     max-width: 92%;
   }
 }
+@media (max-width: 1280px) {
+  .title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .subtitle {
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 30px;
+  }
+  .tellStory__var {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
 @media (max-width: 1024px) {
   .container {
     max-width: 90%;
+  }
+  .title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .subtitle,
+  .tellStory__var {
+    font-size: 15px;
+    line-height: 19px;
+  }
+}
+@media (max-width: 768px) {
+  .tellStory__container {
+    width: 380px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .title {
+    text-align: center;
+  }
+  .subtitle {
+    font-size: 13px;
+    line-height: 16px;
+    margin-top: 26px;
+  }
+  .tellStory__var {
+    font-size: 13px;
+    line-height: 16px;
+  }
+  .var__column {
+    flex-direction: row;
+    width: 100%;
+    margin-top: 80px;
+    margin-bottom: 24px;
+  }
+  .tellStory__var {
+    margin-right: 30px;
+  }
+  .btn {
+    margin-top: 50px;
   }
 }
 </style>
