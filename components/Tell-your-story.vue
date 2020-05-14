@@ -198,4 +198,27 @@ export default {
     margin-top: 50px;
   }
 }
+@media (max-width: 425px) {
+  .tellStory__container {
+    width: 100%;
+  }
+  .title {
+    text-align: left;
+    font-size: 18px;
+    line-height: 21px;
+  }
+  .subtitle {
+    margin-top: 16px;
+  }
+  .tellStory__var {
+  }
+  .var__column {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    margin-top: 30px;
+  }
+}
 </style>

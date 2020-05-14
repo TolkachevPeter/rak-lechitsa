@@ -46,4 +46,9 @@ export default {};
     line-height: 18px;
   }
 }
+@media (max-width: 425px) {
+  .button {
+    width: 100%;
+  }
+}
 </style>
