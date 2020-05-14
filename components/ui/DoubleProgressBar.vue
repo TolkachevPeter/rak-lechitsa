@@ -1,11 +1,21 @@
 <template>
   <div class="progress-bar-double">
-    <div class="progress-bar-double__old">
-      <div class="progress-bar-double__fill" :style="styleOld">.</div>
+    <div class="progress-bar-double__old progress-bar-double__item">
+      <div
+        class="progress-bar-double__fill progress-bar-double__item"
+        :style="styleOld"
+      >
+        .
+      </div>
     </div>
 
-    <div class="progress-bar-double__new">
-      <div class="progress-bar-double__fill_violet" :style="styleNew">d</div>
+    <div class="progress-bar-double__new progress-bar-double__item">
+      <div
+        class="progress-bar-double__fill_violet progress-bar-double__item"
+        :style="styleNew"
+      >
+        d
+      </div>
     </div>
   </div>
 </template>
@@ -25,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-.progress-bar {
+/* .progress-bar {
   width: 100%;
   height: 40px;
   background: #f4f4f4;
@@ -34,7 +44,7 @@ export default {
   background: #613a93;
   width: 100px;
   height: 100%;
-}
+} */
 .progress-bar-double {
   width: 100%;
   height: 40px;
@@ -42,16 +52,20 @@ export default {
   flex-direction: column;
 }
 
+.progress-bar-double__item {
+  height: 20px;
+}
+
 .progress-bar-double__old {
   width: 100%;
-  height: 20px;
+  /* height: 20px; */
 }
 
 .progress-bar-double__fill {
   background: #f4f4f4;
   width: 70%;
   color: #f4f4f4;
-  height: 20px;
+  /* height: 20px; */
 }
 
 .progress-bar-double__new {
@@ -62,6 +76,22 @@ export default {
   background: #613a93;
   width: 80%;
   color: #613a93;
-  height: 20px;
+  /* height: 20px; */
+}
+@media (max-width: 1280px) {
+  .progress-bar-double {
+    height: 35px;
+  }
+  .progress-bar-double__item {
+    height: 17.5px;
+  }
+}
+@media (max-width: 1024px) {
+  .progress-bar-double {
+    height: 28px;
+  }
+  .progress-bar-double__item {
+    height: 14px;
+  }
 }
 </style>

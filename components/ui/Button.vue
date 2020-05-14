@@ -1,7 +1,7 @@
 <template>
-  <button class="button">
+  <div class="button">
     <slot></slot>
-  </button>
+  </div>
 </template>
 
 <script>
@@ -11,11 +11,11 @@ export default {};
 <style scoped>
 .button {
   width: 280px;
-  height: 52px;
   background: #613a93;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 15px 30px;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
@@ -28,5 +28,27 @@ export default {};
 .button:hover {
   background: #613a93;
   opacity: 0.9;
+}
+@media (max-width: 1280px) {
+  .button {
+    width: 230px;
+  }
+}
+@media (max-width: 1024px) {
+  .button {
+    font-size: 15px;
+    line-height: 18px;
+  }
+}
+@media (max-width: 768px) {
+  .button {
+    font-size: 15px;
+    line-height: 18px;
+  }
+}
+@media (max-width: 425px) {
+  .button {
+    width: 100%;
+  }
 }
 </style>

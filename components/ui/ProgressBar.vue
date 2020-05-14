@@ -26,7 +26,7 @@ export default {
   width: 100px;
   height: 100%;
 }
-.progress-bar-double {
+/* .progress-bar-double {
   width: 100%;
   height: 40px;
   display: flex;
@@ -54,5 +54,15 @@ export default {
   width: 80%;
   color: #613a93;
   height: 20px;
+} */
+@media (max-width: 1280px) {
+  .progress-bar {
+    height: 35px;
+  }
+}
+@media (max-width: 1024px) {
+  .progress-bar {
+    height: 28px;
+  }
 }
 </style>

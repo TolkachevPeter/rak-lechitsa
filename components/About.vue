@@ -9,7 +9,7 @@
         <div class="about__column">
           <p class="about__text">{{ aboutProject }}</p>
         </div>
-        <div class="about__column">
+        <div class="about__column var__column">
           <p
             class="about__var"
             :class="{ about__var_type_active: isActive1 }"
@@ -115,15 +115,8 @@ export default {
   padding-top: 0;
   margin-bottom: 32px;
 }
-/* .about__subtitle-container {
-   max-width: 1320px; 
-  width: 90%;
-}
- */
+
 .about__container {
-  /* width: 90%; */
-  /* max-width: 1320px; */
-  /* margin: 0 auto; */
   display: grid;
   grid-template-columns: 25% 1fr 48%;
   column-gap: 40px;
@@ -171,9 +164,78 @@ export default {
     max-width: 92%;
   }
 }
+@media (max-width: 1280px) {
+  .about__title {
+    font-size: 58px;
+    line-height: 70px;
+  }
+  .about__subtitle {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
 @media (max-width: 1024px) {
   .container {
     max-width: 90%;
+  }
+  .about__title {
+    font-size: 52px;
+    line-height: 63px;
+  }
+  .about__subtitle {
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .about__text {
+    font-size: 15px;
+    line-height: 19px;
+  }
+}
+@media (max-width: 768px) {
+  .about__container {
+    width: 380px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about__title {
+    display: none;
+  }
+  .about__subtitle {
+    text-align: center;
+    margin-top: 80px;
+  }
+  .about__text {
+    font-size: 13px;
+    line-height: 16px;
+  }
+  .var__column {
+    flex-direction: row;
+    width: 100%;
+    margin-top: 80px;
+    margin-bottom: 24px;
+  }
+  .about__var {
+    margin-right: 30px;
+    font-size: 15px;
+    line-height: 19px;
+  }
+}
+@media (max-width: 425px) {
+  .about__container {
+    width: 100%;
+  }
+  .about__subtitle {
+    text-align: left;
+    font-size: 18px;
+    line-height: 21px;
+    margin-top: 50px;
+  }
+  .about__var {
+    font-size: 13px;
+    line-height: 19px;
   }
 }
 </style>

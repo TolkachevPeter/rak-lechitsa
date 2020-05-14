@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__three-columns">
-        <h3 class="thank-you">
+        <h3 class="footer__title">
           Спасибо всем, кто помог состояться этому проекту
         </h3>
         <div class="footer__column">
@@ -66,7 +66,7 @@ export default {};
 
 .footer__three-columns {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   position: relative;
   /* width: 90%;
@@ -74,7 +74,7 @@ export default {};
   margin: 0 auto;*/
   width: 100%;
 }
-.thank-you {
+.footer__title {
   font-family: Inter;
   font-style: normal;
   font-weight: 600;
@@ -85,7 +85,7 @@ export default {};
 }
 .footer__column {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   position: relative;
 }
@@ -131,7 +131,7 @@ export default {};
   margin: 110px auto 0px;
   padding-bottom: 60px;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   position: relative;
   /* max-width: 90%; */
@@ -161,9 +161,35 @@ export default {};
     max-width: 91.5%;
   }
 }
+@media (max-width: 1280px) {
+  .footer__title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .menu__item {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .footer__copyright {
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
 @media (max-width: 1024px) {
   .container {
     max-width: 90%;
+  }
+  .footer__title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 425px) {
+  .footer__title {
+    font-size: 18px;
+    line-height: 21px;
   }
 }
 </style>

@@ -4,16 +4,16 @@
     <div class="container">
       <my-video />
       <tagline>
-        И В ОТЛИЧИЕ ОТ РАКА,
-        <hashtext />
+        <p class="tagline1"><span>И В ОТЛИЧИЕ ОТ РАКА,</span><hashtext /></p>
       </tagline>
       <story-elem />
       <div class="link-button_index">
         <link-button url="/stories/">Больше статей</link-button>
       </div>
       <tagline>
-        РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ В ИНСТАГРАМ
-        <hashtext />
+        <p class="tagline2">
+          <span>РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ В ИНСТАГРАМ</span><hashtext />
+        </p>
       </tagline>
       <instagram />
     </div>
@@ -73,6 +73,11 @@ export default {
   margin: 0 auto;
   max-width: 1320px;
 }
+.tagline2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 @media (max-width: 1440px) {
   .container {
     max-width: 92%;
@@ -81,6 +86,13 @@ export default {
 @media (max-width: 1024px) {
   .container {
     max-width: 90%;
+  }
+}
+@media (max-width: 768px) {
+  .tagline1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 </style>

@@ -64,7 +64,7 @@ export default {
   flex-direction: column;
   width: 100%;
   /* max-width: 1320px; */
-  margin: auto;
+  /* margin: auto; */
   min-height: 600px;
   background: #ffffff;
 }
@@ -90,10 +90,10 @@ export default {
   padding-bottom: 100px;
 }
 .statistics__card {
-  max-width: 300px;
-  width: 22%;
-  height: 300px;
-  max-width: 1320px;
+  /* max-width: 300px; */
+  width: calc((100% - 120px) / 4);
+  min-height: 300px;
+  /* max-width: 1320px; */
   margin: 0;
   padding: 0;
   padding: 20px;
@@ -131,5 +131,64 @@ export default {
   padding: 0;
   padding-top: 20px;
   color: #666666;
+}
+@media (max-width: 1280px) {
+  .statistics__subtitle {
+    font-size: 28px;
+    line-height: 32px;
+    padding-top: 90px;
+    margin-bottom: 60px;
+  }
+}
+@media (max-width: 1024px) {
+  .statistics__subtitle {
+    font-size: 24px;
+    line-height: 28px;
+    padding-top: 80px;
+    margin-bottom: 46px;
+  }
+  .statistics__card-text {
+    font-size: 10px;
+    line-height: 14px;
+  }
+  .statistics__digits {
+    font-size: 26px;
+    line-height: 30px;
+    padding-top: 10px;
+  }
+  .statistics__digits-src {
+    font-size: 10px;
+    line-height: 14px;
+    padding-top: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .statistics {
+    position: relative;
+    overflow: scroll;
+  }
+  .statistics__subtitle {
+    width: 380px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .statistics__container {
+    position: absolute;
+    padding-bottom: 0;
+    left: 0;
+    bottom: 80px;
+    width: 924px;
+  }
+  .statistics__card {
+    width: 216px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .statistics__subtitle {
+    font-size: 18px;
+    line-height: 21px;
+  }
 }
 </style>

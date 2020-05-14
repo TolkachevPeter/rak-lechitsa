@@ -12,6 +12,7 @@ export default {};
   font-weight: 800;
   font-size: 40px;
   line-height: 46px;
+  margin-left: 5px;
 }
 @media (min-width: 1280px) {
   .taglineHastext {
@@ -20,7 +21,6 @@ export default {};
 }
 @media (min-width: 1024px) {
   .taglineHastext {
-    min-height: 80px;
     font-size: 30px;
     line-height: 40px;
   }
