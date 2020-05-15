@@ -92,7 +92,6 @@ export default {
 
 <style scoped>
 .instagram {
-  /*padding-top: 100px;*/
   margin: 0 auto;
   max-width: 1320px;
   width: 100%;
@@ -102,7 +101,6 @@ export default {
   justify-content: space-between;
   max-width: 100%;
   margin: 100px auto;
-  /*margin: 100px auto;*/
 }
 .instagram__text-column {
   margin-left: 23px;
@@ -226,6 +224,36 @@ export default {
   .instagram__card {
     width: 157px;
     height: 157px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .instagram {
+    max-width: 290px;
+    width: 100%;
+  }
+  .instagram__two-columns {
+    margin: 50px auto;
+  }
+  .instagram__name {
+    font-size: 18px;
+    text-align: left;
+  }
+  .instagram__main-text {
+    width: 290px;
+    margin-top: 16px;
+  }
+  .instagram__text-column {
+    margin-bottom: 40px;
+  }
+  .instagram__list {
+    grid-template-columns: repeat(2, 140px);
+    grid-template-rows: auto;
+    grid-gap: 10px;
+    justify-content: center;
+  }
+  .instagram__card {
+    width: 140px;
+    height: 140px;
   }
 }
 </style>
