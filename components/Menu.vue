@@ -57,5 +57,18 @@ export default {
   .nav {
     display: none;
   }
+  .nav__list-items {
+    flex-direction: column;
+  }
+  .nav__list-item {
+    margin-left: 0px;
+    padding-bottom: 10px;
+  }
+}
+@media (max-width: 320px) {
+  .nav__link {
+    font-size: 13px;
+    line-height: 15px;
+  }
 }
 </style>
