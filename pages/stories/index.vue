@@ -6,6 +6,12 @@
         <input type="text" class="stories__input" />
         <form-btn class="stories__button">Поиск</form-btn>
       </form>
+      <form class="stories__search stories__search_for-mobile">
+        <input type="text" class="stories__input" />
+        <form-btn class="stories__button"
+          ><img src="@/static/search_icon.svg"
+        /></form-btn>
+      </form>
       <ul class="stories__container">
         <li class="stories__item" v-for="story in stories" :key="story.id">
           <img
@@ -17,7 +23,7 @@
           <p class="story__text">{{ story.story_text }}</p>
         </li>
       </ul>
-
+      <!-- Необходимо настроить количество -->
       <div class="stories__nav-container">
         <ul class="stories__nav">
           <li
@@ -243,6 +249,9 @@ export default {
   margin-top: 60px;
   height: 52px;
 }
+.stories__search_for-mobile {
+  display: none;
+}
 .stories__input {
   width: 81%;
   border: 1px solid #e8e8e8;
@@ -251,6 +260,8 @@ export default {
   padding-left: 15px;
 }
 .stories__button {
+  font-size: 16px;
+  line-height: 19px;
 }
 .stories__container {
   display: grid;
@@ -365,6 +376,10 @@ export default {
   .stories__search {
     height: 46px;
   }
+  .stories__button {
+    font-size: 15px;
+    line-height: 18px;
+  }
   .story-element__photo {
     max-height: 208px;
   }
@@ -387,7 +402,69 @@ export default {
   }
 }
 @media (max-width: 768px) {
+  .stories__title {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 380px;
+  }
+  .stories__search {
+    margin-top: 50px;
+  }
+  .stories__container {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 40px;
+    margin-top: 60px;
+  }
+  .story-element__photo {
+    max-height: 216px;
+  }
+  .story__name {
+    font-size: 18px;
+    line-height: 22px;
+  }
 }
-@media (max-width: 320px) {
+@media (max-width: 425px) {
+  .stories {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .stories__title {
+    font-size: 18px;
+    line-height: 21px;
+    text-align: left;
+    width: 70%;
+    margin: 0;
+  }
+  .stories__search {
+    display: none;
+  }
+  .stories__search_for-mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
+    height: 46px;
+  }
+  .stories__input {
+    width: 82%;
+    margin-right: 6px;
+  }
+  .stories__button {
+    width: 46px;
+    height: 46px;
+  }
+  .stories__container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+  .story-element__photo {
+    max-height: 290px;
+  }
+  .stories__item {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
 }
 </style>
