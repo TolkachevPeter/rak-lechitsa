@@ -134,8 +134,7 @@ export default {
 .instagram__list {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(4, 195px);
-  grid-template-rows: repeat(2, 195px);
+  grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 30px;
   grid-row-gap: 30px;
   padding-left: 0;
@@ -143,8 +142,11 @@ export default {
 .instagram__card {
   width: 100%;
   height: 100%;
+  max-height: 171px;
+  max-width: 171px;
   background-color: #613a93;
   color: #ffffff;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 1280px) {
@@ -162,13 +164,9 @@ export default {
     font-size: 16px;
   }
   .instagram__list {
-    grid-template-columns: repeat(4, 171px);
-    grid-template-rows: repeat(2, 171px);
+    grid-template-columns: repeat(4, minmax(130px, 171px));
+    grid-template-rows: repeat(2, minmax(130px, 171px));
     grid-gap: 27px;
-  }
-  .instagram__card {
-    width: 171px;
-    height: 171px;
   }
 }
 @media screen and (max-width: 1024px) {
@@ -189,13 +187,12 @@ export default {
     margin-left: 60px;
   }
   .instagram__list {
-    grid-template-columns: repeat(4, 136px);
-    grid-template-rows: repeat(2, 136px);
+    grid-template-columns: repeat(4, minmax(110px, 136px));
+    grid-template-rows: repeat(2, minmax(110px, 136px));
     grid-gap: 20px;
   }
   .instagram__card {
-    width: 136px;
-    height: 136px;
+    max-height: 136px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -215,18 +212,26 @@ export default {
   }
   .instagram__photo-column {
     justify-content: center;
+    margin-left: 0px;
   }
   .instagram__list {
-    grid-template-columns: repeat(4, 157px);
-    grid-template-rows: repeat(2, 157px);
+    grid-template-columns: repeat(4, minmax(100px, 157px));
+    grid-template-rows: repeat(2, minmax(100px, 157px));
     grid-gap: 20px;
   }
   .instagram__card {
-    width: 157px;
-    height: 157px;
+    max-height: 157px;
   }
 }
-@media screen and (max-width: 320px) {
+
+@media screen and (max-width: 600px) {
+  .instagram__list {
+    grid-template-columns: repeat(3, minmax(100px, 157px));
+    grid-template-rows: repeat(3, minmax(100px, 157px));
+  }
+}
+
+@media screen and (max-width: 400px) {
   .instagram {
     max-width: 290px;
     width: 100%;
@@ -246,14 +251,16 @@ export default {
     margin-bottom: 40px;
   }
   .instagram__list {
-    grid-template-columns: repeat(2, 140px);
+    grid-template-columns: repeat(2, minmax(100px, 170px));
     grid-template-rows: auto;
     grid-gap: 10px;
     justify-content: center;
+    padding: 0;
+    margin: 0;
   }
+
   .instagram__card {
-    width: 140px;
-    height: 140px;
+    max-height: 140px;
   }
 }
 </style>

@@ -80,12 +80,12 @@ export default {
 }
 @media (max-width: 1440px) {
   .container {
-    max-width: 92%;
+    max-width: 95%;
   }
 }
 @media (max-width: 1024px) {
   .container {
-    max-width: 90%;
+    max-width: 95%;
   }
 }
 @media (max-width: 768px) {
