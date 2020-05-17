@@ -14,11 +14,12 @@
       </form>
       <ul class="stories__container">
         <li class="stories__item" v-for="story in stories" :key="story.id">
-          <img
-            class="story-element__photo"
-            v-bind:src="story.photo_url"
-            v-bind:alt="story.photo_alt"
-          />
+          <a href="" class="story__img-container">
+            <img
+              class="story__img"
+              v-bind:src="story.photo_url"
+              v-bind:alt="story.photo_alt"
+          /></a>
           <h2 class="story__name">{{ story.name }}</h2>
           <p class="story__text">{{ story.story_text }}</p>
         </li>
@@ -276,11 +277,28 @@ export default {
   display: flex;
   flex-direction: column;
 }
-.story-element__photo {
+.story__img-container {
+  width: 100%;
+  position: relative;
+}
+.story__img-container:after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
+.story__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* .story-element__photo {
   width: 100%;
   max-height: 300px;
   cursor: pointer;
-}
+} */
 .story__name {
   font-family: Inter;
   font-style: normal;
