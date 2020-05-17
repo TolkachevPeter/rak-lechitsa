@@ -3,11 +3,12 @@
     <h2 class="stories__title">Истории неизлечимых привычек</h2>
     <ul class="stories__list">
       <li class="story" v-for="story in stories" :key="story.id">
-        <img
-          class="story__img"
-          v-bind:src="story.photo_url"
-          v-bind:alt="story.photo_alt"
-        />
+        <a class="story__img-container"
+          ><img
+            class="story__img"
+            v-bind:src="story.photo_url"
+            v-bind:alt="story.photo_alt"
+        /></a>
         <h4 class="story__name">{{ story.name }}</h4>
         <p class="story__text">{{ story.story_text }}</p>
       </li>
@@ -119,9 +120,27 @@ export default {
   padding-bottom: 70px;
 }
 
-.story__img {
+/* .story__img {
   width: 100%;
   height: 300px;
+} */
+
+.story__img-container {
+  width: 100%;
+  position: relative;
+}
+.story__img-container:after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
+.story__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .stories__title {
@@ -170,9 +189,9 @@ export default {
     margin-top: 60px;
   }
 
-  .story__img {
+  /* .story__img {
     height: 265px;
-  }
+  } */
 }
 @media (max-width: 1024px) {
   .story {
@@ -191,9 +210,9 @@ export default {
     margin-top: 60px;
   }
 
-  .story__img {
+  /* .story__img {
     height: 208px;
-  }
+  } */
   .story__name {
     font-size: 18px;
     line-height: 22px;
@@ -224,9 +243,9 @@ export default {
     margin-top: 60px;
   }
 
-  .story__img {
+  /* .story__img {
     height: 208px;
-  }
+  } */
   .story__name {
     font-size: 18px;
     line-height: 22px;
@@ -257,8 +276,8 @@ export default {
     margin-top: 60px;
   }
 
-  .story__img {
+  /* .story__img {
     height: 290px;
-  }
+  } */
 }
 </style>

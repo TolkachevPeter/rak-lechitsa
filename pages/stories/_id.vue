@@ -1,7 +1,9 @@
 <template>
   <container>
     <section class="story__headings">
-      <img class="story__img" :src="story_url" :alt="story__author" />
+      <div class="story__img-container">
+        <img class="story__img" :src="story_url" :alt="story__author" />
+      </div>
       <div class="story__data">
         <h1 class="story__title">
           <span class="story__author">{{ story__author }}: </span
@@ -116,10 +118,24 @@ export default {
   flex-direction: row;
   justify-content: space-between;
 }
-.story__img {
+.story__img-container {
   min-width: 44%;
-  height: 580px;
+  position: relative;
 }
+.story__img-container:after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
+.story__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .story__data {
   display: flex;
   flex-direction: column;
@@ -227,9 +243,9 @@ export default {
 }
 
 @media (max-width: 1280px) {
-  .story__img {
+  /* .story__img {
     height: 518px;
-  }
+  } */
   .stories__container {
     row-gap: 60px;
   }
@@ -246,14 +262,14 @@ export default {
     max-width: 61%;
   }
 
-  .story-element__photo {
+  /* .story-element__photo {
     max-height: 265px;
-  }
+  } */
 }
 @media (max-width: 1024px) {
-  .story__img {
+  /* .story__img {
     height: 407px;
-  }
+  } */
   .story__title {
     font-size: 30px;
     line-height: 38px;
@@ -273,9 +289,9 @@ export default {
     column-gap: 30px;
   }
 
-  .story-element__photo {
+  /* .story-element__photo {
     max-height: 208px;
-  }
+  } */
   .story__name {
     font-size: 22px;
   }
@@ -296,7 +312,7 @@ export default {
     padding-bottom: 20px;
   }
 
-  .story__img {
+  .story__img-container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -331,9 +347,9 @@ export default {
     row-gap: 40px;
     margin-top: 60px;
   }
-  .story-element__photo {
+  /* .story-element__photo {
     max-height: 216px;
-  }
+  } */
   .story__name {
     font-size: 18px;
     line-height: 22px;
@@ -379,9 +395,9 @@ export default {
     flex-direction: column;
     margin-top: 30px;
   }
-  .story-element__photo {
+  /* .story-element__photo {
     max-height: 290px;
-  }
+  } */
   .stories__item {
     max-width: 100%;
     margin-bottom: 30px;
