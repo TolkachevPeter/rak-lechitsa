@@ -18,7 +18,7 @@
           :class="{ goback_active: isGobackActive }"
           >Назад</a
         >
-        <popupButton class="popupButton" type="submit">{{
+        <popupButton @submit.prevent="xxx" class="popupButton" type="submit">{{
           popupButtonText
         }}</popupButton>
         <p class="popup__policy" :class="{ showPolicy: needPolicy }">
