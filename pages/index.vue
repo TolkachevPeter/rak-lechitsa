@@ -20,7 +20,13 @@
 
     <tell-your-story />
     <div class="container">
-      <elemstat />
+      <elemstat
+        :maxVal="100"
+        :oldValueIncr="50"
+        :newValueIncr="64"
+        :oldValueDecr="62.5"
+        :newValueDecr="50"
+      />
     </div>
 
     <about />
