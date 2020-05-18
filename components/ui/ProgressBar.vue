@@ -6,10 +6,10 @@
 
 <script>
 export default {
-  props: ['val'],
+  props: ['val', 'maxVal'],
   computed: {
     styleNew() {
-      return `width: ` + this.val + `%`;
+      return `width: ` + (this.val / this.maxVal) * 100 + `%`;
     },
   },
 };
