@@ -119,7 +119,7 @@ export default {
   margin: 0;
   padding: 0;
   height: 124px;
-  color: #000000;
+  color: #000;
 }
 .statistics__digits {
   width: 100%;

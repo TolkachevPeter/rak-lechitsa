@@ -7,8 +7,6 @@
 <style scoped>
 .tagline {
   min-height: 86px;
-  /* padding-bottom: 20px;
-  padding-top: 20px; */
   background: #613a93;
   border: 1px solid #000000;
   box-sizing: border-box;
@@ -23,11 +21,6 @@
   width: 100%;
   text-align: center;
 }
-/* .tagline__text {
-  width: 100%;
-  max-width: 750px;
-  text-align: center;
-} */
 
 @media (min-width: 1280px) {
   .tagline {

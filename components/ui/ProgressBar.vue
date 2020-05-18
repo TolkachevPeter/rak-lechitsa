@@ -9,7 +9,7 @@ export default {
   props: ['val', 'maxVal'],
   computed: {
     styleNew() {
-      return `width: ` + (this.val / this.maxVal) * 100 + `%`;
+      return `width: ${(this.val / this.maxVal) * 100}%`;
     },
   },
 };
