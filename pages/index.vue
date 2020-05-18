@@ -20,18 +20,20 @@
 
     <tell-your-story />
     <div class="container">
-      <elemstat />
+      <elemstat
+        :maxVal="100"
+        :oldValueIncr="50"
+        :newValueIncr="64"
+        :oldValueDecr="62.5"
+        :newValueDecr="50"
+      />
     </div>
-
     <about />
   </div>
 </template>
 
 <script>
-//import Header from '@/components/Header';
-// import Footer from '@/components/Footer';
 import Banner from '@/components/Banner';
-// import About from '@/components/About';
 import Video from '@/components/Video';
 import Tagline from '@/components/Tagline';
 import TaglineHashText from '@/components/TaglineHashText';
@@ -43,12 +45,6 @@ import TellYourStory from '@/components/Tell-your-story';
 import Elemstat from '@/components/Elemstat';
 import About from '@/components/About';
 
-// import ProgressBar from '@/components/ui/ProgressBar';
-// import DoubleProgressBar from '@/components/ui/DoubleProgressBar';
-
-// import Storyelem from '@/components/Story-elem';
-// import Linkbutton from '@/components/ui/Link-button';
-// import Instagram from '@/components/Instagram';
 export default {
   components: {
     banner: Banner,

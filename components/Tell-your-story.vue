@@ -8,23 +8,29 @@
         </div>
         <div class="tellStory__column var__column">
           <p
-            class="tellStory__var"
-            :class="{ tellStory__var_type_active: isActive1 }"
+            class="about__var"
+            :class="[
+              'tellStory__var',
+              { tellStory__var_type_active: isActiveText['1'] },
+            ]"
             @click="changeVar(1)"
           >
             1-й вариант
           </p>
           <p
-            class="tellStory__var"
-            :class="{ tellStory__var_type_active: isActive2 }"
+            class="about__var"
+            :class="[
+              'tellStory__var',
+              { tellStory__var_type_active: isActiveText['2'] },
+            ]"
             @click="changeVar(2)"
           >
             2-й вариант
           </p>
         </div>
         <div class="tellStory__column">
-          <p class="subtitle tellStory__select-var">{{ varText }}</p>
-          <submit-btn class="btn">{{ btnText }}</submit-btn>
+          <p class="subtitle tellStory__select-var">{{ textVar[0] }}</p>
+          <submit-btn class="btn">{{ btnText[isActiveResult] }}</submit-btn>
         </div>
       </div>
     </div>
@@ -37,35 +43,55 @@ export default {
   components: {
     'submit-btn': Button,
   },
+  computed: {
+    isActiveResult() {
+      return this.isActive;
+    },
+  },
+  mounted() {
+    if (this.isActive == 1) {
+      this.isActiveText = { 1: true, 2: false };
+      return (this.textVar = [this.textBlocks[1].text1]);
+    } else {
+      this.isActiveText = { 1: false, 2: true };
+      return (this.textVar = [this.textBlocks[2].text1, '']);
+    }
+  },
   methods: {
-    changeVar(variant) {
+    changeVar(variant = 1) {
       if (variant === 2) {
-        (this.isActive2 = true),
-          (this.isActive1 = false),
-          (this.btnText = 'Оставить контакт');
-        this.varText =
-          'Оставьте контакт (почту или номер телефона) и мы свяжемся с вами, зададим вопросы, уточним детали вашей истории.';
+        this.isActive = 2;
+        this.isActiveText = { 1: false, 2: true };
+        this.textVar = [this.textBlocks[2].text1, ''];
       } else {
-        (this.isActive1 = true),
-          (this.isActive2 = false),
-          (this.btnText = 'Заполнить форму');
-        this.varText = `Заполните подробную форму прямо на сайте и мы опубликуем вашу историю
-                    после проверки. Пожалуйста, заполняйте все пункты корректно, если вы
-                    испытаете какие-то сложности, воспользуйтесь 2-м вариантом.`;
+        this.isActive = 1;
+        this.isActiveText = { 1: true, 2: false };
+        this.textVar = [this.textBlocks[1].text1];
       }
+      return this.textVar;
     },
   },
   data() {
     return {
+      isActive: 1,
+      isActiveText: { 1: 'true', 2: 'false' },
+      textVar: [],
+      btnText: { 1: 'Заполнить форму', 2: 'Оставить контакт' },
       title: 'Расскажите свою историю',
       subtitle:
         'Мы публикуем новые истории на сайте раз в неделю. Есть 2 варианта поделиться своей историей неизлечимых привычек, навязчивых идей и болезненных привязанностей.',
-      varText: `Заполните подробную форму прямо на сайте и мы опубликуем вашу историю
+      textBlocks: {
+        1: {
+          text1: `Заполните подробную форму прямо на сайте и мы опубликуем вашу историю
                     после проверки. Пожалуйста, заполняйте все пункты корректно, если вы
                     испытаете какие-то сложности, воспользуйтесь 2-м вариантом.`,
-      btnText: `Заполнить форму`,
-      isActive1: true,
-      isActive2: false,
+        },
+
+        2: {
+          text1:
+            'Оставьте контакт (почту или номер телефона) и мы свяжемся с вами, зададим вопросы, уточним детали вашей истории.',
+        },
+      },
     };
   },
 };
