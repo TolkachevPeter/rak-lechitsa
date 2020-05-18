@@ -15,7 +15,7 @@ export default {
   computed: {
     styleChange() {
       // console.log(`button_theme_` + this.theme);
-      return `button_theme_` + this.theme;
+      return `button_theme_${this.theme}`;
     },
   },
 };

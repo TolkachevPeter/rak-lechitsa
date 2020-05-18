@@ -166,7 +166,7 @@ export default {
 
 .about__var_type_active {
   font-weight: 500;
-  color: #ffffff;
+  color: #fff;
   cursor: default;
 }
 .container {
