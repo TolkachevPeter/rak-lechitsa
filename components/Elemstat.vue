@@ -8,7 +8,7 @@
           000 человек.
         </p>
 
-        <progressBar :val="33" />
+        <progressBar :val="33.3" :maxVal="maxVal" />
         <p class="statistics__digits">1 из 3</p>
         <p class="statistics__digits-src">Левада-Центр 2018</p>
       </div>
@@ -16,7 +16,7 @@
       <div class="statistics__card">
         <p class="statistics__card-text">2,6% Россиян имеют онкозаболевания.</p>
 
-        <progressBar :val="2.6" />
+        <progressBar :val="2.6" :maxVal="maxVal" />
         <p class="statistics__digits">3 700 000</p>
         <p class="statistics__digits-src">Росстат 2018</p>
       </div>
@@ -26,7 +26,11 @@
           На 28% выросла доля выявления заболеваний на ранней стадии за 10 лет.
         </p>
 
-        <doubleprogressbar :oldValue="50" :newValue="75" />
+        <doubleprogressbar
+          :oldValue="oldValueIncr"
+          :newValue="newValueIncr"
+          :maxVal="maxVal"
+        />
         <p class="statistics__digits">↑28%</p>
         <p class="statistics__digits-src">МНИОИ Герцена 2018</p>
       </div>
@@ -37,7 +41,11 @@
           диагноза.
         </p>
 
-        <doubleprogressbar :oldValue="75" :newValue="55" />
+        <doubleprogressbar
+          :oldValue="oldValueDecr"
+          :newValue="newValueDecr"
+          :maxVal="maxVal"
+        />
 
         <p class="statistics__digits">↓25%</p>
         <p class="statistics__digits-src">МНИОИ Герцена 2018</p>
@@ -54,6 +62,13 @@ export default {
     progressBar: progressBar,
     doubleprogressbar: DoubleProgressBar,
   },
+  props: [
+    'maxVal',
+    'oldValueIncr',
+    'newValueIncr',
+    'oldValueDecr',
+    'newValueDecr',
+  ],
 };
 </script>
 
@@ -63,8 +78,6 @@ export default {
   align-items: flex-start;
   flex-direction: column;
   width: 100%;
-  /* max-width: 1320px; */
-  /* margin: auto; */
   min-height: 600px;
   background: #ffffff;
 }
@@ -90,10 +103,8 @@ export default {
   padding-bottom: 100px;
 }
 .statistics__card {
-  /* max-width: 300px; */
   width: calc((100% - 120px) / 4);
   min-height: 300px;
-  /* max-width: 1320px; */
   margin: 0;
   padding: 0;
   padding: 20px;
