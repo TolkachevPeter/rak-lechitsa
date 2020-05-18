@@ -6,7 +6,7 @@
       <tagline>
         <p class="tagline1"><span>И В ОТЛИЧИЕ ОТ РАКА,</span><hashtext /></p>
       </tagline>
-      <story-elem />
+      <story-elem :stories="stories" :showTitle="true" />
       <div class="link-button_index">
         <link-button url="/stories/">Больше статей</link-button>
       </div>
@@ -57,6 +57,11 @@ export default {
     'tell-your-story': TellYourStory,
     elemstat: elemstat,
     about: About,
+  },
+  computed: {
+    stories() {
+      return this.$store.getters['stories/getStories'];
+    },
   },
 };
 </script>
