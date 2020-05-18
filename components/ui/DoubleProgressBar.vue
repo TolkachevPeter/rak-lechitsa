@@ -22,13 +22,13 @@
 
 <script>
 export default {
-  props: ['oldValue', 'newValue'],
+  props: ['oldValue', 'newValue', 'maxVal'],
   computed: {
     styleOld() {
-      return `width: ` + this.oldValue + `%`;
+      return `width: ` + (this.oldValue / this.maxVal) * 100 + `%`;
     },
     styleNew() {
-      return `width: ` + this.newValue + `%`;
+      return `width: ` + (this.newValue / this.maxVal) * 100 + `%`;
     },
   },
 };
