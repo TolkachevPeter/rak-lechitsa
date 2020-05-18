@@ -1,23 +1,19 @@
 <template>
   <section class="stories">
     <h2 class="stories__title">Истории неизлечимых привычек</h2>
-    <ul class="stories__list">
-      <li class="story" v-for="story in stories" :key="story.id">
-        <a class="story__img-container"
-          ><img
-            class="story__img"
-            v-bind:src="story.photo_url"
-            v-bind:alt="story.photo_alt"
-        /></a>
-        <h4 class="story__name">{{ story.name }}</h4>
-        <p class="story__text">{{ story.story_text }}</p>
-      </li>
-    </ul>
+    <div class="stories__list">
+      <one-story v-for="story in stories" :key="story.id" :storyData="story" />
+    </div>
   </section>
 </template>
 
 <script>
+import Story from '~/components/Story';
+
 export default {
+  components: {
+    'one-story': Story,
+  },
   data() {
     return {
       stories: [
@@ -108,22 +104,16 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 40px;
-  row-gap: 60px;
+  row-gap: 70px;
   padding-left: 0;
   margin-top: 70px;
-}
-
-.story {
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
   padding-bottom: 70px;
 }
 
-/* .story__img {
-  width: 100%;
-  height: 300px;
-} */
+.story-container {
+  margin: 0;
+  padding: 0;
+}
 
 .story__img-container {
   width: 100%;
@@ -153,30 +143,13 @@ export default {
   line-height: 36px;
 }
 
-.story__name {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 22px;
-  color: #000000;
-  margin-top: 20px;
-}
-
-.story__text {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 18px;
-  color: #666666;
-  margin-top: 14px;
-}
 @media (max-width: 1280px) {
-  .story {
-    max-width: 265px;
+  .stories__list {
+    row-gap: 60px;
+    margin-top: 60px;
     padding-bottom: 60px;
   }
+
   .stories {
     padding-top: 90px;
   }
@@ -185,19 +158,8 @@ export default {
     font-size: 28px;
     line-height: 32px;
   }
-  .stories__list {
-    margin-top: 60px;
-  }
-
-  /* .story__img {
-    height: 265px;
-  } */
 }
 @media (max-width: 1024px) {
-  .story {
-    max-width: 208px;
-    padding-bottom: 46px;
-  }
   .stories {
     padding-top: 80px;
   }
@@ -206,13 +168,13 @@ export default {
     font-size: 24px;
     line-height: 28px;
   }
+
   .stories__list {
+    row-gap: 46px;
     margin-top: 60px;
+    padding-bottom: 46px;
   }
 
-  /* .story__img {
-    height: 208px;
-  } */
   .story__name {
     font-size: 18px;
     line-height: 22px;
@@ -226,11 +188,6 @@ export default {
   }
 }
 @media (max-width: 768px) {
-  .story {
-    max-width: 216px;
-    padding-bottom: 40px;
-  }
-
   .stories__title {
     max-width: 55%;
     margin: 0 auto;
@@ -241,11 +198,9 @@ export default {
     column-gap: 20px;
     row-gap: 40px;
     margin-top: 60px;
+    padding-bottom: 40px;
   }
 
-  /* .story__img {
-    height: 208px;
-  } */
   .story__name {
     font-size: 18px;
     line-height: 22px;
@@ -274,10 +229,7 @@ export default {
     display: flex;
     flex-direction: column;
     margin-top: 60px;
+    padding-bottom: 0;
   }
-
-  /* .story__img {
-    height: 290px;
-  } */
 }
 </style>
