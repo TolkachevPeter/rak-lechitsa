@@ -18,7 +18,11 @@
           <span>РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ В ИНСТАГРАМ</span><hashtext />
         </p>
       </tagline>
-      <instagram class="instagram_mix" />
+      <instagram
+        class="instagram_mix"
+        :instagramData="instagram"
+        :mainInstLink="'#'"
+      />
     </div>
 
     <tell-your-story class="tell-your-story_mix" />
@@ -66,6 +70,9 @@ export default {
   computed: {
     stories() {
       return this.$store.getters['stories/getStories'];
+    },
+    instagram() {
+      return this.$store.getters['instagram/getInstagramData'];
     },
   },
 };
