@@ -1,25 +1,28 @@
 <template>
+  <!-- <section class="stories"> -->
   <section class="stories">
-    <div class="container">
-      <h1 class="stories__title">Истории неизлечимых привычек</h1>
-      <form class="stories__search">
-        <input type="text" class="stories__input" />
-        <form-btn class="stories__button">Поиск</form-btn>
-      </form>
-      <form class="stories__search stories__search_for-mobile">
-        <input type="text" class="stories__input" />
-        <form-btn class="stories__button"
-          ><img src="@/static/search_icon.svg"
-        /></form-btn>
-      </form>
-      <story-elem :stories="stories" :showTitle="false" />
-      <!-- Необходимо настроить количество -->
-      <paginator :pages="pages" />
+    <div class="section-title-container">
+      <section-title>Истории неизлечимых привычек</section-title>
     </div>
+    <form class="stories__search">
+      <input type="text" class="stories__input" />
+      <form-btn class="stories__button">Поиск</form-btn>
+    </form>
+    <form class="stories__search stories__search_for-mobile">
+      <input type="text" class="stories__input" />
+      <form-btn class="stories__button"
+        ><img src="@/static/search_icon.svg"
+      /></form-btn>
+    </form>
+    <story-elem :stories="stories" />
+    <!-- Необходимо настроить количество -->
+    <paginator :pages="pages" class="paginator_position" />
   </section>
+  <!-- </section> -->
 </template>
 
 <script>
+import SectionTitle from '@/components/ui/SectionTitle';
 import Button from '@/components/ui/Button';
 import Storyelem from '@/components/Story-elem';
 import Paginator from '@/components/ui/Paginator';
@@ -28,6 +31,7 @@ export default {
     'form-btn': Button,
     'story-elem': Storyelem,
     paginator: Paginator,
+    'section-title': SectionTitle,
   },
   computed: {
     stories() {
@@ -72,15 +76,20 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.paginator_position {
+  padding-bottom: 100px;
+}
+
+.section-title-container {
+  padding: 0;
+  margin: 0;
+  margin-top: 100px;
+  padding-bottom: 60px;
+}
+
+.stories {
   margin: 0 auto;
   max-width: 1320px;
-}
-.stories {
-  padding-top: 100px;
-  /* padding-bottom: 100px; */
-  padding-bottom: 0;
-  padding-bottom: 70px;
 }
 
 .stories__title {
@@ -96,7 +105,8 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 60px;
+  /* margin-top: 60px; */
+  margin-bottom: 70px;
   height: 52px;
 }
 .stories__search_for-mobile {
@@ -127,15 +137,24 @@ export default {
   flex-direction: column;
 }
 @media (max-width: 1440px) {
-  .container {
+  .stories {
     max-width: 92%;
   }
 }
 @media (max-width: 1280px) {
-  .stories {
-    padding-top: 90px;
-    padding-bottom: 70px;
+  .paginator_position {
+    padding-bottom: 90px;
   }
+
+  .section-title-container {
+    margin-top: 90px;
+    padding-bottom: 50px;
+  }
+
+  .stories__search {
+    margin-bottom: 60px;
+  }
+
   .stories__title {
     font-size: 28px;
     line-height: 32px;
@@ -148,13 +167,19 @@ export default {
   }
 }
 @media (max-width: 1024px) {
-  .container {
+  .paginator_position {
+    padding-bottom: 80px;
+  }
+
+  .section-title-container {
+    margin-top: 80px;
+    padding-bottom: 40px;
+  }
+
+  .stories {
     max-width: 90%;
   }
-  .stories {
-    padding-top: 80px;
-    padding-bottom: 64px;
-  }
+
   .stories__container {
     row-gap: 46px;
     column-gap: 30px;
@@ -165,24 +190,27 @@ export default {
   }
   .stories__search {
     height: 46px;
+    margin-bottom: 46px;
   }
+
   .stories__button {
     font-size: 15px;
     line-height: 18px;
   }
 }
 @media (max-width: 768px) {
-  .stories {
-    padding-top: 80px;
-    padding-bottom: 90px;
+  .section-title-container {
+    margin-top: 80px;
+    padding-bottom: 50px;
   }
+
   .stories__title {
     text-align: center;
     margin: 0 auto;
     max-width: 380px;
   }
   .stories__search {
-    margin-top: 50px;
+    margin-bottom: 60px;
   }
   .stories__container {
     grid-template-columns: repeat(3, 1fr);
@@ -191,11 +219,20 @@ export default {
     margin-top: 60px;
   }
 }
-@media (max-width: 425px) {
-  .stories {
-    padding-top: 50px;
-    padding-bottom: 20px;
+@media (max-width: 320px) {
+  .paginator_position {
+    padding-bottom: 50px;
   }
+
+  .stories__search {
+    margin-bottom: 30px;
+  }
+
+  .section-title-container {
+    margin-top: 50px;
+    padding-bottom: 40px;
+  }
+
   .stories__title {
     font-size: 18px;
     line-height: 21px;
@@ -210,7 +247,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     height: 46px;
   }
   .stories__input {

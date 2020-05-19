@@ -22,7 +22,6 @@ export default {
   display: flex;
   flex-direction: column;
   max-width: 300px;
-  /* padding-bottom: 70px; */
 }
 
 .story__img-container {
@@ -66,7 +65,6 @@ export default {
 @media (max-width: 1280px) {
   .story {
     max-width: 265px;
-    /* padding-bottom: 60px; */
   }
 
   .stories__title {
@@ -81,7 +79,6 @@ export default {
 @media (max-width: 1024px) {
   .story {
     max-width: 208px;
-    /* padding-bottom: 46px; */
   }
 
   .story__name {
@@ -99,7 +96,7 @@ export default {
 @media (max-width: 768px) {
   .story {
     max-width: 216px;
-    /* padding-bottom: 40px; */
+    padding-bottom: 40px;
   }
 
   .story__name {
@@ -117,7 +114,10 @@ export default {
 @media (max-width: 425px) {
   .story {
     max-width: 100%;
-    /* padding-bottom: 0; */
+    padding-bottom: 30px;
+  }
+  .story:last-child {
+    padding-bottom: 40px;
   }
 }
 </style>

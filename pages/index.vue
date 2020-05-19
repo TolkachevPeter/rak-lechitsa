@@ -6,7 +6,10 @@
       <tagline>
         <p class="tagline1"><span>И В ОТЛИЧИЕ ОТ РАКА,</span><hashtext /></p>
       </tagline>
-      <story-elem :stories="stories" :showTitle="true" />
+      <div class="section-title-container">
+        <section-title>Истории неизлечимых привычек</section-title>
+      </div>
+      <story-elem :stories="stories" />
       <div class="link-button_index">
         <link-button url="/stories/">Больше статей</link-button>
       </div>
@@ -33,6 +36,7 @@
 </template>
 
 <script>
+import SectionTitle from '@/components/ui/SectionTitle';
 import Banner from '@/components/Banner';
 import Video from '@/components/Video';
 import Tagline from '@/components/Tagline';
@@ -57,6 +61,7 @@ export default {
     'tell-your-story': TellYourStory,
     elemstat: elemstat,
     about: About,
+    'section-title': SectionTitle,
   },
   computed: {
     stories() {
@@ -67,6 +72,12 @@ export default {
 </script>
 
 <style>
+.section-title-container {
+  padding: 0;
+  margin: 0;
+  margin-top: 100px;
+  padding-bottom: 70px;
+}
 .link-button_index {
   margin-bottom: 100px;
 }
@@ -81,19 +92,60 @@ export default {
 }
 @media (max-width: 1440px) {
   .container {
-    max-width: 95%;
+    /* new */
+    width: 95%;
+    max-width: 1320px;
+  }
+}
+@media (max-width: 1280px) {
+  .section-title-container {
+    margin-top: 90px;
+    padding-bottom: 60px;
+  }
+
+  .container {
+    /* new */
+    width: 95%;
+    max-width: 1180px;
   }
 }
 @media (max-width: 1024px) {
   .container {
-    max-width: 95%;
+    /* new */
+    width: 95%;
+    max-width: 924px;
+  }
+  .section-title-container {
+    margin-top: 80px;
+    padding-bottom: 46px;
   }
 }
 @media (max-width: 768px) {
+  .container {
+    /* new */
+    width: 95%;
+    max-width: 688px;
+  }
+
   .tagline1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .section-title-container {
+    margin-top: 80px;
+    padding-bottom: 60px;
+  }
+
+  @media (max-width: 320px) {
+    .container {
+      /* new */
+      width: 95%;
+    }
+    .section-title-container {
+      margin-top: 50px;
+      padding-bottom: 16px;
+    }
   }
 }
 </style>
