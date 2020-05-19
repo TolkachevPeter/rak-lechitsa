@@ -9,7 +9,7 @@
       <div class="section-title-container">
         <section-title>Истории неизлечимых привычек</section-title>
       </div>
-      <story-elem :stories="stories" />
+      <story-elem :stories="storiesToIndexPage" />
       <div class="link-button_index">
         <link-button url="/stories/">Больше статей</link-button>
       </div>
@@ -67,10 +67,22 @@ export default {
     about: About,
     'section-title': SectionTitle,
   },
+
+  data() {
+    return {
+      itemsPerPage: 8,
+      numberStoriesToIndex: 16,
+    };
+  },
+
   computed: {
-    stories() {
-      return this.$store.getters['stories/getStories'];
+    storiesToIndexPage() {
+      let arrStories = this.$store.getters['stories/getStories'];
+      return arrStories.filter(
+        (item, index) => index < this.numberStoriesToIndex
+      );
     },
+
     instagram() {
       return this.$store.getters['instagram/getInstagramData'];
     },

@@ -62,7 +62,7 @@ const STORIES = [
     photo_url:
       'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
     photo_alt: 'Фото человека с историей',
-    name: 'Владимир Тен',
+    name: '1 Владимир Тен',
     story_text:
       'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
   },
@@ -71,7 +71,7 @@ const STORIES = [
     photo_url:
       'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
     photo_alt: 'Фото человека с историей',
-    name: 'Владимир Познер',
+    name: '1 Владимир Познер',
     story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
   },
   {
@@ -79,7 +79,7 @@ const STORIES = [
     photo_url:
       'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
     photo_alt: 'Фото человека с историей',
-    name: 'Александр Тарханов',
+    name: '1 Александр Тарханов',
     story_text: 'Я не могу победить свою пунктуальность в отличии от рака.',
   },
   {
@@ -87,7 +87,7 @@ const STORIES = [
     photo_url:
       'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
     photo_alt: 'Фото человека с историей',
-    name: 'Владимир Тен',
+    name: '1 Владимир Тен',
     story_text:
       'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
   },
@@ -96,7 +96,7 @@ const STORIES = [
     photo_url:
       'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
     photo_alt: 'Фото человека с историей',
-    name: 'Владимир Познер',
+    name: '2 Владимир Познер',
     story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
   },
   {
@@ -104,7 +104,7 @@ const STORIES = [
     photo_url:
       'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
     photo_alt: 'Фото человека с историей',
-    name: 'Александр Тарханов',
+    name: '2 Александр Тарханов',
     story_text: 'Я не могу победить свою пунктуальность в отличии от рака.',
   },
   {
@@ -112,7 +112,7 @@ const STORIES = [
     photo_url:
       'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
     photo_alt: 'Фото человека с историей',
-    name: 'Владимир Тен',
+    name: '2 Владимир Тен',
     story_text:
       'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
   },
@@ -121,7 +121,7 @@ const STORIES = [
     photo_url:
       'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
     photo_alt: 'Фото человека с историей',
-    name: 'Владимир Познер',
+    name: '2 Владимир Познер',
     story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
   },
   {
@@ -129,7 +129,7 @@ const STORIES = [
     photo_url:
       'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
     photo_alt: 'Фото человека с историей',
-    name: 'Владимир Тен',
+    name: '3 Владимир Тен',
     story_text:
       'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
   },
@@ -138,7 +138,66 @@ const STORIES = [
     photo_url:
       'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
     photo_alt: 'Фото человека с историей',
-    name: 'Владимир Познер',
+    name: '3 Владимир Познер',
+    story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
+  },
+  {
+    story_id: 11,
+    photo_url:
+      'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
+    photo_alt: 'Фото человека с историей',
+    name: '3 Владимир Тен',
+    story_text:
+      'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
+  },
+  {
+    story_id: 12,
+    photo_url:
+      'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
+    photo_alt: 'Фото человека с историей',
+    name: '3 Владимир Познер',
+    story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
+  },
+  {
+    story_id: 13,
+    photo_url:
+      'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
+    photo_alt: 'Фото человека с историей',
+    name: '4 Владимир Тен',
+    story_text:
+      'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
+  },
+  {
+    story_id: 14,
+    photo_url:
+      'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
+    photo_alt: 'Фото человека с историей',
+    name: '4 Владимир Познер',
+    story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
+  },
+  {
+    story_id: 15,
+    photo_url:
+      'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
+    photo_alt: 'Фото человека с историей',
+    name: '4 Владимир Тен',
+    story_text:
+      'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
+  },
+  {
+    story_id: 16,
+    photo_url:
+      'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
+    photo_alt: 'Фото человека с историей',
+    name: '4 Владимир Познер',
+    story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
+  },
+  {
+    story_id: 17,
+    photo_url:
+      'https://images.unsplash.com/photo-1473711409856-39138e48cb9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
+    photo_alt: 'Фото человека с историей',
+    name: '5 Владимир Познер',
     story_text: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
   },
 ];
