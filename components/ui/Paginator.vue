@@ -2,11 +2,12 @@
   <div class="container">
     <ul class="nav">
       <li
-        :class="['nav__item', { nav__item_active: item.active }]"
-        v-for="item in pages"
-        :key="item.number"
+        v-for="index in pagesCount"
+        :key="index"
+        @click="setActive(index)"
+        :class="['nav__item', { nav__item_active: index === active }]"
       >
-        {{ item.number }}
+        {{ index }}
       </li>
     </ul>
   </div>
@@ -14,7 +15,32 @@
 
 <script>
 export default {
-  props: ['pages'],
+  props: {
+    totalItems: {
+      type: Number,
+      default: 0,
+    },
+    itemsPerPage: {
+      type: Number,
+      default: 0,
+    },
+  },
+  data() {
+    return {
+      active: 1,
+    };
+  },
+  computed: {
+    pagesCount() {
+      return Math.ceil(this.totalItems / this.itemsPerPage);
+    },
+  },
+  methods: {
+    setActive(index) {
+      this.active = index;
+      this.$emit('OnPageChanged', index);
+    },
+  },
 };
 </script>
 
@@ -27,7 +53,6 @@ export default {
 }
 .nav {
   display: inline-block;
-  /* margin: 140px auto 0; */
   list-style-type: none;
 }
 .nav__item {

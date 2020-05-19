@@ -14,11 +14,16 @@
         ><img src="@/static/search_icon.svg"
       /></form-btn>
     </form>
-    <story-elem :stories="stories" />
+    <story-elem :stories="storiesToRender" />
     <!-- Необходимо настроить количество -->
-    <paginator :pages="pages" class="paginator_position" />
+    <paginator
+      class="paginator_mix"
+      :totalItems="stories.length"
+      :itemsPerPage="itemsPerPage"
+      @OnPageChanged="changeStartIndex"
+    />
   </section>
-  <!-- </section> -->
+  <!--  @OnPageChanged="changeStartIndex" </section> -->
 </template>
 
 <script>
@@ -33,50 +38,36 @@ export default {
     paginator: Paginator,
     'section-title': SectionTitle,
   },
+  methods: {
+    changeStartIndex(index) {
+      this.startIndex = (index - 1) * this.itemsPerPage;
+    },
+  },
   computed: {
     stories() {
       return this.$store.getters['stories/getStories'];
     },
+
+    storiesToRender() {
+      let arrStories = this.$store.getters['stories/getStories'];
+      return arrStories.filter(
+        (item, index) =>
+          index >= this.startIndex &&
+          index <= this.startIndex + this.itemsPerPage - 1
+      );
+    },
   },
   data() {
     return {
-      pages: [
-        {
-          number: '1',
-          active: true,
-        },
-        {
-          number: '2',
-          active: false,
-        },
-        {
-          number: '3',
-          active: false,
-        },
-        {
-          number: '4',
-          active: false,
-        },
-        {
-          number: '5',
-          active: false,
-        },
-        {
-          number: '6',
-          active: false,
-        },
-        {
-          number: '7',
-          active: false,
-        },
-      ],
+      itemsPerPage: 8,
+      startIndex: 0,
     };
   },
 };
 </script>
 
 <style scoped>
-.paginator_position {
+.paginator_mix {
   padding-bottom: 100px;
 }
 
@@ -105,7 +96,6 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* margin-top: 60px; */
   margin-bottom: 70px;
   height: 52px;
 }
@@ -142,7 +132,7 @@ export default {
   }
 }
 @media (max-width: 1280px) {
-  .paginator_position {
+  .paginator_mix {
     padding-bottom: 90px;
   }
 
@@ -167,7 +157,7 @@ export default {
   }
 }
 @media (max-width: 1024px) {
-  .paginator_position {
+  .paginator_mix {
     padding-bottom: 80px;
   }
 
@@ -220,7 +210,7 @@ export default {
   }
 }
 @media (max-width: 320px) {
-  .paginator_position {
+  .paginator_mix {
     padding-bottom: 50px;
   }
 
