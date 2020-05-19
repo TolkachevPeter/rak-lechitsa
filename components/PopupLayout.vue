@@ -1,5 +1,5 @@
 <template>
-  <div class="popup-layout"></div>
+  <div class="popup-layout" @click="$emit('overlayClick')"></div>
 </template>
 
 <script>

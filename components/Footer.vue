@@ -28,10 +28,8 @@
               >
             </li>
             <!-- Тут будет попап, но его еще нет в макете -->
-            <li class="footer__list-item">
-              <a href="#" target="_blank" class="footer__link"
-                >Поделитесь &#8599;</a
-              >
+            <li class="footer__list-item" @click="showPopUp">
+              <a class="footer__link">Поделитесь &#8599;</a>
             </li>
           </ul>
         </div>
@@ -47,6 +45,8 @@
             >Яндекс Практикум</a
           >
         </p>
+        <Overlay v-if="popupShown" @overlayClick="showPopUp" />
+        <PopUp v-if="popupShown" @closeClick="showPopUp"> </PopUp>
       </div>
     </div>
   </footer>
@@ -54,18 +54,29 @@
 
 <script>
 import Menu from '~/components/Menu';
+import Overlay from '~/components/PopupLayout';
+import PopUp from '~/components/FooterPopup';
 export default {
   components: {
     'footer-nav': Menu,
+    Overlay,
+    PopUp,
   },
-  // Тут я не знаю, нашел на хабре, немного переделал
   data: () => ({
     date: 1580558031264,
   }),
-
   computed: {
+    popupShown() {
+      return this.$store.getters['popup/getPopupShown'];
+    },
     localeDate() {
       return new Date(this.date).getFullYear();
+    },
+  },
+
+  methods: {
+    showPopUp() {
+      this.$store.commit('popup/togglePopUp');
     },
   },
 };
