@@ -18,10 +18,10 @@
           <span>РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ В ИНСТАГРАМ</span><hashtext />
         </p>
       </tagline>
-      <instagram />
+      <instagram class="instagram_mix" />
     </div>
 
-    <tell-your-story />
+    <tell-your-story class="tell-your-story_mix" />
     <div class="container">
       <elemstat
         :maxVal="100"
@@ -72,6 +72,16 @@ export default {
 </script>
 
 <style>
+.tell-your-story_mix {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.instagram_mix {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
 .section-title-container {
   padding: 0;
   margin: 0;
@@ -98,6 +108,16 @@ export default {
   }
 }
 @media (max-width: 1280px) {
+  .tell-your-story_mix {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .instagram_mix {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
   .section-title-container {
     margin-top: 90px;
     padding-bottom: 60px;
@@ -110,6 +130,15 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  .tell-your-story_mix {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .instagram_mix {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
   .container {
     /* new */
     width: 95%;
@@ -121,6 +150,15 @@ export default {
   }
 }
 @media (max-width: 768px) {
+  .tell-your-story_mix {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .instagram_mix {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
   .container {
     /* new */
     width: 95%;
@@ -138,6 +176,14 @@ export default {
   }
 
   @media (max-width: 320px) {
+    .tell-your-story_mix {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+    .instagram_mix {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
     .container {
       /* new */
       width: 95%;

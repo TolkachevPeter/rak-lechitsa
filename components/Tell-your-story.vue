@@ -106,8 +106,8 @@ export default {
 }
 .tellStory {
   background-color: #f7f7f7;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  /* padding-top: 100px; */
+  /* padding-bottom: 100px; */
 }
 .tellStory__column {
   display: flex;
@@ -122,9 +122,6 @@ export default {
   color: #000000;
 }
 .subtitle {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
   font-size: 18px;
   line-height: 22px;
   color: #666666;
@@ -178,6 +175,11 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  .subtitle {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
   .container {
     max-width: 90%;
   }
@@ -185,7 +187,6 @@ export default {
     font-size: 24px;
     line-height: 28px;
   }
-  .subtitle,
   .tellStory__var {
     font-size: 15px;
     line-height: 19px;

@@ -2,7 +2,7 @@
   <section class="instagram">
     <div class="instagram__two-columns">
       <div class="instagram__text-column">
-        <h2 class="instagram__name">Инстаграм</h2>
+        <h2 class="instagram__title">Инстаграм</h2>
         <p class="instagram__main-text">
           Два раза в неделю мы просматриваем все посты по хештегу #этонелечится.
           Все истории, где нет нецензурных выражений и запрещенного контента
@@ -11,21 +11,19 @@
         </p>
       </div>
       <div class="instagram__photo-column">
-        <ul class="instagram__list">
-          <li
-            class="instagram__item"
-            v-for="photo in instagram"
-            :key="photo.inst_id"
-          >
-            <a href="" class="instagram__link" target="_blank">
-              <img
-                v-bind:src="photo.inst_url"
-                v-bind:alt="photo.inst_alt"
-                class="instagram__card"
-              />
-            </a>
-          </li>
-        </ul>
+        <div
+          class="instagram__item"
+          v-for="photo in instagram"
+          :key="photo.inst_id"
+        >
+          <div class="instagram__img-container">
+            <img
+              v-bind:src="photo.inst_url"
+              v-bind:alt="photo.inst_alt"
+              class="instagram__img"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -91,44 +89,72 @@ export default {
 </script>
 
 <style scoped>
+.instagram__img-container {
+  width: 100%;
+  position: relative;
+}
+.instagram__img-container:after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
+.instagram__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .instagram {
+  font-family: 'Inter';
+  font-style: normal;
+  line-height: 22px;
   margin: 0 auto;
-  max-width: 1320px;
+  /* max-width: 1320px; */
   width: 100%;
 }
 .instagram__two-columns {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  grid-column-gap: 110px;
+
   max-width: 100%;
-  margin: 100px auto;
+  /* margin: 100px auto; */
 }
 .instagram__text-column {
-  margin-left: 23px;
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  /* margin-left: 23px; */
   max-width: 630px;
 }
-.instagram__name {
-  font-family: Inter, sans-serif;
-  font-style: normal;
+.instagram__title {
+  display: flex;
   font-weight: 600;
   font-size: 32px;
-  line-height: 112%;
-  text-decoration-line: underline;
-  color: #000000;
+  line-height: 36px;
+  align-self: flex-start;
+  /* text-decoration-line: underline; */
+  border-bottom: 3px solid currentColor;
+  color: #000;
 }
 .instagram__main-text {
+  display: flex;
   margin-top: 32px;
-  font-family: Inter, sans-serif;
-  font-style: normal;
-  font-weight: normal;
   font-size: 18px;
-  line-height: 101%;
+  line-height: 22px;
   color: #666666;
 }
 .instagram__photo-column {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-left: 110px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
 }
 
 .instagram__list {
@@ -150,117 +176,77 @@ export default {
 }
 
 @media screen and (max-width: 1280px) {
-  .instagram {
-    max-width: 1180px;
-    width: 100%;
-  }
-  .instagram__two-columns {
-    margin: 90px auto;
-  }
-  .instagram__name {
-    font-size: 28px;
-  }
-  .instagram__main-text {
-    font-size: 16px;
-  }
-  .instagram__list {
-    grid-template-columns: repeat(4, minmax(130px, 171px));
-    grid-template-rows: repeat(2, minmax(130px, 171px));
-    grid-gap: 27px;
+  .instagram__photo-column {
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; */
+    grid-column-gap: 27px;
+    grid-row-gap: 27px;
   }
 }
+
 @media screen and (max-width: 1024px) {
-  .instagram {
-    max-width: 924px;
-    width: 100%;
-  }
-  .instagram__two-columns {
-    margin: 80px auto;
-  }
-  .instagram__name {
+  .instagram__title {
     font-size: 24px;
+    line-height: 28px;
   }
   .instagram__main-text {
     font-size: 13px;
   }
+
+  .instagram__two-columns {
+    grid-column-gap: 60px;
+  }
+
   .instagram__photo-column {
-    margin-left: 60px;
-  }
-  .instagram__list {
-    grid-template-columns: repeat(4, minmax(110px, 136px));
-    grid-template-rows: repeat(2, minmax(110px, 136px));
-    grid-gap: 20px;
-  }
-  .instagram__card {
-    max-height: 136px;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
   }
 }
+
 @media screen and (max-width: 768px) {
+  .instagram__photo-column {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+
   .instagram__two-columns {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
-  .instagram__text-column {
-    margin: 0 auto 60px;
-  }
-  .instagram__name {
-    text-align: center;
+
+  .instagram__title {
+    align-self: center;
+
+    line-height: 28px;
+    border-bottom: 2px solid currentColor;
   }
   .instagram__main-text {
-    text-align: left;
-    max-width: 360px;
+    align-self: center;
+    max-width: 380px;
     margin-top: 26px;
+    padding-bottom: 60px;
   }
+}
+
+@media screen and (max-width: 320px) {
   .instagram__photo-column {
-    justify-content: center;
-    margin-left: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
   }
-  .instagram__list {
-    grid-template-columns: repeat(4, minmax(100px, 157px));
-    grid-template-rows: repeat(2, minmax(100px, 157px));
-    grid-gap: 20px;
-  }
-  .instagram__card {
-    max-height: 157px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .instagram__list {
-    grid-template-columns: repeat(3, minmax(100px, 157px));
-    grid-template-rows: repeat(3, minmax(100px, 157px));
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .instagram {
-    max-width: 290px;
-    width: 100%;
-  }
-  .instagram__two-columns {
-    margin: 50px auto;
-  }
-  .instagram__name {
+  .instagram__title {
     font-size: 18px;
     text-align: left;
+    line-height: 21px;
+    border-bottom: 2px solid currentColor;
   }
   .instagram__main-text {
     width: 290px;
     margin-top: 16px;
-  }
-  .instagram__text-column {
-    margin-bottom: 40px;
-  }
-  .instagram__list {
-    grid-template-columns: repeat(2, minmax(100px, 170px));
-    grid-template-rows: auto;
-    grid-gap: 10px;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-  }
-
-  .instagram__card {
-    max-height: 140px;
+    padding-bottom: 40px;
+    font-size: 13px;
+    line-height: 16px;
   }
 }
 </style>
