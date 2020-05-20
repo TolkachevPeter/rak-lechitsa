@@ -27,7 +27,6 @@
                 >Youtube</a
               >
             </li>
-            <!-- Тут будет попап, но его еще нет в макете -->
             <li class="footer__list-item" @click="showPopUp">
               <a class="footer__link">Поделитесь &#8599;</a>
             </li>
@@ -45,8 +44,8 @@
             >Яндекс Практикум</a
           >
         </p>
-        <Overlay v-if="popupShown" @overlayClick="showPopUp" />
-        <PopUp v-if="popupShown" @closeClick="showPopUp"> </PopUp>
+        <overlay v-if="popupShown" @overlayClick="showPopUp" />
+        <popup v-if="popupShown" @closeClick="showPopUp" />
       </div>
     </div>
   </footer>
@@ -54,13 +53,13 @@
 
 <script>
 import Menu from '~/components/Menu';
-import Overlay from '~/components/PopupLayout';
+import Overlay from '~/components/Overlay';
 import PopUp from '~/components/FooterPopup';
 export default {
   components: {
     'footer-nav': Menu,
-    Overlay,
-    PopUp,
+    overlay: Overlay,
+    popup: PopUp,
   },
   data: () => ({
     date: 1580558031264,
@@ -91,12 +90,8 @@ export default {
 
 .footer__three-columns {
   display: flex;
-  /* flex-wrap: wrap; */
   justify-content: space-between;
   position: relative;
-  /* width: 90%;
-  max-width: 1320px; 
-  margin: 0 auto;*/
   width: 100%;
 }
 .footer__title {
@@ -141,6 +136,7 @@ export default {
   line-height: 133%;
   color: #121212;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .footer__link:hover {

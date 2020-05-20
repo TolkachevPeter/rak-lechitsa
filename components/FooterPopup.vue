@@ -1,15 +1,18 @@
 <template>
   <div class="popup">
-    <div class="popup__headings">
+    <img
+      src="../static/popupCross.svg"
+      alt
+      class="popup__cross"
+      @click="$emit('closeClick')"
+    />
+    <!-- <div class="popup__headings">
       <h3 class="popup__title">Поделитесь</h3>
-      <img
-        src="../static/popupCross.svg"
-        alt=""
-        class="popup__cross"
-        @click="$emit('closeClick')"
-      />
-    </div>
-    <div class="social-netwoeks__container">
+    </div>-->
+
+    <h3 class="popup__title">Поделитесь</h3>
+
+    <div class="social-networks__container">
       <div class="social-networks__item">
         <a
           href="https://www.facebook.com/"
@@ -17,14 +20,14 @@
           class="social-networks__icon social-networks__icon_facebook"
         ></a>
       </div>
-      <div class="social-networks__item">
+      <div class="social-networks__item social-networks__item_extra-padding">
         <a
           href="https://twitter.com/"
           target="blank"
           class="social-networks__icon social-networks__icon_twitter"
         ></a>
       </div>
-      <div class="social-networks__item">
+      <div class="social-networks__item social-networks__item_extra-padding">
         <a
           href="https://www.vk.com/"
           target="blank"
@@ -45,7 +48,7 @@
           class="social-networks__icon social-networks__icon_inst"
         ></a>
       </div>
-      <div class="social-networks__item">
+      <div class="social-networks__item social-networks__item_extra-padding">
         <a
           href="https://www.youtube.com/"
           target="blank"
@@ -59,7 +62,6 @@
 <script>
 export default {
   components: {},
-  data() {},
 };
 </script>
 
@@ -68,53 +70,66 @@ export default {
   padding: 40px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: fixed;
   left: 50%;
   top: 50%;
-  width: 800px;
-  min-height: 324px;
+  width: 920px;
+  max-width: 95%;
+  height: 324px;
   background: #ffffff;
   z-index: 2;
   transform: translate(-50%, -50%);
 }
-.popup__headings {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+
 .popup__cross {
+  width: 100%;
+  position: fixed;
+  top: 35px;
+  left: calc(100% - 50px);
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
 .popup__title {
-  font-family: Inter;
-  font-style: normal;
+  width: 100%;
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
   color: #000000;
-  justify-content: center;
-  margin-left: 35%;
+  text-align: center;
+  margin: 0 auto;
 }
 
-.social-netwoeks__container {
+.social-networks__container {
+  padding-top: 100px;
+  height: 48px;
   display: flex;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .social-networks__item {
   display: flex;
   height: 48px;
-  width: 48px;
+  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.social-networks__item_extra-padding {
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
 
 .social-networks__icon {
   display: block;
-  width: 30px;
+  width: 48px;
   height: 100%;
   background: center;
   background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .social-networks__icon_facebook {
@@ -137,5 +152,73 @@ export default {
 
 .social-networks__icon_youtube {
   background-image: url("data:image/svg+xml,%3Csvg width='30' height='22' viewBox='0 0 30 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M26.7379 1.14006C28.0229 1.48602 29.0361 2.4992 29.3821 3.7842C30.0246 6.1318 29.9999 11.0247 29.9999 11.0247C29.9999 11.0247 29.9999 15.8929 29.3821 18.2405C29.0361 19.5255 28.0229 20.5387 26.7379 20.8846C24.3903 21.5024 14.9999 21.5024 14.9999 21.5024C14.9999 21.5024 5.63424 21.5024 3.26193 20.8599C1.97693 20.5139 0.963752 19.5008 0.61779 18.2158C0 15.8929 0 11 0 11C0 11 0 6.1318 0.61779 3.7842C0.963752 2.4992 2.00164 1.46131 3.26193 1.11535C5.60953 0.497559 14.9999 0.497559 14.9999 0.497559C14.9999 0.497559 24.3903 0.497559 26.7379 1.14006ZM19.8187 11L12.0098 15.4975V6.50248L19.8187 11Z' fill='black'/%3E%3C/svg%3E ");
+}
+
+@media (max-width: 1440px) {
+  .popup__title {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 36px;
+    color: #000;
+  }
+}
+@media (max-width: 1280px) {
+  .popup {
+    width: 800px;
+  }
+  .popup__cross {
+    /* top: 35px; */
+    /* left: 755px; */
+  }
+}
+@media (max-width: 1024px) {
+}
+@media (max-width: 768px) {
+  .popup {
+    max-width: 580px;
+    width: 95%;
+  }
+  .popup__cross {
+    /* left: 535px; */
+  }
+}
+@media (max-width: 500px) {
+  .popup {
+    width: 290px;
+    height: 191px;
+    padding: 15px;
+  }
+  .popup__cross {
+    top: 13px;
+    left: calc(100% - 35px);
+  }
+  .social-networks__container {
+    padding-top: 60px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .popup__title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .social-networks__icon {
+    width: 35px;
+  }
+
+  .social-networks__item {
+    height: 28px;
+    /* width: 25px; */
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  .social-networks__item_extra-padding {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
 }
 </style>
