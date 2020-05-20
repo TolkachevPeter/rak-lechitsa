@@ -2,28 +2,24 @@
   <div class="popup">
     <div class="popup__headings">
       <h3 class="popup__title">Шаг {{ step }} из {{ stepsSum }}</h3>
-      <img src="../static/popupCross.svg" alt="" class="popup__cross" />
+      <img src="../static/popupCross.svg" alt class="popup__cross" />
     </div>
 
     <p class="popup__question popup__question">
-      <span class="popup__question_main">{{ questions[0].question }}</span
-      >{{ questions[0].explanation }}
+      <span class="popup__question_main">{{ questions[0].question }}</span>
+      {{ questions[0].explanation }}
     </p>
     <form class="popup__form">
       <input type="text" class="popup__input" placeholder="Напишите тут" />
       <div class="popup__form-container">
-        <a
-          href=""
-          class="popup__goback"
-          :class="{ goback_active: isGobackActive }"
+        <a href class="popup__goback" :class="{ goback_active: isGobackActive }"
           >Назад</a
         >
-        <popupButton @submit.prevent="xxx" class="popupButton" type="submit">{{
-          popupButtonText
-        }}</popupButton>
+        <popupButton @submit.prevent="xxx" class="popupButton" type="submit">
+          {{ popupButtonText }}
+        </popupButton>
         <p class="popup__policy" :class="{ showPolicy: needPolicy }">
           {{ policyText }}
-
           <a href="../policy" class="popup__policy-link">{{ policyLink }}</a>
         </p>
       </div>
@@ -204,5 +200,16 @@ export default {
 }
 .popup__policy-link {
   color: #666666;
+}
+
+@media (max-width: 1440px) {
+}
+@media (max-width: 1280px) {
+}
+@media (max-width: 1024px) {
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 320px) {
 }
 </style>
