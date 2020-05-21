@@ -92,6 +92,11 @@ export default {
   },
 
   methods: {
+    goToDetail(id) {
+      //console.log(id);
+      this.$router.push(`/stories/${id}`);
+    },
+
     showQiuzPopUp() {
       this.$store.commit('popup/toggleQiuzPopUp');
     },
