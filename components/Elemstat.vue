@@ -1,6 +1,5 @@
 <template>
   <section class="statistics">
-    <h3 class="statistics__subtitle">Статистика по онкозаболеваниям</h3>
     <div class="statistics__container">
       <div class="statistics__card">
         <p class="statistics__card-text">
@@ -78,33 +77,19 @@ export default {
   align-items: flex-start;
   flex-direction: column;
   width: 100%;
-  min-height: 600px;
   background: #ffffff;
 }
-.statistics__subtitle {
-  max-width: 300px;
-  width: 22%;
-  color: #000000;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 36px;
-  text-align: left;
-  padding: 0;
-  margin: 0;
-  padding-top: 100px;
-  margin-bottom: 70px;
-}
+
 .statistics__container {
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin: 0;
-  padding-bottom: 100px;
 }
 .statistics__card {
-  width: calc((100% - 120px) / 4);
-  min-height: 300px;
+  width: 300px;
+  height: 300px;
+
   margin: 0;
   padding: 0;
   padding: 20px;
@@ -121,6 +106,7 @@ export default {
   height: 124px;
   color: #000;
 }
+
 .statistics__digits {
   width: 100%;
   font-weight: 600;
@@ -144,23 +130,35 @@ export default {
   color: #666666;
 }
 @media (max-width: 1280px) {
-  .statistics__subtitle {
-    font-size: 28px;
-    line-height: 32px;
-    padding-top: 90px;
-    margin-bottom: 60px;
+  .statistics {
+    position: relative;
+    overflow: scroll;
+    height: 265px;
+  }
+
+  .statistics__card {
+    width: 265px;
+    height: 265px;
+    padding: 10px;
+  }
+
+  .statistics__card-text {
+    font-size: 12px;
+    line-height: 16px;
+    height: 104px;
   }
 }
 @media (max-width: 1024px) {
-  .statistics__subtitle {
-    font-size: 24px;
-    line-height: 28px;
-    padding-top: 80px;
-    margin-bottom: 46px;
+  .statistics__card {
+    width: 208px;
+    height: 208px;
+    padding: 10px;
   }
+
   .statistics__card-text {
     font-size: 10px;
     line-height: 14px;
+    height: 102px;
   }
   .statistics__digits {
     font-size: 26px;
@@ -177,14 +175,9 @@ export default {
   .statistics {
     position: relative;
     overflow: scroll;
-  }
-  .statistics__subtitle {
-    width: 380px;
-    text-align: center;
-    margin: 0 auto;
+    height: 216px;
   }
   .statistics__container {
-    position: absolute;
     padding-bottom: 0;
     left: 0;
     bottom: 80px;
@@ -192,14 +185,10 @@ export default {
   }
   .statistics__card {
     width: 216px;
-    margin-right: 20px;
+    height: 216px;
   }
 }
 
 @media (max-width: 320px) {
-  .statistics__subtitle {
-    font-size: 18px;
-    line-height: 21px;
-  }
 }
 </style>

@@ -43,6 +43,7 @@ export default {
 .link {
   text-decoration: none;
   display: flex;
+  justify-content: flex-start;
 }
 .instagram__img-container {
   width: 100%;
@@ -94,7 +95,6 @@ export default {
   font-size: 32px;
   line-height: 36px;
   align-self: flex-start;
-  /* text-decoration-line: underline; */
   border-bottom: 3px solid currentColor;
   color: #000;
 }
@@ -159,6 +159,9 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
+  .link {
+    justify-content: center;
+  }
   .instagram__photo-column {
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 20px;
@@ -171,7 +174,6 @@ export default {
 
   .instagram__title {
     align-self: center;
-
     line-height: 28px;
     border-bottom: 2px solid currentColor;
   }

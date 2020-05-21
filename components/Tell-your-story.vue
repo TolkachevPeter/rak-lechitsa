@@ -30,7 +30,9 @@
         </div>
         <div class="tellStory__column">
           <p class="subtitle tellStory__select-var">{{ textVar[0] }}</p>
-          <submit-btn class="btn">{{ btnText[isActiveResult] }}</submit-btn>
+          <submit-btn class="btn submit-btn_mix" @click="$emit('click')">{{
+            btnText[isActiveResult]
+          }}</submit-btn>
         </div>
       </div>
     </div>
@@ -57,6 +59,7 @@ export default {
       return (this.textVar = [this.textBlocks[2].text1, '']);
     }
   },
+
   methods: {
     changeVar(variant = 1) {
       if (variant === 2) {
@@ -98,6 +101,10 @@ export default {
 </script>
 
 <style scoped>
+.submit-btn_mix {
+  width: 280px;
+}
+
 .tellStory__container {
   width: 100%;
   display: grid;
@@ -106,8 +113,6 @@ export default {
 }
 .tellStory {
   background-color: #f7f7f7;
-  /* padding-top: 100px; */
-  /* padding-bottom: 100px; */
 }
 .tellStory__column {
   display: flex;
@@ -160,6 +165,9 @@ export default {
   }
 }
 @media (max-width: 1280px) {
+  .submit-btn_mix {
+    width: 230px;
+  }
   .title {
     font-size: 28px;
     line-height: 32px;
@@ -221,6 +229,11 @@ export default {
   .tellStory__var {
     margin-right: 30px;
   }
+
+  .tellStory__var_type_active {
+    border-bottom: 2px solid #613a93;
+    padding-bottom: 2px;
+  }
   .btn {
     margin-top: 50px;
   }
@@ -246,6 +259,9 @@ export default {
 
   .btn {
     margin-top: 30px;
+  }
+  .submit-btn_mix {
+    width: 100%;
   }
 }
 </style>

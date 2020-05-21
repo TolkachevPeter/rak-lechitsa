@@ -2,32 +2,29 @@
   <section class="video">
     <div class="video-container">
       <div class="video__column">
-        <h2 class="video__title">
-          {{ title }}
-        </h2>
-        <p class="video__subtitle">
-          {{ subtitle }}
-        </p>
-        <!-- <arr class="video__pagination" /> -->
-        <!-- <div class="video__pagination"> -->
-        <div class="arr__container go-left">
+        <h2 class="video__title">{{ title }}</h2>
+        <p class="video__subtitle">{{ subtitle }}</p>
+
+        <!-- <div class="arr__container go-left">
           <div class="arrow arrow_left arrow_disabled"></div>
         </div>
         <div class="arr__container go-right">
           <div class="arrow arrow_right arrow_enabled"></div>
-        </div>
-        <!-- </div> -->
+        </div>-->
       </div>
       <div class="video__column video__for-mobile">
-        <!-- <div class="arr__container arr__mobile arr_mobile_left">
-          <div class="arrow arrow_left arrow_disabled"></div>
-        </div> -->
         <div class="video__iframe">
-          <play />
+          <!-- <div class="arr__container go-left">
+            
+          </div>-->
+          <div class="arr__container go-right">
+            <div class="arrow arrow_left arrow_disabled"></div>
+            <div class="arrow arrow_right arrow_enabled"></div>
+          </div>
+
+          <!-- <play /> -->
         </div>
-        <!-- <div class="arr__container arr__mobile arr_mobile_rigth">
-          <div class="arrow arrow_right arrow_enabled"></div>
-        </div> -->
+
         <p class="video__channel">
           Все видео вы можете найте на нашем
           <a
@@ -76,30 +73,30 @@ export default {
   padding-top: 100px;
   padding-bottom: 74px;
   width: 100%;
-  position: relative;
+  /* position: relative; */
 }
 .arr__container {
-  width: 40px;
+  /* width: 40px; */
   height: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #fbfbfb;
+  /* background-color: #fbfbfb; */
   cursor: pointer;
 }
 .arr__container:hover {
-  background: #f4f4f4;
+  /* background: #f4f4f4; */
 }
 .go-left {
-  position: absolute;
-  left: 0;
-  bottom: 100px;
+  /* position: absolute; */
+  /* left: 0; */
+  /* bottom: 100px; */
 }
 .go-right {
-  position: absolute;
-  left: 40px;
-  bottom: 100px;
+  /* position: absolute; */
+  /* left: 40px; */
+  /* bottom: 100px; */
 }
 .arrow {
   width: 11.5px;
@@ -142,8 +139,11 @@ export default {
   background-image: url('../static/Pozner_1920_1080.jpg');
   background-size: cover;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  object-fit: cover;
+  position: relative;
 }
 .video__channel {
   font-family: Inter;
@@ -201,6 +201,16 @@ export default {
   }
 }
 @media (max-width: 768px) {
+  .arr__container {
+    /* width: 40px; */
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
   .video-container {
     display: flex;
     flex-direction: column;
@@ -223,7 +233,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 84%;
+    width: 100%;
     margin: 60px auto;
   }
   .video__iframe {
@@ -241,8 +251,13 @@ export default {
     width: 100%;
     text-align: left;
   }
+  .video__for-mobile {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+  }
 }
-@media (max-width: 420px) {
+@media (max-width: 320px) {
   .video-container {
     padding-bottom: 50px;
   }
@@ -264,6 +279,10 @@ export default {
   }
   .video__channel {
     display: none;
+  }
+
+  .video__for-mobile {
+    margin-bottom: 0;
   }
 }
 </style>

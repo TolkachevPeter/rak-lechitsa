@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <h2 class="section-title">
-      <slot></slot>
-    </h2>
-  </div>
+  <h2 class="section-title">
+    <slot></slot>
+  </h2>
 </template>
 
 <script>

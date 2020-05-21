@@ -2,12 +2,10 @@
   <section class="about">
     <div class="container">
       <h2 class="about__title">#РАКЛЕЧИТСЯ</h2>
-      <!-- <div class="about__subtitle-container"> -->
       <h3 class="about__subtitle">О проекте</h3>
-      <!-- </div> -->
       <div class="about__container">
         <div class="about__column">
-          <p class="about__text">{{ aboutProject }}</p>
+          <p class="about__text about__text_small">{{ aboutProject }}</p>
         </div>
         <div class="about__column var__column">
           <p
@@ -116,7 +114,7 @@ export default {
   text-transform: uppercase;
   padding: 0;
   margin: 0;
-  padding-top: 90px;
+  /* padding-top: 90px; */
   margin-bottom: 70px;
 }
 .about__subtitle {
@@ -136,7 +134,6 @@ export default {
   display: grid;
   grid-template-columns: 25% 1fr 48%;
   column-gap: 40px;
-  padding-bottom: 80px;
 }
 .about__text {
   font-style: normal;
@@ -146,7 +143,7 @@ export default {
   color: #dedede;
   padding: 0;
   margin: 0;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
 }
 .about__column {
   display: flex;
@@ -207,7 +204,8 @@ export default {
 }
 @media (max-width: 768px) {
   .about__container {
-    width: 380px;
+    max-width: 380px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -219,7 +217,6 @@ export default {
   }
   .about__subtitle {
     text-align: center;
-    margin-top: 80px;
   }
   .about__text {
     font-size: 13px;
@@ -236,19 +233,45 @@ export default {
     font-size: 15px;
     line-height: 19px;
   }
+  .about__var_type_active {
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 2px;
+  }
 }
-@media (max-width: 425px) {
+@media (max-width: 320px) {
   .about__container {
     width: 100%;
+    padding-bottom: 0;
   }
   .about__subtitle {
     text-align: left;
     font-size: 18px;
     line-height: 21px;
-    margin-top: 50px;
+
+    margin-bottom: 16px;
   }
   .about__var {
     font-size: 13px;
+    line-height: 19px;
+  }
+  .var__column {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  .about__var_type_active {
+    font-weight: 500;
+    color: #fff;
+    cursor: default;
+
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 2px;
+  }
+  .about__text_small {
+    font-size: 13px;
+    line-height: 16px;
+  }
+  .about__text {
+    font-size: 15px;
     line-height: 19px;
   }
 }

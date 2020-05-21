@@ -10,11 +10,20 @@
       <header-button @click class="header__button"
         >Рассказать историю</header-button
       >
-       -->
-        <header-button class="header__button" :theme="'grey'">
-          Рассказать историю
-        </header-button>
+        -->
+        <header-button
+          class="header__button"
+          :theme="'grey'"
+          @openClick="$emit('openClick')"
+          >Рассказать историю</header-button
+        >
       </div>
+      <!-- <header-button
+          class="header__button"
+          :theme="'grey'"
+          @click="$emit('openClick')"
+        >Рассказать историю</header-button>
+      </div>-->
     </div>
   </header>
 </template>
@@ -27,6 +36,13 @@ export default {
     'header-button': Button,
     'header-nav': Menu,
   },
+  /* 
+  methods: {
+    testClick() {
+      console.log('Событие Header-button click');
+    },
+  },
+  */
 };
 </script>
 
