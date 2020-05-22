@@ -2,18 +2,18 @@
   <div>
     <banner />
     <div class="container">
-      <my-video />
+      <my-video class="video-mix" />
       <tagline>
         <p class="tagline1">
           <span>И В ОТЛИЧИЕ ОТ РАКА,</span>
           <hashtext />
         </p>
       </tagline>
-      <!-- <div class="section-title-mix"> -->
+
       <section-title class="section-title-mix"
         >Истории неизлечимых привычек</section-title
       >
-      <!-- </div> -->
+
       <story-elem :stories="storiesToIndexPage" />
       <div class="link-button-mix">
         <link-button url="/stories/">Больше статей</link-button>
@@ -38,11 +38,11 @@
       >
 
       <elemstat
-        :maxVal="100"
-        :oldValueIncr="50"
-        :newValueIncr="64"
-        :oldValueDecr="62.5"
-        :newValueDecr="50"
+        :maxVal="statistics.maxVal"
+        :oldValueIncr="statistics.oldValueIncr"
+        :newValueIncr="statistics.newValueIncr"
+        :oldValueDecr="statistics.oldValueDecr"
+        :newValueDecr="statistics.newValueDecr"
       />
     </div>
     <about class="about-mix" />
@@ -116,11 +116,20 @@ export default {
     instagram() {
       return this.$store.getters['instagram/getInstagramData'];
     },
+
+    statistics() {
+      return this.$store.getters['statistics/getStatData'];
+    },
   },
 };
 </script>
 
 <style>
+.video-mix {
+  padding-top: 100px;
+  padding-bottom: 74px;
+}
+
 .tagline-mix {
   margin-top: 100px;
 }
@@ -185,6 +194,11 @@ export default {
   }
 }
 @media (max-width: 1280px) {
+  .video-mix {
+    padding-top: 90px;
+    padding-bottom: 64px;
+  }
+
   .tagline-mix {
     margin-top: 90px;
   }
@@ -221,6 +235,11 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  .video-mix {
+    padding-top: 80px;
+    padding-bottom: 54px;
+  }
+
   .tagline-mix {
     margin-top: 80px;
   }
@@ -260,6 +279,11 @@ export default {
   }
 }
 @media (max-width: 768px) {
+  .video-mix {
+    padding-top: 80px;
+    padding-bottom: 44px;
+  }
+
   .tell-your-story-mix {
     padding-top: 80px;
     padding-bottom: 80px;
@@ -308,6 +332,11 @@ export default {
   }
 }
 @media (max-width: 320px) {
+  .video-mix {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
   .tagline-mix {
     margin-top: 50px;
   }

@@ -1,7 +1,5 @@
 <template>
-  <!-- <div class="story" @click="test"> -->
-  <div class="story" @click="$emit('click', storyData.id)">
-    <!-- <div class="story"> -->
+  <div class="story" @click="$emit('click', storyData.story_id)">
     <a class="story__img-container">
       <img
         class="story__img"
@@ -18,9 +16,9 @@
 export default {
   props: ['storyData'],
   methods: {
-    test() {
-      console.log('Клик', storyData);
-    },
+    // test(storyData) {
+    //   console.log('Клик = storyData.id', storyData.story_id);
+    // },
   },
 };
 </script>

@@ -1,6 +1,7 @@
 export const state = () => ({
   popupShown: false,
   qiuzPopupShown: false,
+  menuMobileShow: false,
 });
 
 // change state from here
@@ -13,6 +14,9 @@ export const mutations = {
   toggleQiuzPopUp(state) {
     return (state.qiuzPopupShown = !state.qiuzPopupShown);
   },
+  toggleMenuMobileShow(state) {
+    return (state.menuMobileShow = !state.menuMobileShow);
+  },
 };
 
 export const getters = {
@@ -22,5 +26,9 @@ export const getters = {
 
   getQiuzPopupShown(state) {
     return state.qiuzPopupShown;
+  },
+
+  getmenuMobileShown(state) {
+    return state.menuMobileShow;
   },
 };
