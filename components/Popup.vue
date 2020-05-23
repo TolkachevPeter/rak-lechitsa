@@ -1,10 +1,18 @@
 <template>
   <div class="popup">
+    <img
+      src="../static/popupCross.svg"
+      alt
+      class="popup__cross"
+      @click="$emit('closeClick')"
+    />
+    <!--     
     <div class="popup__headings">
       <h3 class="popup__title">Шаг {{ step }} из {{ stepsSum }}</h3>
-      <img src="../static/popupCross.svg" alt class="popup__cross" />
-    </div>
-
+      <img src="../static/popupCross.svg" alt class="popup__cross" @click="$emit('closeClick')" />
+    </div>-->
+    <quiz />
+    <!-- 
     <p class="popup__question popup__question">
       <span class="popup__question_main">{{ questions[0].question }}</span>
       {{ questions[0].explanation }}
@@ -12,30 +20,29 @@
     <form class="popup__form">
       <input type="text" class="popup__input" placeholder="Напишите тут" />
       <div class="popup__form-container">
-        <a href class="popup__goback" :class="{ goback_active: isGobackActive }"
-          >Назад</a
-        >
-        <popupButton @submit.prevent="xxx" class="popupButton" type="submit">
-          {{ popupButtonText }}
-        </popupButton>
+        <a href class="popup__goback" :class="{ goback_active: isGobackActive }">Назад</a>
+        <popupButton @submit.prevent="xxx" class="popupButton" type="submit">{{ popupButtonText }}</popupButton>
         <p class="popup__policy" :class="{ showPolicy: needPolicy }">
           {{ policyText }}
           <a href="../policy" class="popup__policy-link">{{ policyLink }}</a>
         </p>
       </div>
     </form>
+    -->
   </div>
 </template>
 
 <script>
-import popupButton from '../components/ui/popupButton';
+// import popupButton from '../components/ui/popupButton';
+import Qiuz from '@/components/Quiz';
 export default {
   components: {
-    popupButton: popupButton,
+    // popupButton: popupButton,
+    quiz: Qiuz,
   },
   data() {
     return {
-      popupButtonText: `Далее`,
+      // popupButtonText: `Далее`,
       step: 1,
       isGobackActive: false,
       needPolicy: true,
@@ -102,14 +109,13 @@ export default {
 
 <style scoped>
 .popup {
-  padding: 40px;
+  padding: 0;
   display: flex;
   flex-direction: column;
   position: fixed;
   left: 50%;
   top: 50%;
-  width: 920px;
-  min-height: 600px;
+
   background: #ffffff;
   z-index: 2;
   transform: translate(-50%, -50%);
@@ -120,21 +126,21 @@ export default {
   justify-content: space-between;
 }
 .popup__cross {
+  width: 100%;
+  position: fixed;
+  top: 35px;
+  left: calc(100% - 50px);
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
 .popup__title {
-  font-family: Inter;
-  font-style: normal;
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
   color: #000000;
 }
 .popup__question {
-  font-family: Inter;
-  font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
@@ -155,9 +161,6 @@ export default {
   margin-top: 110px;
 }
 .popup__input::placeholder {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
   font-size: 18px;
   line-height: 24px;
   color: #666666;
@@ -209,7 +212,24 @@ export default {
 @media (max-width: 1024px) {
 }
 @media (max-width: 768px) {
+  .popup {
+    max-width: 580px;
+    width: 95%;
+    height: 520px;
+  }
 }
+
+@media (max-width: 500px) {
+  .popup__cross {
+    top: 13px;
+    left: calc(100% - 35px);
+  }
+}
+
 @media (max-width: 320px) {
+  .popup {
+    width: 290px;
+    height: 520px;
+  }
 }
 </style>

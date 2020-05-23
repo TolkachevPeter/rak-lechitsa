@@ -55,9 +55,9 @@ export default {
   }
 }
 @media (max-width: 768px) {
-  .nav {
+  /* .nav {
     display: none;
-  }
+  } */
   .nav__list-items {
     flex-direction: column;
   }

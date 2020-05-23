@@ -1,7 +1,7 @@
 <template>
   <div>
     <button
-      @click.prevent="$emit('btn-click')"
+      @click.prevent="$emit('openClick')"
       :class="['button', styleChange]"
     >
       <slot></slot>

@@ -1,18 +1,34 @@
 <template>
   <div>
-    <Header />
+    <Header @openClick="showQiuzPopUp" />
     <nuxt />
     <Footer />
+    <overlay v-if="qiuzPopupShown" @overlayClick="showQiuzPopUp" />
+    <popup v-if="qiuzPopupShown" @closeClick="showQiuzPopUp" />
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Overlay from '@/components/Overlay';
+import PopUp from '@/components/Popup';
 export default {
   components: {
     Header,
     Footer,
+    overlay: Overlay,
+    popup: PopUp,
+  },
+  computed: {
+    qiuzPopupShown() {
+      return this.$store.getters['popup/getQiuzPopupShown'];
+    },
+  },
+  methods: {
+    showQiuzPopUp() {
+      this.$store.commit('popup/toggleQiuzPopUp');
+    },
   },
 };
 </script>

@@ -1,84 +1,60 @@
 <template>
-  <container class="container-mix">
-    <story-detail :currentStory="getCurrentStory" @click="showPopUp" />
-
-    <story-elem :stories="storiesToDetailPage" />
-    <!-- </div> -->
-    <nuxt-link class="nuxt-link" to="/stories">
-      <share-button class="share-button">Больше статей</share-button>
-    </nuxt-link>
-    <overlay v-if="popupShown" @overlayClick="showPopUp" />
-    <popup v-if="popupShown" @closeClick="showPopUp" />
-  </container>
+  <div>
+    <section class="story__headings" :currentStory="currentStory">
+      <div class="story__img-container">
+        <img
+          class="story__img"
+          @click="test"
+          :src="currentStory['photo_url']"
+          :alt="currentStory['name']"
+        />
+      </div>
+      <div class="story__data">
+        <h1 class="story__title">
+          <span class="story__author">{{ currentStory['name'] }}:</span>
+          {{ currentStory['story_text'] }}
+        </h1>
+        <div class="story__headings-footer">
+          <p class="story__share" @click="$emit('click')">Поделитесь ↗</p>
+          <span class="story__date">{{ currentStory['story__date'] }}</span>
+        </div>
+      </div>
+    </section>
+    <main class="story__content">
+      <div
+        class="story__material"
+        v-html="currentStory['story__textdetail']"
+      ></div>
+      <p class="story__share-social" @click="$emit('click')">
+        Поделитесь этой статьей в своих социальных сетях ↗
+      </p>
+    </main>
+  </div>
 </template>
 
 <script>
-import LinkButton from '@/components/ui/Link-button';
-import Container from '@/components/Container';
-import Storyelem from '@/components/Story-elem';
-import Story from '~/components/Story';
-import StoryDetail from '~/components/Story-detail';
-import Overlay from '~/components/Overlay';
-import PopUp from '~/components/FooterPopup';
-
 export default {
-  components: {
-    'share-button': LinkButton,
-    container: Container,
-    'story-elem': Storyelem,
-    'one-story': Story,
-    'story-detail': StoryDetail,
-    overlay: Overlay,
-    popup: PopUp,
-  },
-  async fetch({ store, route }) {
-    await store.dispatch('stories/fetchStoryWithId', { id: route.params.id });
-
-    // await store.dispatch('stories/fetchStoryWithId', 3);
-  },
-
+  props: ['currentStory'],
   methods: {
-    showPopUp() {
-      this.$store.commit('popup/togglePopUp');
+    test() {
+      console.log(this.currentStory);
     },
-  },
-  computed: {
-    popupShown() {
-      return this.$store.getters['popup/getPopupShown'];
-    },
-    storiesToDetailPage() {
-      //console.log(this.$router);
-      //console.log({ id: this.$router.currentRoute.params.id });
-      //route.params.id
-      let arrStories = this.$store.getters['stories/getStories'];
-      //console.log(arrStories);
-      return arrStories.filter((item, index) => index < 4);
-    },
-    getCurrentStory() {
-      //console.log('currStory', this.currentStory);
-      return (this.currentStory = this.$store.getters[
-        'stories/getCurrentStory'
-      ]);
-
-      //   return (this.currentStory = this.$store.currentStory);
-    },
-  },
-
-  // methods: {
-  //   test() {
-  //     console.log(currentStory);
-  //   },
-  // },
-
-  data() {
-    return {
-      currentStory: {},
-    };
   },
 };
 </script>
 
 <style scoped>
+.story__material /deep/ .plain-text {
+  padding-bottom: 35px;
+}
+.story__material /deep/ .plain-text:last-child {
+  padding-bottom: 0;
+}
+
+.story__material /deep/ .plain-text_bold {
+  font-weight: 600;
+}
+
 .story__headings {
   padding-top: 100px;
   display: flex;
@@ -137,6 +113,7 @@ export default {
 .story__share {
   text-decoration: none;
   color: #121212;
+  cursor: pointer;
 }
 .story__date {
   text-align: right;
@@ -169,6 +146,7 @@ export default {
   text-decoration: none;
   min-height: 82px;
   margin: 60px auto;
+  cursor: pointer;
 }
 .stories__container {
   margin-top: 160px;
@@ -208,9 +186,7 @@ export default {
 .share-button {
   margin: 70px auto 100px;
 }
-.nuxt-link {
-  text-decoration: none;
-}
+
 @media (max-width: 1280px) {
   /* .story__img {
     height: 518px;
@@ -270,10 +246,6 @@ export default {
   }
 }
 @media (max-width: 768px) {
-  .container-mix {
-    padding-top: 100px;
-  }
-
   .story__headings {
     border-top: 1px solid #efefef;
     border-bottom: 1px solid #efefef;
@@ -291,7 +263,8 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     height: 420px;
-    width: 420px;
+    width: 100%;
+    max-width: 420px;
   }
   .story__data {
     border-top: none;
@@ -301,6 +274,10 @@ export default {
   }
   .story__title {
     text-align: center;
+    padding-bottom: 60px;
+
+    font-size: 30px;
+    line-height: 38px;
   }
   .story__material {
     font-size: 18px;
@@ -332,9 +309,6 @@ export default {
   }
 }
 @media (max-width: 320px) {
-  .container-mix {
-    padding-top: 50px;
-  }
   .story__headings {
     min-height: 470px;
   }
@@ -380,6 +354,12 @@ export default {
   }
   .share-button {
     margin-top: 40px;
+  }
+
+  .story__img-container {
+    width: 100%;
+    max-width: 290px;
+    /* position: relative; */
   }
 }
 </style>

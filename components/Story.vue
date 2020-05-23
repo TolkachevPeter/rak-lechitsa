@@ -1,11 +1,12 @@
 <template>
-  <div class="story">
-    <a class="story__img-container"
-      ><img
+  <div class="story" @click="$emit('click', storyData.story_id)">
+    <a class="story__img-container">
+      <img
         class="story__img"
         v-bind:src="storyData.photo_url"
         v-bind:alt="storyData.photo_alt"
-    /></a>
+      />
+    </a>
     <h4 class="story__name">{{ storyData.name }}</h4>
     <p class="story__text">{{ storyData.story_text }}</p>
   </div>
@@ -14,6 +15,11 @@
 <script>
 export default {
   props: ['storyData'],
+  methods: {
+    // test(storyData) {
+    //   console.log('Клик = storyData.id', storyData.story_id);
+    // },
+  },
 };
 </script>
 
@@ -22,6 +28,7 @@ export default {
   display: flex;
   flex-direction: column;
   max-width: 300px;
+  cursor: pointer;
 }
 
 .story__img-container {

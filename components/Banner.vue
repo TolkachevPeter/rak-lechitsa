@@ -11,6 +11,14 @@ export default {
   components: {
     banner__arrow: DownArrow,
   },
+  // methods: {
+  //   testClick() {
+  //     // this.$refs["input"].focus()
+  //     //this.$refs['button'].focus;
+  //     // console.log(this.$refs['button'].focus);
+  //     console.log(this.$refs);
+  //   },
+  // },
 };
 </script>
 

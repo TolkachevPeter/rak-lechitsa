@@ -1,16 +1,22 @@
 <template>
-  <div class="button">
+  <button
+    :class="['button', { button_disabled: disabled }]"
+    :disabled="disabled"
+    @click="$emit('click')"
+  >
     <slot></slot>
-  </div>
+  </button>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ['disabled'],
+};
 </script>
 
 <style scoped>
 .button {
-  width: 280px;
+  min-width: 20px;
   background: #613a93;
   display: flex;
   justify-content: center;
@@ -29,9 +35,13 @@ export default {};
   background: #613a93;
   opacity: 0.9;
 }
+.button_disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
 @media (max-width: 1280px) {
   .button {
-    width: 230px;
+    /* width: 230px; */
   }
 }
 @media (max-width: 1024px) {
@@ -48,7 +58,7 @@ export default {};
 }
 @media (max-width: 425px) {
   .button {
-    width: 100%;
+    /* width: 100%; */
   }
 }
 </style>

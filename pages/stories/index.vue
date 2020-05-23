@@ -10,14 +10,14 @@
     </form>
     <form class="stories__search stories__search_for-mobile">
       <input type="text" class="stories__input" />
-      <form-btn class="stories__button"
-        ><img src="@/static/search_icon.svg"
-      /></form-btn>
+      <form-btn class="stories__button">
+        <img src="@/static/search_icon.svg" />
+      </form-btn>
     </form>
     <story-elem :stories="storiesToRender" />
     <!-- Необходимо настроить количество -->
     <paginator
-      class="paginator_mix"
+      class="paginator-mix"
       :totalItems="stories.length"
       :itemsPerPage="itemsPerPage"
       @OnPageChanged="changeStartIndex"
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style scoped>
-.paginator_mix {
+.paginator-mix {
   padding-bottom: 100px;
 }
 
@@ -103,13 +103,19 @@ export default {
   display: none;
 }
 .stories__input {
+  font-size: 18px;
+  line-height: 24px;
   width: 81%;
   border: 1px solid #e8e8e8;
   box-sizing: border-box;
   margin-right: 20px;
   padding-left: 15px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  color: #666666;
 }
 .stories__button {
+  width: 226px;
   font-size: 16px;
   line-height: 19px;
 }
@@ -132,7 +138,7 @@ export default {
   }
 }
 @media (max-width: 1280px) {
-  .paginator_mix {
+  .paginator-mix {
     padding-bottom: 90px;
   }
 
@@ -157,7 +163,7 @@ export default {
   }
 }
 @media (max-width: 1024px) {
-  .paginator_mix {
+  .paginator-mix {
     padding-bottom: 80px;
   }
 
@@ -210,7 +216,7 @@ export default {
   }
 }
 @media (max-width: 320px) {
-  .paginator_mix {
+  .paginator-mix {
     padding-bottom: 50px;
   }
 

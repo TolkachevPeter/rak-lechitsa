@@ -1,43 +1,46 @@
 <template>
   <section class="video">
-    <div class="video-container">
-      <div class="video__column">
-        <h2 class="video__title">
-          {{ title }}
-        </h2>
-        <p class="video__subtitle">
-          {{ subtitle }}
-        </p>
-        <!-- <arr class="video__pagination" /> -->
-        <!-- <div class="video__pagination"> -->
-        <div class="arr__container go-left">
+    <div class="video__mobile">
+      <div class="video__mobile-aux">
+        <h2 class="video__title">{{ title }}</h2>
+        <p class="video__subtitle">{{ subtitle }}</p>
+      </div>
+      <div class="arr__container arr__container_left">
+        <div class="arrow-button">
           <div class="arrow arrow_left arrow_disabled"></div>
         </div>
-        <div class="arr__container go-right">
+        <div class="arrow-button">
           <div class="arrow arrow_right arrow_enabled"></div>
         </div>
-        <!-- </div> -->
       </div>
-      <div class="video__column video__for-mobile">
-        <!-- <div class="arr__container arr__mobile arr_mobile_left">
+    </div>
+
+    <div class="video__mobile">
+      <div class="arr__container arr__container_right">
+        <div class="arrow-button">
           <div class="arrow arrow_left arrow_disabled"></div>
-        </div> -->
+        </div>
+        <div class="arrow-button">
+          <div class="arrow arrow_right arrow_enabled"></div>
+        </div>
+      </div>
+
+      <div class="video__iframe-container">
         <div class="video__iframe">
-          <play />
+          <!-- <play /> -->
         </div>
-        <!-- <div class="arr__container arr__mobile arr_mobile_rigth">
-          <div class="arrow arrow_right arrow_enabled"></div>
-        </div> -->
-        <p class="video__channel">
-          Все видео вы можете найте на нашем
-          <a
-            href="https://www.youtube.com/results?search_query=%23%D1%8D%D1%82%D0%BE%D0%BD%D0%B5%D0%BB%D0%B5%D1%87%D0%B8%D1%82%D1%81%D1%8F"
-            class="video__channel-link"
-            target="_blank"
-            >YouTube канале</a
-          >.
-        </p>
       </div>
+      <!-- <p>Какой-то другой текст будет здесь</p> -->
+
+      <p class="video__channel">
+        Все видео вы можете найте на нашем
+        <a
+          href="https://www.youtube.com/results?search_query=%23%D1%8D%D1%82%D0%BE%D0%BD%D0%B5%D0%BB%D0%B5%D1%87%D0%B8%D1%82%D1%81%D1%8F"
+          class="video__channel-link"
+          target="_blank"
+          >YouTube канале</a
+        >.
+      </p>
     </div>
   </section>
 </template>
@@ -65,42 +68,66 @@ export default {
 </script>
 
 <style scoped>
-.video {
+.video__mobile-aux {
   display: flex;
-  width: 100%;
+  flex-direction: column;
 }
-.video-container {
-  display: grid;
-  grid-template-columns: 1fr calc(65% - 40px);
-  column-gap: 40px;
-  padding-top: 100px;
-  padding-bottom: 74px;
+.video__mobile {
   width: 100%;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* position: relative; */
+
+  justify-content: space-between;
 }
-.arr__container {
+
+.arrow-button {
   width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: #fbfbfb;
+}
+
+.video {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 28% 65%;
+  column-gap: 7%;
+}
+
+.arr__container {
   height: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #fbfbfb;
+  /* background-color: blueviolet; */
   cursor: pointer;
-}
-.arr__container:hover {
-  background: #f4f4f4;
-}
-.go-left {
+  top: 144px;
   position: absolute;
-  left: 0;
-  bottom: 100px;
+  z-index: 3;
 }
-.go-right {
-  position: absolute;
-  left: 40px;
-  bottom: 100px;
+
+.arr__container_left {
+  display: flex;
+  position: static;
+  width: 80px;
+  /* background: cornflowerblue; */
+  padding-bottom: 40px;
 }
+
+.arr__container_right {
+  display: none;
+  /* position: static; */
+  /* width: 80px; */
+  /* background: cornflowerblue; */
+  /* padding-bottom: 45px; */
+}
+
 .arrow {
   width: 11.5px;
   height: 11.5px;
@@ -114,10 +141,12 @@ export default {
 .arrow_disabled {
   border-top: 1px solid #bfbfbf;
   border-left: 1px solid #bfbfbf;
+  /* background: #fbfbfb; */
 }
 .arrow_enabled {
   border-top: 1px solid #000000;
   border-left: 1px solid #000000;
+  /* background: #fbfbfb; */
 }
 .video__title {
   font-family: Inter;
@@ -133,21 +162,24 @@ export default {
   color: #666666;
   margin-top: 32px;
 }
-.video__column {
+/* .video__column {
   display: flex;
   flex-direction: column;
-}
+} */
 .video__iframe {
-  min-height: 450px;
+  /* min-height: 450px; */
   background-image: url('../static/Pozner_1920_1080.jpg');
   background-size: cover;
   display: flex;
-  justify-content: center;
+  /* flex-direction: column; */
+  /* justify-content: center; */
   align-items: center;
+  object-fit: cover;
+  width: 100%;
+  padding-bottom: 56.25%;
+  position: relative;
 }
 .video__channel {
-  font-family: Inter;
-  font-weight: normal;
   font-size: 12px;
   line-height: 16px;
   color: #666666;
@@ -164,16 +196,10 @@ export default {
     line-height: 20px;
     margin-top: 30px;
   }
-  .video-container {
-    padding-top: 90px;
-    padding-bottom: 64px;
-  }
+
   .go-left,
   .go-right {
     bottom: 90px;
-  }
-  .video__iframe {
-    min-height: 400px;
   }
 }
 @media (max-width: 1024px) {
@@ -186,27 +212,45 @@ export default {
     line-height: 16px;
     margin-top: 20px;
   }
-  .video-container {
-    padding-top: 80px;
-    padding-bottom: 54px;
-    grid-template-columns: 1fr calc(65% - 30px);
-    column-gap: 30px;
-  }
+
   .go-left,
   .go-right {
     bottom: 80px;
   }
-  .video__iframe {
-    min-height: 314px;
-  }
 }
 @media (max-width: 768px) {
-  .video-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 44px;
+  .arr__container.arr__container_left {
+    display: none;
+    position: static;
+    width: 80px;
+    /* background: cornflowerblue; */
+    padding-bottom: 45px;
   }
+
+  .arr__container.arr__container_right {
+    display: flex;
+    /* position: static; */
+    /* width: 80px; */
+    /* background: cornflowerblue; */
+    /* padding-bottom: 45px; */
+  }
+
+  .video {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    row-gap: 60px;
+  }
+
+  .arr__container {
+    /* width: 40px; */
+    width: 98%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .video__title {
     font-size: 24px;
     line-height: 28px;
@@ -223,12 +267,32 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 84%;
+    width: 100%;
     margin: 60px auto;
   }
+
+  .video__mobile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    /* justify-content: flex-start; */
+  }
+
+  .video__iframe-container {
+    width: 100%;
+    max-width: 580px;
+    display: flex;
+    justify-content: center;
+    /* max-height: 300px; */
+  }
+
   .video__iframe {
     width: 100%;
-    min-height: 300px;
+    padding-bottom: 56.25%;
+    /* min-height: 300px; */
   }
   .go-left {
     bottom: 270px;
@@ -239,16 +303,59 @@ export default {
   }
   .video__channel {
     width: 100%;
+    max-width: 580px;
     text-align: left;
   }
+  .video__for-mobile {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+  }
 }
-@media (max-width: 420px) {
-  .video-container {
-    padding-bottom: 50px;
+
+@media (max-width: 710px) {
+  .arrow-button {
+    background: none;
   }
+  .arr__container {
+    top: 120px;
+  }
+}
+
+@media (max-width: 510px) {
+  .arr__container {
+    top: 90px;
+  }
+}
+
+@media (max-width: 320px) {
+  .arr__container {
+    top: 60px;
+  }
+
+  .video {
+    row-gap: 40px;
+  }
+
+  .video__title {
+    text-align: left;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .video__iframe-container {
+    width: 100%;
+    /* max-width: 580px;
+    max-height: 300px; */
+  }
+
   .video__iframe {
-    min-height: 150px;
+    width: 100%;
+    padding-bottom: 56.25%;
+    /* min-height: 300px; */
   }
+
   .video__for-mobile {
     width: 100%;
     margin: 40px auto;
@@ -264,6 +371,10 @@ export default {
   }
   .video__channel {
     display: none;
+  }
+
+  .video__for-mobile {
+    margin-bottom: 0;
   }
 }
 </style>
