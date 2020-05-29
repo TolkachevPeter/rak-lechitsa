@@ -69,7 +69,7 @@ export default {
   padding-top: 20px;
   padding-left: 25px;
   margin-right: 10px;
-  color: #000000;
+  color: #000;
   transition: 0.3s;
 }
 .nav__item:hover {

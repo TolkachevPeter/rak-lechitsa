@@ -103,7 +103,7 @@ export default {
   margin-top: 32px;
   font-size: 16px;
   line-height: 20px;
-  color: #666666;
+  color: #666;
 }
 .instagram__photo-column {
   display: grid;
@@ -126,7 +126,7 @@ export default {
   max-height: 171px;
   max-width: 171px;
   background-color: #613a93;
-  color: #ffffff;
+  color: #fff;
   object-fit: cover;
 }
 

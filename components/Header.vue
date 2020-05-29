@@ -1,12 +1,20 @@
 <template>
   <header class="header">
-    <div class="container header__container hires-visible">
-      <h2 class="header__title">
+    <div
+      class="container header__container hires-visible"
+      v-if="getmenuMobileShown === false"
+    >
+      <nuxt-link class="link" to="/" v-if="$route.path !== '/'">
+        <h2 class="header__title">
+          Проект Благотворительного Фонда Константина Хабенского
+        </h2>
+      </nuxt-link>
+      <h2 class="header__title" v-else>
         Проект Благотворительного Фонда Константина Хабенского
       </h2>
+
       <div class="header__links header__links_res320-visible">
         <header-nav />
-        <!-- <sandvich-menu></sandvich-menu> -->
         <header-button
           class="header__button"
           :theme="'grey'"
@@ -48,11 +56,11 @@
       <h2 class="header__title">
         Проект Благотворительного Фонда Константина Хабенского
       </h2>
-      <sandvich-menu
-        :sandichShow="!getmenuMobileShown"
+      <sandwich-menu
+        :sandwichShow="!getmenuMobileShown"
         :crossShow="getmenuMobileShown"
         @click="showMenu"
-      ></sandvich-menu>
+      ></sandwich-menu>
     </div>
   </header>
 </template>
@@ -60,12 +68,12 @@
 <script>
 import Button from '~/components/ui/Button_header';
 import Menu from '~/components/Menu';
-import Sandvich from '~/components/ui/Sandvich-menu';
+import Sandwich from '~/components/ui/Sandwich-menu';
 export default {
   components: {
     'header-button': Button,
     'header-nav': Menu,
-    'sandvich-menu': Sandvich,
+    'sandwich-menu': Sandwich,
   },
   methods: {
     showMenu() {
@@ -81,6 +89,11 @@ export default {
 </script>
 
 <style scoped>
+.link {
+  text-decoration: none;
+  color: black;
+}
+
 .container.header__title-container {
   display: none;
 }

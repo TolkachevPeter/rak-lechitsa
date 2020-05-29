@@ -124,9 +124,7 @@
         понятием Персональные данные.
       </li>
     </ol>
-    <h2 class="policy__subtitle">
-      4. Цели обработки персональных данных
-    </h2>
+    <h2 class="policy__subtitle">4. Цели обработки персональных данных</h2>
     <ol class="policy__pagagraph-list policy__text">
       <li class="list-item">
         Цель обработки персональных данных Пользователя — использование
@@ -219,9 +217,7 @@
         персональных данных.
       </li>
     </ol>
-    <h2 class="policy__subtitle">
-      8. Заключительные положения
-    </h2>
+    <h2 class="policy__subtitle">8. Заключительные положения</h2>
 
     <ol class="policy__pagagraph-list policy__text">
       <li class="list-item">
@@ -255,7 +251,7 @@ export default {};
   margin: 0 auto;
   font-family: Inter;
   font-style: normal;
-  color: #000000;
+  color: #000;
   padding-bottom: 230px;
 }
 .policy__title {

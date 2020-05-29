@@ -77,7 +77,7 @@ export default {
   align-items: flex-start;
   flex-direction: column;
   width: 100%;
-  background: #ffffff;
+  background: #fff;
 }
 
 .statistics__container {
@@ -93,7 +93,7 @@ export default {
   margin: 0;
   padding: 0;
   padding: 20px;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #efefef;
   box-sizing: border-box;
 }
@@ -116,7 +116,7 @@ export default {
   margin: 0;
   padding: 0;
   padding-top: 20px;
-  color: #000000;
+  color: #000;
 }
 .statistics__digits-src {
   width: 100%;
@@ -127,7 +127,7 @@ export default {
   margin: 0;
   padding: 0;
   padding-top: 20px;
-  color: #666666;
+  color: #666;
 }
 @media (max-width: 1280px) {
   .statistics {

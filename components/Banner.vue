@@ -1,7 +1,7 @@
 <template>
   <section class="banner">
     <h1 class="title banner-title">#РАКЛЕЧИТСЯ</h1>
-    <banner__arrow />
+    <banner__arrow @clickArrow="$emit('clickArrow')" />
   </section>
 </template>
 
@@ -42,7 +42,7 @@ export default {
   position: relative;
 }
 .banner-title {
-  color: #ffffff;
+  color: #fff;
   /* margin-top: 290px; */
   text-align: center;
 }

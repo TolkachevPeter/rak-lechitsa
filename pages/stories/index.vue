@@ -1,5 +1,4 @@
 <template>
-  <!-- <section class="stories"> -->
   <section class="stories">
     <div class="section-title-container">
       <section-title>Истории неизлечимых привычек</section-title>
@@ -11,7 +10,7 @@
     <form class="stories__search stories__search_for-mobile">
       <input type="text" class="stories__input" />
       <form-btn class="stories__button">
-        <img src="@/static/search_icon.svg" />
+        <img src="/search_icon.svg" />
       </form-btn>
     </form>
     <story-elem :stories="storiesToRender" />
@@ -89,7 +88,7 @@ export default {
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
-  color: #000000;
+  color: #000;
   max-width: 413px;
 }
 .stories__search {
@@ -112,7 +111,7 @@ export default {
   padding-left: 15px;
   padding-top: 4px;
   padding-bottom: 4px;
-  color: #666666;
+  color: #666;
 }
 .stories__button {
   width: 226px;

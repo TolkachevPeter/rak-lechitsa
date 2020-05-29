@@ -1,14 +1,14 @@
 <template>
   <div>
-    <banner />
-    <div class="container">
-      <my-video class="video-mix" />
-      <tagline>
-        <p class="tagline1">
-          <span>И В ОТЛИЧИЕ ОТ РАКА,</span>
-          <hashtext />
-        </p>
-      </tagline>
+    <banner @clickArrow="scrollDown" />
+    <container>
+      <div ref="nextSection">
+        <my-video class="video-mix" />
+      </div>
+      <taglineText
+        :text="'И В ОТЛИЧИЕ ОТ РАКА,'"
+        :hashtext="'#ЭТОНЕЛЕЧИТСЯ'"
+      ></taglineText>
 
       <section-title class="section-title-mix"
         >Истории неизлечимых привычек</section-title
@@ -18,19 +18,18 @@
       <div class="link-button-mix">
         <link-button url="/stories/">Больше статей</link-button>
       </div>
-      <tagline class="tagline-mix">
-        <p class="tagline2">
-          <span>РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ В ИНСТАГРАМ</span>
-          <hashtext />
-        </p>
-      </tagline>
+      <taglineText
+        :extraClass="'tagline2rows'"
+        :text="'РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ&nbsp;В&nbsp;ИНСТАГРАМ'"
+        :hashtext="'#ЭТОНЕЛЕЧИТСЯ'"
+        class="tagline-mix"
+      ></taglineText>
       <instagram
         class="instagram-mix"
         :instagramData="instagram"
         :mainInstLink="'#'"
       />
-    </div>
-
+    </container>
     <tell-your-story class="tell-your-story-mix" @click="showQiuzPopUp" />
     <div class="elemstat-container">
       <section-title class="section-title-mix"
@@ -55,7 +54,7 @@
 import SectionTitle from '@/components/ui/SectionTitle';
 import Banner from '@/components/Banner';
 import Video from '@/components/Video';
-import Tagline from '@/components/Tagline';
+import TaglineText from '@/components/TaglineText';
 import TaglineHashText from '@/components/TaglineHashText';
 import Storyelem from '@/components/Story-elem';
 import Linkbutton from '@/components/ui/Link-button';
@@ -66,12 +65,13 @@ import Elemstat from '@/components/Elemstat';
 import About from '@/components/About';
 import Overlay from '@/components/Overlay';
 import PopUp from '@/components/Popup';
+import Container from '@/components/Container';
 
 export default {
   components: {
     banner: Banner,
     'my-video': Video,
-    tagline: Tagline,
+    taglineText: TaglineText,
     hashtext: TaglineHashText,
     'story-elem': Storyelem,
     'link-button': Linkbutton,
@@ -82,16 +82,30 @@ export default {
     'section-title': SectionTitle,
     overlay: Overlay,
     popup: PopUp,
+    container: Container,
   },
 
   data() {
     return {
       itemsPerPage: 8,
       numberStoriesToIndex: 16,
+      // tagline2rows: {
+      //   display: 'flex',
+      //   'flex-direction': 'column',
+      //   'justify-items': 'center',
+      // },
     };
   },
 
   methods: {
+    scrollDown() {
+      //  console.log(this.$refs.nextSection);
+      this.$refs.nextSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    },
+
     goToDetail(id) {
       //console.log(id);
       this.$router.push(`/stories/${id}`);
@@ -183,11 +197,11 @@ export default {
   padding-bottom: 100px;
 }
 @media (max-width: 1440px) {
-  .container {
-    /* new */
+  /* .container {
+    
     width: 95%;
     max-width: 1320px;
-  }
+  } */
   .elemstat-container {
     width: 95%;
     max-width: 1320px;
@@ -216,12 +230,12 @@ export default {
     margin-top: 90px;
     padding-bottom: 60px;
   }
-
+  /* 
   .container {
-    /* new */
+    
     width: 95%;
     max-width: 1180px;
-  }
+  } */
 
   .elemstat-container {
     width: 95%;
@@ -252,11 +266,11 @@ export default {
     padding-bottom: 80px;
   }
 
-  .container {
-    /* new */
+  /* .container {
+    
     width: 95%;
     max-width: 924px;
-  }
+  } */
 
   .elemstat-container {
     width: 95%;
@@ -292,23 +306,18 @@ export default {
     padding-top: 80px;
     padding-bottom: 80px;
   }
-
+  /* 
   .container {
-    /* new */
+   
     width: 95%;
     max-width: 688px;
-  }
+  } */
 
   .elemstat-container {
     width: 95%;
     max-width: 688px;
   }
 
-  .tagline1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
   .section-title-mix {
     margin-top: 80px;
     padding-bottom: 60px;
@@ -348,10 +357,10 @@ export default {
     padding-top: 50px;
     padding-bottom: 50px;
   }
-  .container {
-    /* new */
+  /* .container {
+ 
     width: 95%;
-  }
+  } */
 
   .elemstat-container {
     width: 95%;

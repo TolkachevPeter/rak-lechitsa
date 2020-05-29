@@ -1,14 +1,11 @@
 <template>
   <div class="popup">
     <img
-      src="../static/popupCross.svg"
+      src="/popupCross.svg"
       alt
       class="popup__cross"
       @click="$emit('closeClick')"
     />
-    <!-- <div class="popup__headings">
-      <h3 class="popup__title">Поделитесь</h3>
-    </div>-->
 
     <h3 class="popup__title">Поделитесь</h3>
 
@@ -77,7 +74,7 @@ export default {
   width: 920px;
   max-width: 95%;
   height: 324px;
-  background: #ffffff;
+  background: #fff;
   z-index: 2;
   transform: translate(-50%, -50%);
 }
@@ -96,7 +93,7 @@ export default {
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
-  color: #000000;
+  color: #000;
   text-align: center;
   margin: 0 auto;
 }

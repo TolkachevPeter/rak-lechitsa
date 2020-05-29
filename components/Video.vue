@@ -144,8 +144,8 @@ export default {
   /* background: #fbfbfb; */
 }
 .arrow_enabled {
-  border-top: 1px solid #000000;
-  border-left: 1px solid #000000;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
   /* background: #fbfbfb; */
 }
 .video__title {
@@ -159,7 +159,7 @@ export default {
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  color: #666666;
+  color: #666;
   margin-top: 32px;
 }
 /* .video__column {
@@ -182,7 +182,7 @@ export default {
 .video__channel {
   font-size: 12px;
   line-height: 16px;
-  color: #666666;
+  color: #666;
   margin-top: 10px;
 }
 

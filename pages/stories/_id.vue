@@ -118,7 +118,7 @@ export default {
   font-weight: normal;
   font-size: 38px;
   line-height: 48px;
-  color: #000000;
+  color: #000;
 }
 .story__author {
   font-weight: 500;
@@ -151,7 +151,7 @@ export default {
   font-weight: normal;
   font-size: 22px;
   line-height: 30px;
-  color: #000000;
+  color: #000;
 }
 .story__share-social {
   border-top: 1px solid #efefef;
@@ -194,7 +194,7 @@ export default {
   font-size: 22px;
   line-height: 22px;
   margin-top: 20px;
-  color: #000000;
+  color: #000;
 }
 .story__text {
   font-family: Inter;
@@ -203,7 +203,7 @@ export default {
   font-size: 14px;
   line-height: 18px;
   margin-top: 14px;
-  color: #666666;
+  color: #666;
 }
 .share-button {
   margin: 70px auto 100px;

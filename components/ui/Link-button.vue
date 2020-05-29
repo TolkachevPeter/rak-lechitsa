@@ -26,7 +26,7 @@ export default {
   font-size: 16px;
   line-height: 20px;
   align-self: center;
-  color: #000000;
+  color: #000;
 }
 
 .link-button:hover {

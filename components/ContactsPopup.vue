@@ -1,17 +1,12 @@
 <template>
   <div class="popup">
     <h2 class="popup__title">Оставьте контакт для&nbsp;связи</h2>
-    <img
-      @click="xxx"
-      src="../static/popupCross.svg"
-      alt=""
-      class="popup__close"
-    />
+    <img @click="xxx" src="/popupCross.svg" alt class="popup__close" />
     <p class="popup__subtitle">
       Мы свяжемся с вами в течение недели, чтобы задать вопросы о вашей истории
       и разместить ее на сайте.
     </p>
-    <form action="" class="popup__form">
+    <form action class="popup__form">
       <h3 class="form__question">{{ questions.name }}</h3>
       <input class="popup__input" v-bind:placeholder="placeholders.name" />
       <div class="form__contacts-container">
@@ -27,7 +22,7 @@
       <h3 class="form__question">{{ questions.type }}</h3>
       <input class="popup__input" v-bind:placeholder="placeholders.type" />
       <div class="popup__footer">
-        <form-btn type="submit" @submit.prevent="" class="form__button"
+        <form-btn type="submit" @submit.prevent class="form__button"
           >Отправить</form-btn
         >
         <p class="popup__policy">
@@ -73,7 +68,7 @@ export default {
   position: absolute;
   left: 50%;
   top: 85px;
-  background: #ffffff;
+  background: #fff;
   z-index: 2;
   transform: translate(-50%);
   padding: 40px;
@@ -85,7 +80,7 @@ export default {
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
-  color: #000000;
+  color: #000;
 }
 .popup__close {
   position: absolute;
@@ -99,7 +94,7 @@ export default {
   font-size: 18px;
   line-height: 24px;
   margin-top: 40px;
-  color: #000000;
+  color: #000;
   padding-right: 30px;
 }
 .popup__form {
@@ -118,7 +113,7 @@ export default {
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
-  color: #666666;
+  color: #666;
 }
 .form__question {
   font-family: Inter;
@@ -126,7 +121,7 @@ export default {
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  color: #000000;
+  color: #000;
   margin-top: 40px;
 }
 .form__contacts-container {
@@ -152,11 +147,11 @@ export default {
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
-  color: #666666;
+  color: #666;
   max-width: 378px;
 }
 .popup__policy-link {
-  color: #666666;
+  color: #666;
 }
 @media screen and (max-width: 1280px) {
   .popup {

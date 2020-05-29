@@ -8,7 +8,7 @@ export default {};
 
 <style scoped>
 .popup-layout {
-  background-color: #000000;
+  background-color: #000;
   opacity: 0.5;
   position: fixed;
   left: 0;

@@ -7,7 +7,7 @@
         <div class="about__column">
           <p class="about__text about__text_small">{{ aboutProject }}</p>
         </div>
-        <div class="about__column var__column">
+        <div class="about__column about__column_variants">
           <p
             :class="[
               'about__var',
@@ -103,6 +103,7 @@ export default {
   flex-direction: column;
   width: 100%;
   background: #613a93;
+  min-height: 650px;
 }
 .about__title {
   color: white;
@@ -176,6 +177,9 @@ export default {
   }
 }
 @media (max-width: 1280px) {
+  .about {
+    min-height: 658px;
+  }
   .about__title {
     font-size: 58px;
     line-height: 70px;
@@ -186,6 +190,9 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  .about {
+    min-height: 591px;
+  }
   .container {
     max-width: 90%;
   }
@@ -203,6 +210,9 @@ export default {
   }
 }
 @media (max-width: 768px) {
+  .about {
+    min-height: 660px;
+  }
   .about__container {
     max-width: 380px;
     width: 100%;
@@ -222,7 +232,7 @@ export default {
     font-size: 13px;
     line-height: 16px;
   }
-  .var__column {
+  .about__column_variants {
     flex-direction: row;
     width: 100%;
     margin-top: 80px;
@@ -254,7 +264,7 @@ export default {
     font-size: 13px;
     line-height: 19px;
   }
-  .var__column {
+  .about__column_variants {
     margin-top: 40px;
     margin-bottom: 20px;
   }

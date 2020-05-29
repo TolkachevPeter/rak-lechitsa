@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
 .stories-comp {
-  background-color: #ffffff;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
 }

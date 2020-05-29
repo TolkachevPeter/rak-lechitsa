@@ -30,9 +30,9 @@
         </div>
         <div class="tellStory__column">
           <p class="subtitle tellStory__select-var">{{ textVar[0] }}</p>
-          <submit-btn class="btn submit-btn_mix" @click="$emit('click')">{{
-            btnText[isActiveResult]
-          }}</submit-btn>
+          <submit-btn class="btn submit-btn_mix" @click="$emit('click')">
+            {{ btnText[isActiveResult] }}
+          </submit-btn>
         </div>
       </div>
     </div>
@@ -124,12 +124,12 @@ export default {
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
-  color: #000000;
+  color: #000;
 }
 .subtitle {
   font-size: 18px;
   line-height: 22px;
-  color: #666666;
+  color: #666;
   margin-top: 32px;
 }
 .tellStory__var {
@@ -145,7 +145,7 @@ export default {
 }
 .tellStory__var_type_active {
   font-weight: 500;
-  color: #000000;
+  color: #000;
   cursor: default;
 }
 .tellStory__select-var {

@@ -27,7 +27,7 @@
                 >Youtube</a
               >
             </li>
-            <li class="footer__list-item" @click="showPopUp">
+            <li class="footer__list-item" @click="$emit('socClick')">
               <a class="footer__link">Поделитесь &#8599;</a>
             </li>
           </ul>
@@ -44,8 +44,8 @@
             >Яндекс Практикум</a
           >
         </p>
-        <overlay v-if="popupShown" @overlayClick="showPopUp" />
-        <popup v-if="popupShown" @closeClick="showPopUp" />
+        <!-- <overlay v-if="popupShown" @overlayClick="showPopUp" />
+        <popup v-if="popupShown" @closeClick="showPopUp" />-->
       </div>
     </div>
   </footer>
@@ -61,15 +61,13 @@ export default {
     overlay: Overlay,
     popup: PopUp,
   },
-  data: () => ({
-    date: 1580558031264,
-  }),
+  data: () => ({}),
   computed: {
     popupShown() {
       return this.$store.getters['popup/getPopupShown'];
     },
     localeDate() {
-      return new Date(this.date).getFullYear();
+      return new Date().getFullYear();
     },
   },
 
@@ -100,7 +98,7 @@ export default {
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
-  color: #000000;
+  color: #000;
   max-width: 340px;
 }
 .footer__column {

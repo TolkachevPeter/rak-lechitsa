@@ -10,7 +10,7 @@ export default {};
 
 <style scoped>
 .section-title {
-  color: #000000;
+  color: #000;
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
