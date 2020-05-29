@@ -6,13 +6,14 @@
       class="quiz-comp__cross"
       @click="$emit('closeClick')"
     />
-    <div class="quiz" @click="showCurrQ">
-      <div class="quiz__container">
+    <!-- <div class="quiz" @click="showCurrQ"> -->
+    <div class="quiz">
+      <div class="quiz__container" v-if="!showFinalScreen">
         <h3 class="quiz__title">{{ currentQuestion.title }}</h3>
         <p class="quiz__question">
-          <span class="quiz__question-main">{{
-            currentQuestion.question
-          }}</span>
+          <span class="quiz__question-main">
+            {{ currentQuestion.question }}
+          </span>
           <span
             v-if="currentQuestion.questionAdditional"
             class="quiz__question-additional"
@@ -27,7 +28,7 @@
           v-model="answer"
         />
       </div>
-      <div class="quiz__buttons-container">
+      <div class="quiz__buttons-container" v-if="!showFinalScreen">
         <div class="quiz__buttons">
           <my-button
             :disabled="prevButtonDisabled"
@@ -35,9 +36,9 @@
             @click="prevQuestion"
             >Назад</my-button
           >
-          <my-button class="my-button_mix" @click="nextQuestion">
-            {{ buttonLabel }}
-          </my-button>
+          <my-button class="my-button_mix" @click="nextQuestion">{{
+            buttonLabel
+          }}</my-button>
         </div>
         <p :class="['quiz__policy', { quiz__policy_show: isLastStep }]">
           Нажимая на кнопку «отправить», вы даете согласие на
@@ -46,6 +47,16 @@
           >
         </p>
       </div>
+      <h3 class="quiz__title quiz__title_align_center" v-if="showFinalScreen">
+        Спасибо что приняли участие!
+      </h3>
+
+      <my-button
+        class="my-button_mix my-button_mix_align_center"
+        @click="$emit('closeClick')"
+        v-if="showFinalScreen"
+        >Закрыть</my-button
+      >
     </div>
   </div>
 </template>
@@ -61,18 +72,25 @@ export default {
   },
   methods: {
     async nextQuestion() {
-      await this.$store.dispatch('quiz/NEXT_QUESTION', {
-        answer: this.answer,
-      });
+      await this.$store.dispatch(
+        'quiz/NEXT_QUESTION',
+        {
+          answer: this.answer,
+        },
+        this.questionsNumber
+      );
       this.answer = this.initialAnswer;
+      if (this.isLastStep) {
+        this.showFinalScreen = true;
+      }
     },
     async prevQuestion() {
       await this.$store.dispatch('quiz/PREV_QUESTION');
       this.answer = this.initialAnswer;
     },
-    showCurrQ() {
-      console.log(this.currentQuestion);
-    },
+    // showCurrQ() {
+    //   console.log(this.currentQuestion);
+    // },
   },
 
   computed: {
@@ -100,7 +118,6 @@ export default {
     isLastStep() {
       const { quiz } = this.$store.state;
       const { currentQuestion } = quiz;
-
       return currentQuestion === 12;
     },
     buttonLabel() {
@@ -114,6 +131,8 @@ export default {
   data() {
     return {
       answer: '',
+      showFinalScreen: false,
+      questionsNumber: 12,
       //   buttonLabel: 'Далее',
     };
   },
@@ -150,6 +169,10 @@ export default {
   width: 100%;
 }
 
+/* .quiz__buttons-container.quiz__buttons-container_align_center {
+  justify-content: center;
+} */
+
 .quiz__policy {
   display: none;
   height: 48px;
@@ -173,6 +196,11 @@ export default {
 .my-button_mix {
   width: 226px;
 }
+
+.my-button_mix_align_center {
+  margin: 0 auto;
+}
+
 .my-button_mix-grey {
   padding-left: 0;
   padding-right: 10px;
@@ -212,6 +240,11 @@ export default {
   display: flex;
   align-items: flex-end;
   color: #000;
+}
+
+.quiz__title_align_center {
+  justify-content: center;
+  text-align: center;
 }
 
 .quiz__question {
@@ -274,7 +307,7 @@ export default {
     max-width: 580px;
     width: 100%;
     height: 520px;
-    padding: 15px;
+    padding: 40px;
   }
   .quiz__buttons-container {
     flex-direction: column;
@@ -326,7 +359,6 @@ export default {
     height: 520px;
   }
   .quiz {
-    /* width: 290px; */
     width: 100%;
     height: 520px;
     padding: 15px;
@@ -364,6 +396,12 @@ export default {
   }
   .quiz__input {
     margin-top: 50px;
+  } /*
+  .quiz__title.quiz__title_align_center {
+    justify-content: center;
   }
+  .quiz__buttons-container.quiz__buttons-container_align_center {
+    justify-content: center;
+  } */
 }
 </style>
