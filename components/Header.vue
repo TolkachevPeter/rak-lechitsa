@@ -1,7 +1,8 @@
 <template>
   <header class="header">
-    <div
-      class="container header__container hires-visible"
+    <!-- <div class="container header__container hires-visible" v-if="getmenuMobileShown === false"> -->
+    <container
+      class="header__container hires-visible"
       v-if="getmenuMobileShown === false"
     >
       <nuxt-link class="link" to="/" v-if="$route.path !== '/'">
@@ -22,10 +23,12 @@
           >Рассказать историю</header-button
         >
       </div>
-    </div>
+    </container>
+    <!-- </div> -->
 
-    <div
-      class="container header__container res768-visible"
+    <!-- <div class="container header__container res768-visible" v-if="getmenuMobileShown"> -->
+    <container
+      class="header__container res768-visible"
       v-if="getmenuMobileShown"
     >
       <div class="header__links header__links_res768-visible">
@@ -38,9 +41,11 @@
           >Рассказать историю</header-button
         >
       </div>
-    </div>
+    </container>
+    <!-- </div> -->
 
-    <div class="container res320-visible" v-if="getmenuMobileShown">
+    <!-- <div class="container res320-visible" v-if="getmenuMobileShown"> -->
+    <container class="res320-visible" v-if="getmenuMobileShown">
       <div class="header__links header__links_res320-visible">
         <header-nav />
         <header-button
@@ -50,9 +55,11 @@
           >Рассказать историю</header-button
         >
       </div>
-    </div>
+    </container>
+    <!-- </div> -->
 
-    <div class="container header__title-container">
+    <!-- <div class="container header__title-container"> -->
+    <container class="header__title-container">
       <h2 class="header__title">
         Проект Благотворительного Фонда Константина Хабенского
       </h2>
@@ -61,19 +68,22 @@
         :crossShow="getmenuMobileShown"
         @click="showMenu"
       ></sandwich-menu>
-    </div>
+    </container>
+    <!-- </div> -->
   </header>
 </template>
 
 <script>
-import Button from '~/components/ui/Button_header';
-import Menu from '~/components/Menu';
-import Sandwich from '~/components/ui/Sandwich-menu';
+import Button from '@/components/ui/Button_header';
+import Menu from '@/components/Menu';
+import Sandwich from '@/components/ui/Sandwich-menu';
+import Container from '@/components/Container';
 export default {
   components: {
     'header-button': Button,
     'header-nav': Menu,
     'sandwich-menu': Sandwich,
+    container: Container,
   },
   methods: {
     showMenu() {

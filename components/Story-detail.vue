@@ -1,10 +1,9 @@
 <template>
-  <div>
+  <div class="story">
     <section class="story__headings" :currentStory="currentStory">
       <div class="story__img-container">
         <img
           class="story__img"
-          @click="test"
           :src="currentStory['photo_url']"
           :alt="currentStory['name']"
         />
@@ -36,9 +35,9 @@
 export default {
   props: ['currentStory'],
   methods: {
-    test() {
-      console.log(this.currentStory);
-    },
+    // test() {
+    //   console.log(this.currentStory);
+    // },
   },
 };
 </script>

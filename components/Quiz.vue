@@ -11,9 +11,9 @@
       <div class="quiz__container" v-if="!showFinalScreen">
         <h3 class="quiz__title">{{ currentQuestion.title }}</h3>
         <p class="quiz__question">
-          <span class="quiz__question-main">
-            {{ currentQuestion.question }}
-          </span>
+          <span class="quiz__question-main">{{
+            currentQuestion.question
+          }}</span>
           <span
             v-if="currentQuestion.questionAdditional"
             class="quiz__question-additional"
@@ -32,13 +32,13 @@
         <div class="quiz__buttons">
           <my-button
             :disabled="prevButtonDisabled"
-            class="my-button_mix-grey"
+            class="my-button my-button_grey"
             @click="prevQuestion"
             >Назад</my-button
           >
-          <my-button class="my-button_mix" @click="nextQuestion">{{
-            buttonLabel
-          }}</my-button>
+          <my-button class="my-button" @click="nextQuestion">
+            {{ buttonLabel }}
+          </my-button>
         </div>
         <p :class="['quiz__policy', { quiz__policy_show: isLastStep }]">
           Нажимая на кнопку «отправить», вы даете согласие на
@@ -52,7 +52,7 @@
       </h3>
 
       <my-button
-        class="my-button_mix my-button_mix_align_center"
+        class="my-button my-button_align_center"
         @click="$emit('closeClick')"
         v-if="showFinalScreen"
         >Закрыть</my-button
@@ -79,9 +79,11 @@ export default {
         },
         this.questionsNumber
       );
+      this.nextQuestionCounter++;
       this.answer = this.initialAnswer;
-      if (this.isLastStep) {
+      if (this.isLastStep && this.nextQuestionCounter > this.questionsNumber) {
         this.showFinalScreen = true;
+        await this.$store.dispatch('quiz/SET_QUESTION', { currentQuestion: 1 });
       }
     },
     async prevQuestion() {
@@ -90,6 +92,9 @@ export default {
     },
     // showCurrQ() {
     //   console.log(this.currentQuestion);
+    // },
+    // showFinalScreen(flag = false) {
+    //   return flag;
     // },
   },
 
@@ -120,6 +125,7 @@ export default {
       const { currentQuestion } = quiz;
       return currentQuestion === 12;
     },
+
     buttonLabel() {
       const { quiz } = this.$store.state;
       const { currentQuestion } = quiz;
@@ -132,6 +138,7 @@ export default {
     return {
       answer: '',
       showFinalScreen: false,
+      nextQuestionCounter: 1,
       questionsNumber: 12,
       //   buttonLabel: 'Далее',
     };
@@ -169,10 +176,6 @@ export default {
   width: 100%;
 }
 
-/* .quiz__buttons-container.quiz__buttons-container_align_center {
-  justify-content: center;
-} */
-
 .quiz__policy {
   display: none;
   height: 48px;
@@ -193,21 +196,23 @@ export default {
   text-decoration: none;
 }
 
-.my-button_mix {
+.my-button {
   width: 226px;
 }
 
-.my-button_mix_align_center {
+.my-button_align_center {
   margin: 0 auto;
 }
 
-.my-button_mix-grey {
+.my-button_grey {
+  width: 80px;
   padding-left: 0;
   padding-right: 10px;
   background: none;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  /* align-items: center; */
+  /* text-align: start; */
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
@@ -216,7 +221,7 @@ export default {
   border: none;
 }
 
-.my-button_mix-grey:hover {
+.my-button_grey:hover {
   color: #c0c0c0;
   background: none;
 }
@@ -259,8 +264,6 @@ export default {
 }
 
 .quiz__question-additional {
-  /* font-size: 18px;
-  line-height: 24px; */
   color: #666;
 }
 
@@ -311,7 +314,8 @@ export default {
   }
   .quiz__buttons-container {
     flex-direction: column;
-    padding-bottom: 30px;
+    /* padding-bottom: 30px; */
+    padding-bottom: 0;
   }
 
   .quiz__question {
@@ -329,18 +333,20 @@ export default {
     width: 95%;
   }
 
-  .my-button_mix {
+  .my-button {
     width: 206px;
     font-size: 13px;
     line-height: 16px;
   }
-  .my-button_mix-grey {
+  .my-button_grey {
     font-size: 13px;
     line-height: 16px;
+    width: 80px;
   }
+
   .quiz__buttons {
     width: 95%;
-    max-width: 304px;
+    max-width: 286px;
   }
   .quiz__input {
     margin-top: 50px;
@@ -382,26 +388,24 @@ export default {
     width: 95%;
   }
 
-  .my-button_mix {
+  .my-button {
     width: 190px;
     font-size: 13px;
     line-height: 16px;
   }
-  .my-button_mix-grey {
+  .my-button_grey {
     font-size: 13px;
     line-height: 16px;
+    width: 80px;
   }
   .quiz__buttons {
     width: 95%;
   }
   .quiz__input {
     margin-top: 50px;
-  } /*
-  .quiz__title.quiz__title_align_center {
-    justify-content: center;
   }
-  .quiz__buttons-container.quiz__buttons-container_align_center {
-    justify-content: center;
-  } */
+  .quiz__buttons-container {
+    padding-bottom: 30px;
+  }
 }
 </style>

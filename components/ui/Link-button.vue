@@ -1,9 +1,9 @@
 <template>
-  <a class="link-button" :href="url">
-    <!-- <p class="link-button__text"> -->
-    <slot></slot>
-    <!-- </p> -->
-  </a>
+  <div>
+    <button @click.prevent="$emit('btnClick')" class="link-button">
+      <slot></slot>
+    </button>
+  </div>
 </template>
 
 <script>
@@ -14,7 +14,8 @@ export default {
 
 <style scoped>
 .link-button {
-  min-height: 82px;
+  /* min-height: 82px; */
+  width: 100%;
   background: #fbfbfb;
   display: flex;
   justify-content: center;
@@ -27,6 +28,8 @@ export default {
   line-height: 20px;
   align-self: center;
   color: #000;
+  cursor: pointer;
+  border: none;
 }
 
 .link-button:hover {

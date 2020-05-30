@@ -1,12 +1,7 @@
 <template>
   <section class="stories-comp">
     <div class="stories-comp__list">
-      <one-story
-        v-for="story in stories"
-        :key="story.id"
-        :storyData="story"
-        @click="goToDetail"
-      />
+      <one-story v-for="story in stories" :key="story.id" :storyData="story" />
     </div>
   </section>
 </template>
@@ -20,13 +15,12 @@ export default {
   },
   props: ['stories'],
   methods: {
-    goToDetail(id) {
-      // console.log(id);
-      this.$router.push(`/stories/${id}`);
-    },
-
-    // test() {
-    //   console.log('Клик по 1 истории, story.id =', story.id);
+    // goToDetail(id) {
+    // console.log(id);
+    // this.$router.push(`/stories/${id}`);
+    // },
+    // test(value) {
+    //   console.log('Выводим value =', value);
     // },
   },
 };

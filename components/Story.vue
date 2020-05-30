@@ -1,24 +1,29 @@
 <template>
-  <div class="story" @click="$emit('click', storyData.story_id)">
-    <a class="story__img-container">
+  <router-link
+    :to="{ path: `/stories/${storyData.story_id}` }"
+    class="story"
+    @click="$emit('click', storyData.story_id)"
+  >
+    <div class="story__img-container">
       <img
         class="story__img"
         v-bind:src="storyData.photo_url"
         v-bind:alt="storyData.photo_alt"
       />
-    </a>
+    </div>
     <h4 class="story__name">{{ storyData.name }}</h4>
     <p class="story__text">{{ storyData.story_text }}</p>
-  </div>
+  </router-link>
 </template>
 
 <script>
 export default {
   props: ['storyData'],
-  methods: {
-    // test(storyData) {
-    //   console.log('Клик = storyData.id', storyData.story_id);
-    // },
+  methods: {},
+  data() {
+    return {
+      // url: `/stories/${storyData.story_id}`,
+    };
   },
 };
 </script>
@@ -29,6 +34,7 @@ export default {
   flex-direction: column;
   max-width: 300px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .story__img-container {

@@ -30,9 +30,11 @@
         </div>
         <div class="tellStory__column">
           <p class="subtitle tellStory__select-var">{{ textVar[0] }}</p>
-          <submit-btn class="btn submit-btn_mix" @click="$emit('click')">
-            {{ btnText[isActiveResult] }}
-          </submit-btn>
+          <submit-btn
+            class="btn submit-btn_mix"
+            @click="$emit('click', btnText[isActiveResult])"
+            >{{ btnText[isActiveResult] }}</submit-btn
+          >
         </div>
       </div>
     </div>

@@ -15,9 +15,10 @@
       >
 
       <story-elem :stories="storiesToIndexPage" />
-      <div class="link-button-mix">
-        <link-button url="/stories/">Больше статей</link-button>
-      </div>
+      <link-button class="link-button-mix" @btnClick="goToStories"
+        >Больше статей</link-button
+      >
+
       <taglineText
         :extraClass="'tagline2rows'"
         :text="'РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ&nbsp;В&nbsp;ИНСТАГРАМ'"
@@ -30,7 +31,7 @@
         :mainInstLink="'#'"
       />
     </container>
-    <tell-your-story class="tell-your-story-mix" @click="showQiuzPopUp" />
+    <tell-your-story class="tell-your-story-mix" @click="showPopUp" />
     <div class="elemstat-container">
       <section-title class="section-title-mix"
         >Статистика по онкозаболеваниям</section-title
@@ -45,8 +46,11 @@
       />
     </div>
     <about class="about-mix" />
-    <overlay v-if="qiuzPopupShown" @overlayClick="showQiuzPopUp" />
-    <popup v-if="qiuzPopupShown" @closeClick="showQiuzPopUp" />
+    <modal-window @overlayClick="closePopup" @closeClick="closePopup">
+      <quiz v-if="getQiuzPopupState" @closeClick="closePopup" />
+      <!-- <footerPopup v-if="getSocLinksPopupState" @closeClick="closePopup" /> -->
+      <getContactForm v-if="getContactFormState" @closeClick="closePopup" />
+    </modal-window>
   </div>
 </template>
 
@@ -64,8 +68,11 @@ import TellYourStory from '@/components/Tell-your-story';
 import Elemstat from '@/components/Elemstat';
 import About from '@/components/About';
 import Overlay from '@/components/Overlay';
-import PopUp from '@/components/Popup';
+// import PopUp from '@/components/Popup';
 import Container from '@/components/Container';
+import Quiz from '@/components/Quiz';
+import ModalWindow from '@/components/ModalWindow';
+import GetContactForm from '@/components/GetContactForm';
 
 export default {
   components: {
@@ -80,9 +87,12 @@ export default {
     elemstat: elemstat,
     about: About,
     'section-title': SectionTitle,
-    overlay: Overlay,
-    popup: PopUp,
+    // overlay: Overlay,
+    // popup: PopUp,
     container: Container,
+    quiz: Quiz,
+    'modal-window': ModalWindow,
+    getContactForm: GetContactForm,
   },
 
   data() {
@@ -105,15 +115,36 @@ export default {
         block: 'start',
       });
     },
-
-    goToDetail(id) {
-      //console.log(id);
-      this.$router.push(`/stories/${id}`);
+    goToStories() {
+      this.$router.push('/stories/');
     },
 
-    showQiuzPopUp() {
-      this.$store.commit('popup/toggleQiuzPopUp');
+    closePopup() {
+      this.$store.dispatch('popup/closeAllPopups');
     },
+
+    showPopUp(popupType) {
+      if (popupType === 'Заполнить форму') {
+        this.$store.commit('popup/toggleQiuzPopup');
+        this.$store.commit('popup/togglePopupState');
+      } else {
+        this.$store.commit('popup/toggleContactFormPopup');
+        this.$store.commit('popup/togglePopupState');
+      }
+    },
+    // showSocLinkPopUp() {
+    //   this.$store.commit('popup/toggleSocLinksPopup');
+    //   this.$store.commit('popup/togglePopupState');
+    // },
+
+    // goToDetail(id) {
+    //   //console.log(id);
+    //   this.$router.push(`/stories/${id}`);
+    // },
+
+    // showQiuzPopUp() {
+    //   this.$store.commit('popup/toggleQiuzPopUp');
+    // },
   },
 
   computed: {
@@ -123,9 +154,22 @@ export default {
         (item, index) => index < this.numberStoriesToIndex
       );
     },
-    qiuzPopupShown() {
-      return this.$store.getters['popup/getQiuzPopupShown'];
+    // qiuzPopupShown() {
+    //   return this.$store.getters['popup/getQiuzPopupShown'];
+    // },
+
+    popupShown() {
+      return this.$store.getters['popup/getPopupState'];
     },
+    getQiuzPopupState() {
+      return this.$store.getters['popup/getQiuzPopupState'];
+    },
+    getContactFormState() {
+      return this.$store.getters['popup/getContactFormState'];
+    },
+    // getSocLinksPopupState() {
+    //   return this.$store.getters['popup/getSocLinksPopupState'];
+    // },
 
     instagram() {
       return this.$store.getters['instagram/getInstagramData'];

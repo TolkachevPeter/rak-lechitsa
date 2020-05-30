@@ -1,14 +1,14 @@
 <template>
   <container class="container-mix">
-    <story-detail :currentStory="getCurrentStory" @click="showPopUp" />
-
+    <story-detail :currentStory="getCurrentStory" @click="showSocLinkPopUp" />
     <story-elem :stories="storiesToDetailPage" />
-    <!-- </div> -->
-    <nuxt-link class="nuxt-link" to="/stories">
-      <share-button class="share-button">Больше статей</share-button>
-    </nuxt-link>
-    <overlay v-if="popupShown" @overlayClick="showPopUp" />
-    <popup v-if="popupShown" @closeClick="showPopUp" />
+    <link-button class="link-button" @btnClick="goToStories"
+      >Больше статей</link-button
+    >
+    <modal-window @overlayClick="closePopup" @closeClick="closePopup">
+      <!-- <quiz v-if="getQiuzPopupState" @closeClick="closePopup" /> -->
+      <footerPopup v-if="getSocLinksPopupState" @closeClick="closePopup" />
+    </modal-window>
   </container>
 </template>
 
@@ -18,18 +18,20 @@ import Container from '@/components/Container';
 import Storyelem from '@/components/Story-elem';
 import Story from '~/components/Story';
 import StoryDetail from '~/components/Story-detail';
-import Overlay from '~/components/Overlay';
-import PopUp from '~/components/FooterPopup';
+// import Overlay from '~/components/Overlay';
+// import PopUp from '~/components/FooterPopup';
+import ModalWindow from '@/components/ModalWindow';
 
 export default {
   components: {
-    'share-button': LinkButton,
+    'link-button': LinkButton,
     container: Container,
     'story-elem': Storyelem,
     'one-story': Story,
     'story-detail': StoryDetail,
-    overlay: Overlay,
-    popup: PopUp,
+    // overlay: Overlay,
+    // popup: PopUp,
+    'modal-window': ModalWindow,
   },
   async fetch({ store, route }) {
     await store.dispatch('stories/fetchStoryWithId', { id: route.params.id });
@@ -38,37 +40,52 @@ export default {
   },
 
   methods: {
-    showPopUp() {
-      this.$store.commit('popup/togglePopUp');
+    // showPopUp() {
+    //   this.$store.commit('popup/togglePopUp');
+    // },
+    goToStories() {
+      this.$router.push('/stories/');
+    },
+    closePopup() {
+      this.$store.dispatch('popup/closeAllPopups');
+    },
+
+    // showQiuzPopUp() {
+    //   this.$store.commit('popup/toggleQiuzPopup');
+    //   this.$store.commit('popup/togglePopupState');
+    // },
+    showSocLinkPopUp() {
+      this.$store.commit('popup/toggleSocLinksPopup');
+      this.$store.commit('popup/togglePopupState');
     },
   },
   computed: {
+    // popupShown() {
+    //   return this.$store.getters['popup/getPopupShown'];
+    // },
+
     popupShown() {
-      return this.$store.getters['popup/getPopupShown'];
+      return this.$store.getters['popup/getPopupState'];
     },
+    // getQiuzPopupState() {
+    //   return this.$store.getters['popup/getQiuzPopupState'];
+    // },
+    getSocLinksPopupState() {
+      return this.$store.getters['popup/getSocLinksPopupState'];
+    },
+
     storiesToDetailPage() {
       //console.log(this.$router);
       //console.log({ id: this.$router.currentRoute.params.id });
-      //route.params.id
       let arrStories = this.$store.getters['stories/getStories'];
-      //console.log(arrStories);
       return arrStories.filter((item, index) => index < 4);
     },
     getCurrentStory() {
-      //console.log('currStory', this.currentStory);
       return (this.currentStory = this.$store.getters[
         'stories/getCurrentStory'
       ]);
-
-      //   return (this.currentStory = this.$store.currentStory);
     },
   },
-
-  // methods: {
-  //   test() {
-  //     console.log(currentStory);
-  //   },
-  // },
 
   data() {
     return {
@@ -205,8 +222,9 @@ export default {
   margin-top: 14px;
   color: #666;
 }
-.share-button {
+.link-button {
   margin: 70px auto 100px;
+  cursor: pointer;
 }
 .nuxt-link {
   text-decoration: none;
@@ -378,7 +396,7 @@ export default {
     max-width: 100%;
     margin-bottom: 30px;
   }
-  .share-button {
+  .link-button {
     margin-top: 40px;
   }
 }

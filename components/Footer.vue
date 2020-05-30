@@ -295,5 +295,17 @@ export default {
     line-height: 21px;
     padding-bottom: 30px;
   }
+  .footer__list-item {
+    font-size: 13px;
+    line-height: 15px;
+  }
+  .footer__link {
+    font-size: 13px;
+    line-height: 15px;
+    text-decoration: none;
+  }
+  .footer__project {
+    padding-bottom: 10px;
+  }
 }
 </style>

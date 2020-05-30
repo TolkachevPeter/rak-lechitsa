@@ -22,7 +22,6 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 15px 30px;
-  font-family: Inter;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

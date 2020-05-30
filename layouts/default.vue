@@ -40,10 +40,14 @@ export default {
     },
   },
   methods: {
+    // closePopup() {
+    //   this.$store.commit('popup/closeQiuzPopup');
+    //   this.$store.commit('popup/closeSocLinksPopup');
+    //   this.$store.commit('popup/togglePopupState');
+    // },
+
     closePopup() {
-      this.$store.commit('popup/closeQiuzPopup');
-      this.$store.commit('popup/closeSocLinksPopup');
-      this.$store.commit('popup/togglePopupState');
+      this.$store.dispatch('popup/closeAllPopups');
     },
 
     showQiuzPopUp() {

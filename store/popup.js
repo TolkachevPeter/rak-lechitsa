@@ -4,6 +4,7 @@ export const state = () => ({
   isSocLinksShown: false,
   menuMobileShow: false,
   isPopupShown: false,
+  isContactFormShown: false,
 });
 
 // change state from here
@@ -31,8 +32,28 @@ export const mutations = {
     return (state.isSocLinksShown = false);
   },
 
+  toggleContactFormPopup(state) {
+    return (state.isContactFormShown = !state.isContactFormShown);
+  },
+  closeContactFormPopup(state) {
+    return (state.isContactFormShown = false);
+  },
+
   toggleMenuMobileShow(state) {
     return (state.menuMobileShow = !state.menuMobileShow);
+  },
+
+  closeMenuMobile(state) {
+    return (state.menuMobileShow = false);
+  },
+};
+
+export const actions = {
+  closeAllPopups(state) {
+    state.commit('closeQiuzPopup');
+    state.commit('closeSocLinksPopup');
+    state.commit('closeContactFormPopup');
+    state.commit('togglePopupState');
   },
 };
 
@@ -52,6 +73,9 @@ export const getters = {
     return state.isPopupShown;
   },
 
+  getContactFormState(state) {
+    return state.isContactFormShown;
+  },
   getmenuMobileShown(state) {
     return state.menuMobileShow;
   },
