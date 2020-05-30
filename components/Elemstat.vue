@@ -1,73 +1,35 @@
 <template>
   <section class="statistics">
     <div class="statistics__container">
-      <div class="statistics__card">
-        <p class="statistics__card-text">
-          Каждый 3-й в стране уверен, что рак неизлечим. А это примерно 48 918
-          000 человек.
-        </p>
+      <!-- <stat-block
+        v-for="(statData, index) in statDataObj"
+        :key="statData[index+1]"
+        :statData="statData"
+      />-->
 
-        <progressBar :val="33.3" :maxVal="maxVal" />
-        <p class="statistics__digits">1 из 3</p>
-        <p class="statistics__digits-src">Левада-Центр 2018</p>
-      </div>
-
-      <div class="statistics__card">
-        <p class="statistics__card-text">2,6% Россиян имеют онкозаболевания.</p>
-
-        <progressBar :val="2.6" :maxVal="maxVal" />
-        <p class="statistics__digits">3 700 000</p>
-        <p class="statistics__digits-src">Росстат 2018</p>
-      </div>
-
-      <div class="statistics__card">
-        <p class="statistics__card-text">
-          На 28% выросла доля выявления заболеваний на ранней стадии за 10 лет.
-        </p>
-
-        <doubleprogressbar
-          :oldValue="oldValueIncr"
-          :newValue="newValueIncr"
-          :maxVal="maxVal"
-        />
-        <p class="statistics__digits">↑28%</p>
-        <p class="statistics__digits-src">МНИОИ Герцена 2018</p>
-      </div>
-
-      <div class="statistics__card">
-        <p class="statistics__card-text">
-          На 25% снизилась смертность в течение первого года после постановки
-          диагноза.
-        </p>
-
-        <doubleprogressbar
-          :oldValue="oldValueDecr"
-          :newValue="newValueDecr"
-          :maxVal="maxVal"
-        />
-
-        <p class="statistics__digits">↓25%</p>
-        <p class="statistics__digits-src">МНИОИ Герцена 2018</p>
-      </div>
+      <stat-block
+        v-for="(statData, index) in statDataObj"
+        :key="index"
+        :statData="statData"
+      />
     </div>
   </section>
 </template>
 
 <script>
-import progressBar from '~/components/ui/ProgressBar';
-import DoubleProgressBar from '~/components/ui/DoubleProgressBar';
+import progressBar from '@/components/ui/ProgressBar';
+import DoubleProgressBar from '@/components/ui/DoubleProgressBar';
+import StatBlock from '@/components/Stat-block';
 export default {
   components: {
     progressBar: progressBar,
     doubleprogressbar: DoubleProgressBar,
+    'stat-block': StatBlock,
   },
-  props: [
-    'maxVal',
-    'oldValueIncr',
-    'newValueIncr',
-    'oldValueDecr',
-    'newValueDecr',
-  ],
+
+  props: {
+    statDataObj: {},
+  },
 };
 </script>
 
@@ -149,6 +111,10 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  .statistics {
+    height: 208px;
+  }
+
   .statistics__card {
     width: 208px;
     height: 208px;
@@ -178,7 +144,7 @@ export default {
     height: 216px;
   }
   .statistics__container {
-    padding-bottom: 0;
+    /* padding-bottom: 80px; */
     left: 0;
     bottom: 80px;
     width: 924px;

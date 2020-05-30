@@ -37,13 +37,7 @@
         >Статистика по онкозаболеваниям</section-title
       >
 
-      <elemstat
-        :maxVal="statistics.maxVal"
-        :oldValueIncr="statistics.oldValueIncr"
-        :newValueIncr="statistics.newValueIncr"
-        :oldValueDecr="statistics.oldValueDecr"
-        :newValueDecr="statistics.newValueDecr"
-      />
+      <elemstat :statDataObj="statDataObj" />
     </div>
     <about class="about-mix" />
     <modal-window @overlayClick="closePopup" @closeClick="closePopup">
@@ -68,7 +62,6 @@ import TellYourStory from '@/components/Tell-your-story';
 import Elemstat from '@/components/Elemstat';
 import About from '@/components/About';
 import Overlay from '@/components/Overlay';
-// import PopUp from '@/components/Popup';
 import Container from '@/components/Container';
 import Quiz from '@/components/Quiz';
 import ModalWindow from '@/components/ModalWindow';
@@ -87,8 +80,6 @@ export default {
     elemstat: elemstat,
     about: About,
     'section-title': SectionTitle,
-    // overlay: Overlay,
-    // popup: PopUp,
     container: Container,
     quiz: Quiz,
     'modal-window': ModalWindow,
@@ -99,17 +90,11 @@ export default {
     return {
       itemsPerPage: 8,
       numberStoriesToIndex: 16,
-      // tagline2rows: {
-      //   display: 'flex',
-      //   'flex-direction': 'column',
-      //   'justify-items': 'center',
-      // },
     };
   },
 
   methods: {
     scrollDown() {
-      //  console.log(this.$refs.nextSection);
       this.$refs.nextSection.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
@@ -175,9 +160,17 @@ export default {
       return this.$store.getters['instagram/getInstagramData'];
     },
 
-    statistics() {
+    statDataObj() {
       return this.$store.getters['statistics/getStatData'];
     },
+  },
+
+  async fetch({ store, params }) {
+    await store.dispatch('statistics/fetchStatistics');
+  },
+
+  async fetch({ store, params }) {
+    await store.dispatch('stories/fetchStories');
   },
 };
 </script>
@@ -203,7 +196,7 @@ export default {
   text-align: left;
   padding: 0;
   margin: 0;
-  padding-top: 70px;
+  /* padding-top: 70px; */
   margin-bottom: 70px;
 }
 
@@ -328,7 +321,7 @@ export default {
     padding-bottom: 46px;
   }
   .section-title.section-title-mix {
-    padding-top: 80px;
+    /* padding-top: 80px; */
     margin-bottom: 46px;
   }
   .about-mix {
@@ -374,7 +367,7 @@ export default {
     font-weight: 600;
     font-size: 24px;
     line-height: 28px;
-    padding-top: 80px;
+    /* padding-top: 80px; */
     margin-bottom: 60px;
     max-width: 380px;
   }
@@ -425,7 +418,7 @@ export default {
     font-weight: 600;
     font-size: 18px;
     line-height: 21px;
-    padding-top: 50px;
+    /* padding-top: 50px; */
     margin-bottom: 40px;
     /* max-width: 380px; */
   }

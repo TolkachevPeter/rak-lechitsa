@@ -57,4 +57,8 @@ export default {
      */
     extend(config, ctx) {},
   },
+  env: {
+    DEV_API: 'https://strapi.kruzhok.io',
+    PROD_API: '/proxy',
+  },
 };

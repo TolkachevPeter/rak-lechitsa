@@ -1,13 +1,17 @@
 <template>
   <section class="stories-comp">
     <div class="stories-comp__list">
-      <one-story v-for="story in stories" :key="story.id" :storyData="story" />
+      <one-story
+        v-for="(story, index) in stories"
+        :key="index"
+        :storyData="story"
+      />
     </div>
   </section>
 </template>
 
 <script>
-import Story from '~/components/Story';
+import Story from '@/components/Story';
 
 export default {
   components: {

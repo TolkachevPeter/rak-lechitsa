@@ -1,18 +1,18 @@
 <template>
   <router-link
-    :to="{ path: `/stories/${storyData.story_id}` }"
+    :to="{ path: `/stories/${storyData.id}` }"
     class="story"
-    @click="$emit('click', storyData.story_id)"
+    @click="$emit('click', storyData.id)"
   >
     <div class="story__img-container">
       <img
         class="story__img"
-        v-bind:src="storyData.photo_url"
+        v-bind:src="storyData.ImageUrl[0].url"
         v-bind:alt="storyData.photo_alt"
       />
     </div>
-    <h4 class="story__name">{{ storyData.name }}</h4>
-    <p class="story__text">{{ storyData.story_text }}</p>
+    <h4 class="story__name">{{ storyData.author }}</h4>
+    <p class="story__text">{{ storyData.title }}</p>
   </router-link>
 </template>
 
@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       // url: `/stories/${storyData.story_id}`,
+      fetchUrl: 'https://strapi.kruzhok.io/stories',
     };
   },
 };

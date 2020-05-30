@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export const state = () => ({
-  stories: STORIES,
+  // stories: STORIES,
+  stories: {},
   currentStory: {},
 });
 
@@ -35,6 +36,14 @@ export const actions = {
     return state.commit('setState', {
       name: 'currentStory',
       value: arr[0],
+    });
+  },
+  fetchStories(state) {
+    return axios.get('https://strapi.kruzhok.io/stories').then(response => {
+      return state.commit('setState', {
+        name: 'stories',
+        value: response.data,
+      });
     });
   },
 };
