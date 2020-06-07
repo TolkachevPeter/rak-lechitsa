@@ -1,7 +1,8 @@
 <template>
   <section class="banner">
-    <h1 class="title banner-title">#РАКЛЕЧИТСЯ</h1>
-    <banner__arrow />
+    <!-- <h1 class="title banner-title">#РАКЛЕЧИТСЯ</h1> -->
+    <h1 class="title banner-title">{{ hashtag }}</h1>
+    <banner__arrow @clickArrow="$emit('clickArrow')" />
   </section>
 </template>
 
@@ -10,6 +11,9 @@ import DownArrow from './ui/DownArrow';
 export default {
   components: {
     banner__arrow: DownArrow,
+  },
+  props: {
+    hashtag: String,
   },
   // methods: {
   //   testClick() {
@@ -42,7 +46,7 @@ export default {
   position: relative;
 }
 .banner-title {
-  color: #ffffff;
+  color: #fff;
   /* margin-top: 290px; */
   text-align: center;
 }

@@ -1,14 +1,19 @@
 <template>
   <container class="container-mix">
-    <story-detail :currentStory="getCurrentStory" @click="showPopUp" />
-
-    <story-elem :stories="storiesToDetailPage" />
-    <!-- </div> -->
-    <nuxt-link class="nuxt-link" to="/stories">
-      <share-button class="share-button">Больше статей</share-button>
-    </nuxt-link>
-    <overlay v-if="popupShown" @overlayClick="showPopUp" />
-    <popup v-if="popupShown" @closeClick="showPopUp" />
+    <!-- <story-detail v-if="!this.loading" :currentStory="getCurrentStory" @click="showSocLinkPopUp" /> -->
+    <story-detail :currentStory="getCurrentStory" @click="showSocLinkPopUp" />
+    <story-elem
+      :titleIsActive="false"
+      :dataObj="blocksData(5)"
+      :stories="storiesToDetailPage"
+    />
+    <link-button class="link-button" @btnClick="goToStories"
+      >Больше статей</link-button
+    >
+    <modal-window
+      @overlayClick="closePopup"
+      @closeClick="closePopup"
+    ></modal-window>
   </container>
 </template>
 
@@ -18,61 +23,75 @@ import Container from '@/components/Container';
 import Storyelem from '@/components/Story-elem';
 import Story from '~/components/Story';
 import StoryDetail from '~/components/Story-detail';
-import Overlay from '~/components/Overlay';
-import PopUp from '~/components/FooterPopup';
+import ModalWindow from '@/components/ModalWindow';
 
 export default {
+  head() {
+    return {
+      title: this.getCurrentStory.title,
+    };
+  },
+
   components: {
-    'share-button': LinkButton,
+    'link-button': LinkButton,
     container: Container,
     'story-elem': Storyelem,
     'one-story': Story,
     'story-detail': StoryDetail,
-    overlay: Overlay,
-    popup: PopUp,
-  },
-  async fetch({ store, route }) {
-    await store.dispatch('stories/fetchStoryWithId', { id: route.params.id });
-
-    // await store.dispatch('stories/fetchStoryWithId', 3);
+    'modal-window': ModalWindow,
   },
 
   methods: {
-    showPopUp() {
-      this.$store.commit('popup/togglePopUp');
+    // showPopUp() {
+    //   this.$store.commit('popup/togglePopUp');
+    // },
+    goToStories() {
+      this.$router.push('/stories/');
+    },
+    closePopup() {
+      this.$store.dispatch('popup/closeAllPopups');
+    },
+
+    showSocLinkPopUp() {
+      this.$store.commit('popup/toggleSocLinksPopup');
+      this.$store.commit('popup/togglePopupState');
+    },
+    blocksData(id) {
+      let arrObj = this.$store.getters['blocks/getBlocks'];
+      const arrObj2 = arrObj.filter(item => {
+        return item.id === id;
+      });
+      return arrObj2[0];
     },
   },
   computed: {
     popupShown() {
-      return this.$store.getters['popup/getPopupShown'];
+      return this.$store.getters['popup/getPopupState'];
     },
+
+    getSocLinksPopupState() {
+      return this.$store.getters['popup/getSocLinksPopupState'];
+    },
+
     storiesToDetailPage() {
       //console.log(this.$router);
       //console.log({ id: this.$router.currentRoute.params.id });
-      //route.params.id
       let arrStories = this.$store.getters['stories/getStories'];
-      //console.log(arrStories);
       return arrStories.filter((item, index) => index < 4);
+      //return arrStories;
+      // console.log(arrStories);
     },
     getCurrentStory() {
-      //console.log('currStory', this.currentStory);
       return (this.currentStory = this.$store.getters[
         'stories/getCurrentStory'
       ]);
-
-      //   return (this.currentStory = this.$store.currentStory);
     },
   },
-
-  // methods: {
-  //   test() {
-  //     console.log(currentStory);
-  //   },
-  // },
 
   data() {
     return {
       currentStory: {},
+      loading: true,
     };
   },
 };
@@ -118,7 +137,7 @@ export default {
   font-weight: normal;
   font-size: 38px;
   line-height: 48px;
-  color: #000000;
+  color: #000;
 }
 .story__author {
   font-weight: 500;
@@ -151,7 +170,7 @@ export default {
   font-weight: normal;
   font-size: 22px;
   line-height: 30px;
-  color: #000000;
+  color: #000;
 }
 .story__share-social {
   border-top: 1px solid #efefef;
@@ -194,7 +213,7 @@ export default {
   font-size: 22px;
   line-height: 22px;
   margin-top: 20px;
-  color: #000000;
+  color: #000;
 }
 .story__text {
   font-family: Inter;
@@ -203,10 +222,12 @@ export default {
   font-size: 14px;
   line-height: 18px;
   margin-top: 14px;
-  color: #666666;
+  color: #666;
 }
-.share-button {
+.link-button {
   margin: 70px auto 100px;
+  margin-top: 0;
+  cursor: pointer;
 }
 .nuxt-link {
   text-decoration: none;
@@ -378,7 +399,7 @@ export default {
     max-width: 100%;
     margin-bottom: 30px;
   }
-  .share-button {
+  .link-button {
     margin-top: 40px;
   }
 }

@@ -1,12 +1,16 @@
 <template>
   <header class="header">
-    <div class="container header__container hires-visible">
-      <h2 class="header__title">
-        Проект Благотворительного Фонда Константина Хабенского
-      </h2>
+    <container
+      class="header__container hires-visible"
+      v-if="getmenuMobileShown === false"
+    >
+      <nuxt-link class="link" to="/" v-if="$route.path !== '/'">
+        <h2 class="header__title">{{ dataObj.title }}</h2>
+      </nuxt-link>
+      <h2 class="header__title" v-else>{{ dataObj.title }}</h2>
+
       <div class="header__links header__links_res320-visible">
         <header-nav />
-        <!-- <sandvich-menu></sandvich-menu> -->
         <header-button
           class="header__button"
           :theme="'grey'"
@@ -14,10 +18,10 @@
           >Рассказать историю</header-button
         >
       </div>
-    </div>
+    </container>
 
-    <div
-      class="container header__container res768-visible"
+    <container
+      class="header__container res768-visible"
       v-if="getmenuMobileShown"
     >
       <div class="header__links header__links_res768-visible">
@@ -30,9 +34,9 @@
           >Рассказать историю</header-button
         >
       </div>
-    </div>
+    </container>
 
-    <div class="container res320-visible" v-if="getmenuMobileShown">
+    <container class="res320-visible" v-if="getmenuMobileShown">
       <div class="header__links header__links_res320-visible">
         <header-nav />
         <header-button
@@ -42,30 +46,36 @@
           >Рассказать историю</header-button
         >
       </div>
-    </div>
+    </container>
 
-    <div class="container header__title-container">
-      <h2 class="header__title">
-        Проект Благотворительного Фонда Константина Хабенского
-      </h2>
-      <sandvich-menu
-        :sandichShow="!getmenuMobileShown"
+    <container class="header__title-container">
+      <nuxt-link class="link" to="/" v-if="$route.path !== '/'">
+        <h2 class="header__title">{{ dataObj.title }}</h2>
+      </nuxt-link>
+      <h2 class="header__title" v-else>{{ dataObj.title }}</h2>
+      <sandwich-menu
+        :sandwichShow="!getmenuMobileShown"
         :crossShow="getmenuMobileShown"
         @click="showMenu"
-      ></sandvich-menu>
-    </div>
+      ></sandwich-menu>
+    </container>
   </header>
 </template>
 
 <script>
-import Button from '~/components/ui/Button_header';
-import Menu from '~/components/Menu';
-import Sandvich from '~/components/ui/Sandvich-menu';
+import Button from '@/components/ui/Button_header';
+import Menu from '@/components/Menu';
+import Sandwich from '@/components/ui/Sandwich-menu';
+import Container from '@/components/Container';
 export default {
+  props: {
+    dataObj: {},
+  },
   components: {
     'header-button': Button,
     'header-nav': Menu,
-    'sandvich-menu': Sandvich,
+    'sandwich-menu': Sandwich,
+    container: Container,
   },
   methods: {
     showMenu() {
@@ -81,6 +91,11 @@ export default {
 </script>
 
 <style scoped>
+.link {
+  text-decoration: none;
+  color: black;
+}
+
 .container.header__title-container {
   display: none;
 }

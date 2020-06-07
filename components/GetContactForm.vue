@@ -2,37 +2,52 @@
   <div class="popup">
     <h2 class="popup__title">Оставьте контакт для&nbsp;связи</h2>
     <img
-      @click="xxx"
-      src="../static/popupCross.svg"
-      alt=""
+      @click="$emit('closeClick')"
+      src="/popupCross.svg"
+      alt
       class="popup__close"
     />
     <p class="popup__subtitle">
       Мы свяжемся с вами в течение недели, чтобы задать вопросы о вашей истории
       и разместить ее на сайте.
     </p>
-    <form action="" class="popup__form">
+    <form action class="form">
       <h3 class="form__question">{{ questions.name }}</h3>
-      <input class="popup__input" v-bind:placeholder="placeholders.name" />
+      <input class="form__input" v-bind:placeholder="placeholders.name" />
       <div class="form__contacts-container">
         <div class="form__contact">
           <h3 class="form__question">{{ questions.email }}</h3>
-          <input class="popup__input" v-bind:placeholder="placeholders.email" />
+          <input class="form__input" v-bind:placeholder="placeholders.email" />
         </div>
         <div class="form__contact">
           <h3 class="form__question">{{ questions.phone }}</h3>
-          <input class="popup__input" v-bind:placeholder="placeholders.phone" />
+          <input class="form__input" v-bind:placeholder="placeholders.phone" />
         </div>
       </div>
       <h3 class="form__question">{{ questions.type }}</h3>
-      <input class="popup__input" v-bind:placeholder="placeholders.type" />
+      <input class="form__input" v-bind:placeholder="placeholders.type" />
       <div class="popup__footer">
-        <form-btn type="submit" @submit.prevent="" class="form__button"
+        <form-btn
+          type="submit"
+          @submit.prevent="$emit('closeClick')"
+          class="form__button"
           >Отправить</form-btn
         >
-        <p class="popup__policy">
+
+        <!-- <p class="popup__policy">
           {{ policyText }}
-          <a href="../policy" class="popup__policy-link">{{ policyLink }}</a>
+          <a
+            href="../policy"
+            target="_blank"
+            class="popup__policy-link"
+          >{{ policyLink }}</a> 
+        </p>-->
+
+        <p :class="['popup__policy', 'popup__policy_show']">
+          Нажимая на кнопку «отправить», вы даете согласие на
+          <nuxt-link class="popup__policy-link" to="/policy" target="_blank"
+            >обработку персональных данных</nuxt-link
+          >
         </p>
       </div>
     </form>
@@ -70,63 +85,62 @@ export default {
 
 <style scoped>
 .popup {
-  position: absolute;
+  transform: translate(-50%, -50%);
+  position: fixed;
   left: 50%;
-  top: 85px;
-  background: #ffffff;
-  z-index: 2;
-  transform: translate(-50%);
-  padding: 40px;
+  top: 50%;
   width: 70%;
+  padding: 40px;
+  background: #fff;
+  z-index: 2;
 }
 .popup__title {
-  font-family: Inter;
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
-  color: #000000;
+  color: #000;
 }
 .popup__close {
-  position: absolute;
+  position: fixed;
   top: 40px;
   right: 40px;
+  cursor: pointer;
 }
 .popup__subtitle {
-  font-family: Inter;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
   margin-top: 40px;
-  color: #000000;
+  color: #000;
   padding-right: 30px;
 }
-.popup__form {
+.form {
   margin-top: 40px;
 }
-.popup__input {
+.form__input {
   border: none;
   border-bottom: 1px solid #e7e7e7;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
   width: 100%;
   margin-top: 40px;
 }
-.popup__input::placeholder {
+.form__input::placeholder {
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
-  color: #666666;
+  color: #666;
 }
 .form__question {
-  font-family: Inter;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  color: #000000;
+  color: #000;
   margin-top: 40px;
 }
 .form__contacts-container {
@@ -134,6 +148,13 @@ export default {
   flex-direction: row;
   justify-content: space-between;
 }
+/* 
+.form__contacts-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+} */
+
 .form__contact {
   width: calc((100% - 40px) / 2);
 }
@@ -146,18 +167,40 @@ export default {
 .form__button {
   margin-right: 30px;
 }
+
 .popup__policy {
-  font-family: Inter;
+  display: none;
+  height: 48px;
+  /* padding-left: 30px; */
+  font-size: 14px;
+  line-height: 17px;
+  color: #666;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  max-width: 378px;
+  width: 95%;
+}
+.popup__policy_show {
+  display: block;
+}
+.popup__policy-link {
+  border-bottom: 1px solid currentColor;
+  color: #666;
+  text-decoration: none;
+}
+
+/* 
+.popup__policy {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
-  color: #666666;
+  color: #666;
   max-width: 378px;
 }
 .popup__policy-link {
-  color: #666666;
-}
+  color: #666;
+} */
 @media screen and (max-width: 1280px) {
   .popup {
     top: 90px;
@@ -175,7 +218,7 @@ export default {
     font-size: 16px;
     line-height: 22px;
   }
-  .popup__input::placeholder {
+  .form__input::placeholder {
     font-size: 16px;
     line-height: 22px;
   }
@@ -200,7 +243,7 @@ export default {
     line-height: 30px;
     max-width: 70%;
   }
-  .popup__input::placeholder {
+  .form__input::placeholder {
     font-size: 15px;
     line-height: 19px;
   }
@@ -209,7 +252,7 @@ export default {
     line-height: 13px;
   }
 }
-@media screen and (max-width: 425px) {
+@media (max-width: 600px) {
   .popup {
     width: 95%;
     top: 17px;
@@ -241,6 +284,10 @@ export default {
   .form__button {
     margin-right: 0;
     width: 100%;
+  }
+  .form__contacts-container {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 </style>

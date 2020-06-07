@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="sandvich" v-if="sandichShow" @click="$emit('click')">
-      <div class="sandvich__block"></div>
-      <div class="sandvich__block"></div>
-      <div class="sandvich__block"></div>
+    <div class="sandwich" v-if="sandwichShow" @click="$emit('click')">
+      <div class="sandwich__block"></div>
+      <div class="sandwich__block"></div>
+      <div class="sandwich__block"></div>
     </div>
     <div class="cross" v-if="crossShow" @click="$emit('click')">
       <div class="cross__axis"></div>
@@ -14,21 +14,21 @@
 
 <script>
 export default {
-  props: ['sandichShow', 'crossShow'],
+  props: ['sandwichShow', 'crossShow'],
 };
 </script>
 
 <style scoped>
-.sandvich {
+.sandwich {
   width: 32px;
   cursor: pointer;
 }
-.sandvich__block {
+.sandwich__block {
   width: 100%;
-  border-top: 3px solid #000000;
+  border-top: 3px solid #000;
   padding-bottom: 10px;
 }
-.sandvich__block:last-child {
+.sandwich__block:last-child {
   padding-bottom: 0;
 }
 
@@ -40,7 +40,7 @@ export default {
 }
 .cross__axis {
   width: 32px;
-  border-top: 3px solid #000000;
+  border-top: 3px solid #000;
   transform: rotate(-135deg);
   top: 10px;
   left: -3px;

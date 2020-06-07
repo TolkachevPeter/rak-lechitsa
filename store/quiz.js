@@ -29,12 +29,14 @@ export const actions = {
   },
   /// end данные экшены не используются ///
 
-  async NEXT_QUESTION({ commit, state }, { answer }) {
+  async NEXT_QUESTION({ commit, state }, { answer }, questionsNumber = 12) {
     const { currentQuestion } = state;
     await commit('saveAnswer', { answer, currentQuestion });
-    await commit('setCurrentQuestion', {
-      currentQuestion: currentQuestion + 1,
-    });
+    if (currentQuestion < questionsNumber) {
+      await commit('setCurrentQuestion', {
+        currentQuestion: currentQuestion + 1,
+      });
+    }
   },
 
   async PREV_QUESTION({ commit, state }) {
