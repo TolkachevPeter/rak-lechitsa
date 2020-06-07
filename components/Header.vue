@@ -1,18 +1,13 @@
 <template>
   <header class="header">
-    <!-- <div class="container header__container hires-visible" v-if="getmenuMobileShown === false"> -->
     <container
       class="header__container hires-visible"
       v-if="getmenuMobileShown === false"
     >
       <nuxt-link class="link" to="/" v-if="$route.path !== '/'">
-        <h2 class="header__title">
-          Проект Благотворительного Фонда Константина Хабенского
-        </h2>
+        <h2 class="header__title">{{ dataObj.title }}</h2>
       </nuxt-link>
-      <h2 class="header__title" v-else>
-        Проект Благотворительного Фонда Константина Хабенского
-      </h2>
+      <h2 class="header__title" v-else>{{ dataObj.title }}</h2>
 
       <div class="header__links header__links_res320-visible">
         <header-nav />
@@ -24,9 +19,7 @@
         >
       </div>
     </container>
-    <!-- </div> -->
 
-    <!-- <div class="container header__container res768-visible" v-if="getmenuMobileShown"> -->
     <container
       class="header__container res768-visible"
       v-if="getmenuMobileShown"
@@ -42,9 +35,7 @@
         >
       </div>
     </container>
-    <!-- </div> -->
 
-    <!-- <div class="container res320-visible" v-if="getmenuMobileShown"> -->
     <container class="res320-visible" v-if="getmenuMobileShown">
       <div class="header__links header__links_res320-visible">
         <header-nav />
@@ -56,20 +47,18 @@
         >
       </div>
     </container>
-    <!-- </div> -->
 
-    <!-- <div class="container header__title-container"> -->
     <container class="header__title-container">
-      <h2 class="header__title">
-        Проект Благотворительного Фонда Константина Хабенского
-      </h2>
+      <nuxt-link class="link" to="/" v-if="$route.path !== '/'">
+        <h2 class="header__title">{{ dataObj.title }}</h2>
+      </nuxt-link>
+      <h2 class="header__title" v-else>{{ dataObj.title }}</h2>
       <sandwich-menu
         :sandwichShow="!getmenuMobileShown"
         :crossShow="getmenuMobileShown"
         @click="showMenu"
       ></sandwich-menu>
     </container>
-    <!-- </div> -->
   </header>
 </template>
 
@@ -79,6 +68,9 @@ import Menu from '@/components/Menu';
 import Sandwich from '@/components/ui/Sandwich-menu';
 import Container from '@/components/Container';
 export default {
+  props: {
+    dataObj: {},
+  },
   components: {
     'header-button': Button,
     'header-nav': Menu,

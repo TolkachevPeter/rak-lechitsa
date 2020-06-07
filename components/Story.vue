@@ -7,9 +7,21 @@
     <div class="story__img-container">
       <img
         class="story__img"
-        v-bind:src="storyData.ImageUrl[0].url"
-        v-bind:alt="storyData.photo_alt"
+        :src="combineUrl()"
+        alt="'Должен быть Alt text'"
       />
+      <!-- <img
+        class="story__img"
+        src="https://images.unsplash.com/photo-1578496781985-452d4a934d50?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80"
+        alt="'Должен быть Alt text'"
+      /> -->
+      <!-- <img class="story__img" v-bind:alt="storyData.photo_alt" /> -->
+
+      <!-- <img
+        class="story__img"
+        v-bind:src="`${process.env.apiUrl}${storyData.ImageUrl[0].url}`"
+        v-bind:alt="storyData.photo_alt"
+      /> -->
     </div>
     <h4 class="story__name">{{ storyData.author }}</h4>
     <p class="story__text">{{ storyData.title }}</p>
@@ -19,7 +31,15 @@
 <script>
 export default {
   props: ['storyData'],
-  methods: {},
+  methods: {
+    combineUrl() {
+      //storyData.ImageUrl[0].url
+      // console.log('process.env.BASE_URL =', process.env.BASE_URL);
+      // console.log('process.env.BASE_URL =', $env.BASE_URL);
+      return process.env.BASE_URL + this.storyData.ImageUrl[0].url;
+      // return 'https://strapi.kruzhok.io/stories';
+    },
+  },
   data() {
     return {
       // url: `/stories/${storyData.story_id}`,
@@ -54,6 +74,7 @@ export default {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .story__name {

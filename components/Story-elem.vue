@@ -1,5 +1,10 @@
 <template>
   <section class="stories-comp">
+    <section-title
+      :class="['section-title-mix', { 'story-element-title': !titleIsActive }]"
+      :title="dataObj.title"
+    ></section-title>
+
     <div class="stories-comp__list">
       <one-story
         v-for="(story, index) in stories"
@@ -12,12 +17,18 @@
 
 <script>
 import Story from '@/components/Story';
-
+import SectionTitle from '@/components/ui/SectionTitle';
 export default {
   components: {
     'one-story': Story,
+    'section-title': SectionTitle,
   },
-  props: ['stories'],
+  // props: ['stories'],
+  props: {
+    stories: {},
+    dataObj: {},
+    titleIsActive: Boolean,
+  },
   methods: {
     // goToDetail(id) {
     // console.log(id);
@@ -31,6 +42,10 @@ export default {
 </script>
 
 <style scoped>
+.section-title.story-element-title {
+  display: none;
+}
+
 .stories-comp {
   background-color: #fff;
   display: flex;
@@ -68,9 +83,8 @@ export default {
   .stories-comp__list {
     grid-template-columns: repeat(3, 1fr);
     column-gap: 20px;
-    row-gap: 40px;
-
-    padding-bottom: 40px;
+    row-gap: 0;
+    padding-bottom: 0;
   }
 }
 @media (max-width: 425px) {
@@ -79,6 +93,10 @@ export default {
     flex-direction: column;
 
     padding-bottom: 0;
+  }
+  .section-title.section-title-mix {
+    padding-top: 50px;
+    margin-bottom: 40px;
   }
 }
 </style>

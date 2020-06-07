@@ -1,45 +1,47 @@
 <template>
   <div>
-    <banner @clickArrow="scrollDown" />
+    <cover :hashtag="blocksData(1).hashtag" @clickArrow="scrollDown" />
     <container>
       <div ref="nextSection">
-        <my-video class="video-mix" />
+        <my-video
+          :dataObj="blocksData(4)"
+          :videos="getVideos"
+          class="video-mix"
+        />
       </div>
       <taglineText
-        :text="'И В ОТЛИЧИЕ ОТ РАКА,'"
-        :hashtext="'#ЭТОНЕЛЕЧИТСЯ'"
+        :text="blocksData(2).title"
+        :hashtext="blocksData(2).hashtag"
       ></taglineText>
 
-      <section-title class="section-title-mix"
-        >Истории неизлечимых привычек</section-title
-      >
-
-      <story-elem :stories="storiesToIndexPage" />
+      <story-elem
+        :titleIsActive="true"
+        :dataObj="blocksData(5)"
+        :stories="storiesToIndexPage"
+      />
       <link-button class="link-button-mix" @btnClick="goToStories"
         >Больше статей</link-button
       >
 
       <taglineText
         :extraClass="'tagline2rows'"
-        :text="'РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ&nbsp;В&nbsp;ИНСТАГРАМ'"
-        :hashtext="'#ЭТОНЕЛЕЧИТСЯ'"
+        :text="blocksData(3).title"
+        :hashtext="blocksData(3).hashtag"
         class="tagline-mix"
       ></taglineText>
       <instagram
         class="instagram-mix"
         :instagramData="instagram"
         :mainInstLink="'#'"
+        :dataObj="blocksData(6)"
       />
     </container>
-    <tell-your-story class="tell-your-story-mix" @click="showPopUp" />
-    <div class="elemstat-container">
-      <section-title class="section-title-mix"
-        >Статистика по онкозаболеваниям</section-title
-      >
 
-      <elemstat :statDataObj="statDataObj" />
+    <tell-your-story :dataObj="blocksData(7)" @click="showPopUp" />
+    <div class="elemstat-container">
+      <elemstat :dataObj="blocksData(8)" :statDataObj="statDataObj" />
     </div>
-    <about class="about-mix" />
+    <about :dataObj="blocksData(9)" class="about-mix" />
     <modal-window @overlayClick="closePopup" @closeClick="closePopup">
       <quiz v-if="getQiuzPopupState" @closeClick="closePopup" />
       <!-- <footerPopup v-if="getSocLinksPopupState" @closeClick="closePopup" /> -->
@@ -50,7 +52,7 @@
 
 <script>
 import SectionTitle from '@/components/ui/SectionTitle';
-import Banner from '@/components/Banner';
+import Cover from '@/components/Cover';
 import Video from '@/components/Video';
 import TaglineText from '@/components/TaglineText';
 import TaglineHashText from '@/components/TaglineHashText';
@@ -68,8 +70,14 @@ import ModalWindow from '@/components/ModalWindow';
 import GetContactForm from '@/components/GetContactForm';
 
 export default {
+  head() {
+    return {
+      title: this.blocksData(4).title,
+    };
+  },
+
   components: {
-    banner: Banner,
+    cover: Cover,
     'my-video': Video,
     taglineText: TaglineText,
     hashtext: TaglineHashText,
@@ -89,7 +97,7 @@ export default {
   data() {
     return {
       itemsPerPage: 8,
-      numberStoriesToIndex: 16,
+      numberStoriesToIndex: 8,
     };
   },
 
@@ -117,19 +125,14 @@ export default {
         this.$store.commit('popup/togglePopupState');
       }
     },
-    // showSocLinkPopUp() {
-    //   this.$store.commit('popup/toggleSocLinksPopup');
-    //   this.$store.commit('popup/togglePopupState');
-    // },
-
-    // goToDetail(id) {
-    //   //console.log(id);
-    //   this.$router.push(`/stories/${id}`);
-    // },
-
-    // showQiuzPopUp() {
-    //   this.$store.commit('popup/toggleQiuzPopUp');
-    // },
+    blocksData(id) {
+      let arrObj = this.$store.getters['blocks/getBlocks'];
+      const arrObj2 = arrObj.filter(item => {
+        //console.log('item', item);
+        return item.id === id;
+      });
+      return arrObj2[0];
+    },
   },
 
   computed: {
@@ -139,10 +142,6 @@ export default {
         (item, index) => index < this.numberStoriesToIndex
       );
     },
-    // qiuzPopupShown() {
-    //   return this.$store.getters['popup/getQiuzPopupShown'];
-    // },
-
     popupShown() {
       return this.$store.getters['popup/getPopupState'];
     },
@@ -152,9 +151,6 @@ export default {
     getContactFormState() {
       return this.$store.getters['popup/getContactFormState'];
     },
-    // getSocLinksPopupState() {
-    //   return this.$store.getters['popup/getSocLinksPopupState'];
-    // },
 
     instagram() {
       return this.$store.getters['instagram/getInstagramData'];
@@ -163,15 +159,15 @@ export default {
     statDataObj() {
       return this.$store.getters['statistics/getStatData'];
     },
+
+    getVideos() {
+      return this.$store.getters['videos/getVideos'];
+    },
   },
 
-  async fetch({ store, params }) {
-    await store.dispatch('statistics/fetchStatistics');
-  },
-
-  async fetch({ store, params }) {
-    await store.dispatch('stories/fetchStories');
-  },
+  // async fetch({ store, params }) {
+  //   await store.dispatch('instagram/GET_PHOTOS');
+  // },
 };
 </script>
 
@@ -179,6 +175,7 @@ export default {
 .video-mix {
   padding-top: 100px;
   padding-bottom: 74px;
+  /* height: 650px; */
 }
 
 .tagline-mix {
@@ -191,12 +188,19 @@ export default {
   padding-bottom: 100px;
 }
 
-.section-title.section-title-mix {
+/* .section-title-mix {
+  padding: 0;
+  margin: 0;
+  margin-top: 100px;
+  padding-bottom: 70px;
+} */
+
+.section-title-mix.section-title {
   width: 413px;
   text-align: left;
   padding: 0;
   margin: 0;
-  /* padding-top: 70px; */
+  padding-top: 100px;
   margin-bottom: 70px;
 }
 
@@ -210,14 +214,9 @@ export default {
   padding-bottom: 100px;
 }
 
-.section-title-mix {
-  padding: 0;
-  margin: 0;
-  margin-top: 100px;
-  padding-bottom: 70px;
-}
-.link-button-mix {
+.link-button-mix /deep/ .link-button {
   /* margin-bottom: 100px; */
+  height: 82px;
 }
 .container {
   margin: 0 auto;
@@ -234,11 +233,6 @@ export default {
   padding-bottom: 100px;
 }
 @media (max-width: 1440px) {
-  /* .container {
-    
-    width: 95%;
-    max-width: 1320px;
-  } */
   .elemstat-container {
     width: 95%;
     max-width: 1320px;
@@ -263,16 +257,10 @@ export default {
     padding-bottom: 90px;
   }
 
-  .section-title-mix {
-    margin-top: 90px;
-    padding-bottom: 60px;
+  .section-title-mix.section-title {
+    padding-top: 90px;
+    margin-bottom: 60px;
   }
-  /* 
-  .container {
-    
-    width: 95%;
-    max-width: 1180px;
-  } */
 
   .elemstat-container {
     width: 95%;
@@ -320,10 +308,15 @@ export default {
     margin-top: 80px;
     padding-bottom: 46px;
   }
-  .section-title.section-title-mix {
-    /* padding-top: 80px; */
+  /* .section-title.section-title-mix {
+    margin-bottom: 46px;
+  } */
+
+  .section-title-mix.section-title {
+    padding-top: 80px;
     margin-bottom: 46px;
   }
+
   .about-mix {
     padding-top: 80px;
     padding-bottom: 90px;
@@ -355,10 +348,24 @@ export default {
     max-width: 688px;
   }
 
-  .section-title-mix {
+  /* .section-title-mix {
     margin-top: 80px;
     padding-bottom: 60px;
+  } */
+
+  .section-title-mix.section-title {
+    margin: 0 auto;
+    padding-top: 80px;
+    margin-bottom: 60px;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    max-width: 380px;
   }
+
+  /* 
   .section-title.section-title-mix {
     width: 100%;
     text-align: center;
@@ -367,10 +374,9 @@ export default {
     font-weight: 600;
     font-size: 24px;
     line-height: 28px;
-    /* padding-top: 80px; */
-    margin-bottom: 60px;
+ 
     max-width: 380px;
-  }
+  } */
 
   .about-mix {
     padding-top: 80px;

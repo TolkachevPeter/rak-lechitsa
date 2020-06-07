@@ -1,27 +1,30 @@
 <template>
   <section class="statistics">
-    <div class="statistics__container">
-      <!-- <stat-block
-        v-for="(statData, index) in statDataObj"
-        :key="statData[index+1]"
-        :statData="statData"
-      />-->
-
-      <stat-block
-        v-for="(statData, index) in statDataObj"
-        :key="index"
-        :statData="statData"
-      />
+    <section-title
+      class="section-title-mix"
+      :title="dataObj.title"
+    ></section-title>
+    <!-- <section-title :title="blocksData(8).title"></section-title> -->
+    <div class="statistics__container-overflow">
+      <div class="statistics__container">
+        <stat-block
+          v-for="(statData, index) in statDataObj"
+          :key="index"
+          :statData="statData"
+        />
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import SectionTitle from '@/components/ui/SectionTitle';
 import progressBar from '@/components/ui/ProgressBar';
 import DoubleProgressBar from '@/components/ui/DoubleProgressBar';
 import StatBlock from '@/components/Stat-block';
 export default {
   components: {
+    'section-title': SectionTitle,
     progressBar: progressBar,
     doubleprogressbar: DoubleProgressBar,
     'stat-block': StatBlock,
@@ -29,17 +32,37 @@ export default {
 
   props: {
     statDataObj: {},
+    dataObj: {},
   },
 };
 </script>
 
 <style scoped>
+.section-title-mix.section-title {
+  width: 413px;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  /* padding-top: 100px; */
+  margin-bottom: 70px;
+}
+
 .statistics {
+  /* position: relative;
+  overflow: scroll; */
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   width: 100%;
+  max-width: 1320px;
   background: #fff;
+}
+
+.statistics__container-overflow {
+  position: relative;
+  overflow: scroll;
+  width: 100%;
+  max-width: 1320px;
 }
 
 .statistics__container {
@@ -92,9 +115,22 @@ export default {
   color: #666;
 }
 @media (max-width: 1280px) {
-  .statistics {
+  /* .statistics {
     position: relative;
     overflow: scroll;
+    //height: 265px;
+  } */
+
+  .section-title-mix.section-title {
+    /* width: 413px;
+  text-align: left;
+  padding: 0;
+  margin: 0; */
+    /* padding-top: 100px; */
+    margin-bottom: 60px;
+  }
+
+  .statistics__container {
     height: 265px;
   }
 
@@ -111,10 +147,22 @@ export default {
   }
 }
 @media (max-width: 1024px) {
-  .statistics {
-    height: 208px;
+  .section-title-mix.section-title {
+    /* width: 413px;
+  text-align: left;
+  padding: 0;
+  margin: 0; */
+    /* padding-top: 100px; */
+    margin-bottom: 46px;
   }
 
+  .statistics {
+    /* height: 208px; */
+  }
+
+  .statistics__container {
+    height: 208px;
+  }
   .statistics__card {
     width: 208px;
     height: 208px;
@@ -139,16 +187,24 @@ export default {
 }
 @media (max-width: 768px) {
   .statistics {
+    align-items: center;
+  }
+
+  .section-title-mix.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .statistics__container {
     position: relative;
     overflow: scroll;
+    /* padding-bottom: 80px; */
+    /* left: 0;
+    bottom: 80px; */
+    width: 924px;
     height: 216px;
   }
-  .statistics__container {
-    /* padding-bottom: 80px; */
-    left: 0;
-    bottom: 80px;
-    width: 924px;
-  }
+
   .statistics__card {
     width: 216px;
     height: 216px;
@@ -156,5 +212,9 @@ export default {
 }
 
 @media (max-width: 320px) {
+  .section-title-mix.section-title {
+    text-align: left;
+    margin-bottom: 30px;
+  }
 }
 </style>

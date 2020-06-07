@@ -30,7 +30,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/route.js' }],
+  plugins: [
+    { src: '~/plugins/route.js' },
+    { src: '~/plugins/swiper.js', ssr: false },
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -38,6 +41,10 @@ export default {
   /*
    ** Nuxt.js modules
    */
+  router: {
+    middleware: 'basicData',
+  },
+
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
@@ -47,7 +54,9 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    // baseURL: 'https://strapi.kruzhok.io/',
+  },
   /*
    ** Build configuration
    */
@@ -57,8 +66,11 @@ export default {
      */
     extend(config, ctx) {},
   },
+  // env: {
+  //   apiUrl: process.env.API_URL || 'https://strapi.kruzhok.io',
+  // },
+
   env: {
-    DEV_API: 'https://strapi.kruzhok.io',
-    PROD_API: '/proxy',
+    BASE_URL: 'https://strapi.kruzhok.io',
   },
 };

@@ -2,9 +2,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__three-columns">
-        <h3 class="footer__title">
-          Спасибо всем, кто помог состояться этому проекту
-        </h3>
+        <!-- <h3 class="footer__title">{{ dataObj.title }}</h3> -->
         <div class="footer__column">
           <footer-nav class="footer-nav"></footer-nav>
         </div>
@@ -56,6 +54,9 @@ import Menu from '~/components/Menu';
 import Overlay from '~/components/Overlay';
 import PopUp from '~/components/FooterPopup';
 export default {
+  props: {
+    dataObj: {},
+  },
   components: {
     'footer-nav': Menu,
     overlay: Overlay,

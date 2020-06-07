@@ -4,26 +4,23 @@
       <div class="story__img-container">
         <img
           class="story__img"
-          :src="currentStory['photo_url']"
-          :alt="currentStory['name']"
+          :src="combineUrl()"
+          :alt="currentStory.author"
         />
       </div>
       <div class="story__data">
         <h1 class="story__title">
-          <span class="story__author">{{ currentStory['name'] }}:</span>
-          {{ currentStory['story_text'] }}
+          <span class="story__author">{{ currentStory.author }}:</span>
+          {{ currentStory.title }}
         </h1>
         <div class="story__headings-footer">
           <p class="story__share" @click="$emit('click')">Поделитесь ↗</p>
-          <span class="story__date">{{ currentStory['story__date'] }}</span>
+          <span class="story__date">{{ showDate(currentStory.date) }}</span>
         </div>
       </div>
     </section>
     <main class="story__content">
-      <div
-        class="story__material"
-        v-html="currentStory['story__textdetail']"
-      ></div>
+      <div class="story__material" v-html="currentStory.text"></div>
       <p class="story__share-social" @click="$emit('click')">
         Поделитесь этой статьей в своих социальных сетях ↗
       </p>
@@ -35,9 +32,30 @@
 export default {
   props: ['currentStory'],
   methods: {
-    // test() {
-    //   console.log(this.currentStory);
-    // },
+    combineUrl() {
+      return process.env.BASE_URL + this.currentStory.ImageUrl[0].url;
+    },
+    showDate(dateString) {
+      const date = new Date(dateString);
+      const monthNames = [
+        'Января',
+        'Февраля',
+        'Марта',
+        'Апреля',
+        'Мая',
+        'Июня',
+        'Июля',
+        'Августа',
+        'Сентярбря',
+        'Октября',
+        'Ноября',
+        'Декабря',
+      ];
+      const day = date.getDate();
+      const monthIndex = date.getMonth();
+      const year = date.getFullYear();
+      return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    },
   },
 };
 </script>
@@ -76,6 +94,7 @@ export default {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .story__data {

@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export const state = () => ({
-  instgramData: INSTADATA,
+  // instgramData: INSTADATA,
+  instgramData: {},
 });
 
 // change state from here
@@ -19,6 +20,44 @@ export const getters = {
   //   getCurrentStory(state) {
   //     return state.currentStory;
   //   },
+};
+
+// export const actions = {
+//   async GET_PHOTOS({ commit }) {
+//     const data = await this.$axios.$get(
+//       'https://www.instagram.com/raklechitsa/?__a=1'
+//     );
+//     const formatData = getPosts(data);
+//     // commit('addPhotos', formatData);
+//     commit('setState', formatData);
+//   },
+// };
+
+export const actions = {
+  GET_PHOTOS(state, payload) {
+    return axios
+      .get('https://www.instagram.com/raklechitsa/?__a=1')
+      .then(response => {
+        return state.commit('setState', {
+          name: 'instgramData',
+          value: getPosts(response.data),
+        });
+      })
+      .catch(error => console.log('fetchGET_PHOTOS', error));
+  },
+};
+
+const getPosts = data => {
+  return data.graphql.user.edge_owner_to_timeline_media.edges.map(post => {
+    const {
+      node: { display_url, accessibility_caption, shortcode },
+    } = post;
+    return {
+      display_url,
+      accessibility_caption,
+      url: `https://www.instagram.com/p/${shortcode}`,
+    };
+  });
 };
 
 const INSTADATA = [

@@ -1,11 +1,15 @@
 <template>
   <section class="about">
     <div class="container">
-      <h2 class="about__title">#РАКЛЕЧИТСЯ</h2>
-      <h3 class="about__subtitle">О проекте</h3>
+      <h2 class="about__title">{{ dataObj.hashtag }}</h2>
+      <h3 class="about__subtitle">{{ dataObj.title }}</h3>
       <div class="about__container">
         <div class="about__column">
-          <p class="about__text about__text_small">{{ aboutProject }}</p>
+          <!-- <p class="about__text about__text_small" v-html="dataObj.text"></p> -->
+          <div
+            class="about__text about__text_small"
+            v-html="dataObj.text"
+          ></div>
         </div>
         <div class="about__column about__column_variants">
           <p
@@ -15,7 +19,7 @@
             ]"
             @click="changeVar(1)"
           >
-            Рак Лечится
+            {{ dataObj.extraTexts[0].title }}
           </p>
           <p
             :class="[
@@ -24,12 +28,12 @@
             ]"
             @click="changeVar(2)"
           >
-            Фонд Хабенского
+            {{ dataObj.extraTexts[1].title }}
           </p>
         </div>
         <div class="about__column">
-          <p class="about__text">{{ textVar[0] }}</p>
-          <p class="about__text">{{ textVar[1] }}</p>
+          <p class="about__text" v-html="textVar"></p>
+          <!-- <p class="about__text" v-html="textVar[1]"></p> -->
         </div>
       </div>
     </div>
@@ -38,39 +42,45 @@
 
 <script>
 export default {
+  props: {
+    dataObj: {},
+  },
   mounted() {
     if (this.isActive == 1) {
       this.isActiveText = { 1: true, 2: false };
-      return (this.textVar = [
-        this.textBlocks[1].text1,
-        this.textBlocks[1].text2,
-      ]);
+      return (this.textVar = this.dataObj.extraTexts[0].text);
+      // return (this.textVar = [this.replacedBr[0], '']);
     } else {
       this.isActiveText = { 1: false, 2: true };
-      return (this.textVar = [this.textBlocks[2].text1, '']);
+      return (this.textVar = this.dataObj.extraTexts[1].text);
+      // return (this.textVar = [this.replacedBr[1], '']);
     }
   },
+
   methods: {
     changeVar(variant = 1) {
       if (variant === 2) {
         this.isActive == 2;
         this.isActiveText = { 1: false, 2: true };
-        this.textVar = [this.textBlocks[2].text1, ''];
+        this.textVar = this.dataObj.extraTexts[1].text;
+        // this.textVar = [this.replacedBr[0], ''];
       } else {
         this.isActive == 1;
         this.isActiveText = { 1: true, 2: false };
-        this.textVar = [this.textBlocks[1].text1, this.textBlocks[1].text2];
+        this.textVar = this.dataObj.extraTexts[0].text;
+        // this.textVar = [this.replacedBr[1], ''];
       }
       return this.textVar;
     },
   },
   data() {
     return {
+      replacedBr: [],
       aboutProject:
         'Этот проект был создан благотворительным фондом Константина Хабенского.',
       isActive: 1,
       isActiveText: { 1: 'true', 2: 'false' },
-      textVar: [],
+      textVar: String,
       textBlocks: {
         1: {
           text1: `Есть вещи, которые не лечатся. Особенности характера, страстные

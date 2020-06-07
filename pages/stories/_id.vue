@@ -1,14 +1,19 @@
 <template>
   <container class="container-mix">
+    <!-- <story-detail v-if="!this.loading" :currentStory="getCurrentStory" @click="showSocLinkPopUp" /> -->
     <story-detail :currentStory="getCurrentStory" @click="showSocLinkPopUp" />
-    <story-elem :stories="storiesToDetailPage" />
+    <story-elem
+      :titleIsActive="false"
+      :dataObj="blocksData(5)"
+      :stories="storiesToDetailPage"
+    />
     <link-button class="link-button" @btnClick="goToStories"
       >Больше статей</link-button
     >
-    <modal-window @overlayClick="closePopup" @closeClick="closePopup">
-      <!-- <quiz v-if="getQiuzPopupState" @closeClick="closePopup" /> -->
-      <footerPopup v-if="getSocLinksPopupState" @closeClick="closePopup" />
-    </modal-window>
+    <modal-window
+      @overlayClick="closePopup"
+      @closeClick="closePopup"
+    ></modal-window>
   </container>
 </template>
 
@@ -18,25 +23,22 @@ import Container from '@/components/Container';
 import Storyelem from '@/components/Story-elem';
 import Story from '~/components/Story';
 import StoryDetail from '~/components/Story-detail';
-// import Overlay from '~/components/Overlay';
-// import PopUp from '~/components/FooterPopup';
 import ModalWindow from '@/components/ModalWindow';
 
 export default {
+  head() {
+    return {
+      title: this.getCurrentStory.title,
+    };
+  },
+
   components: {
     'link-button': LinkButton,
     container: Container,
     'story-elem': Storyelem,
     'one-story': Story,
     'story-detail': StoryDetail,
-    // overlay: Overlay,
-    // popup: PopUp,
     'modal-window': ModalWindow,
-  },
-  async fetch({ store, route }) {
-    await store.dispatch('stories/fetchStoryWithId', { id: route.params.id });
-
-    // await store.dispatch('stories/fetchStoryWithId', 3);
   },
 
   methods: {
@@ -50,26 +52,23 @@ export default {
       this.$store.dispatch('popup/closeAllPopups');
     },
 
-    // showQiuzPopUp() {
-    //   this.$store.commit('popup/toggleQiuzPopup');
-    //   this.$store.commit('popup/togglePopupState');
-    // },
     showSocLinkPopUp() {
       this.$store.commit('popup/toggleSocLinksPopup');
       this.$store.commit('popup/togglePopupState');
     },
+    blocksData(id) {
+      let arrObj = this.$store.getters['blocks/getBlocks'];
+      const arrObj2 = arrObj.filter(item => {
+        return item.id === id;
+      });
+      return arrObj2[0];
+    },
   },
   computed: {
-    // popupShown() {
-    //   return this.$store.getters['popup/getPopupShown'];
-    // },
-
     popupShown() {
       return this.$store.getters['popup/getPopupState'];
     },
-    // getQiuzPopupState() {
-    //   return this.$store.getters['popup/getQiuzPopupState'];
-    // },
+
     getSocLinksPopupState() {
       return this.$store.getters['popup/getSocLinksPopupState'];
     },
@@ -79,6 +78,8 @@ export default {
       //console.log({ id: this.$router.currentRoute.params.id });
       let arrStories = this.$store.getters['stories/getStories'];
       return arrStories.filter((item, index) => index < 4);
+      //return arrStories;
+      // console.log(arrStories);
     },
     getCurrentStory() {
       return (this.currentStory = this.$store.getters[
@@ -90,6 +91,7 @@ export default {
   data() {
     return {
       currentStory: {},
+      loading: true,
     };
   },
 };
@@ -224,6 +226,7 @@ export default {
 }
 .link-button {
   margin: 70px auto 100px;
+  margin-top: 0;
   cursor: pointer;
 }
 .nuxt-link {

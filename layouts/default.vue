@@ -1,8 +1,11 @@
 <template>
+  <!-- <div v-if="!this.loading"> -->
   <div>
-    <Header @openClick="showQiuzPopUp" />
+    <!-- <Header @openClick="showQiuzPopUp" /> -->
+    <Header :dataObj="blocksData(11)" @openClick="showQiuzPopUp" />
     <nuxt />
-    <Footer @socClick="showSocLinkPopUp" />
+    <!-- <Footer @socClick="showSocLinkPopUp" /> -->
+    <Footer :dataObj="blocksData(10)" @socClick="showSocLinkPopUp" />
     <modal-window @overlayClick="closePopup" @closeClick="closePopup">
       <quiz v-if="getQiuzPopupState" @closeClick="closePopup" />
       <footerPopup v-if="getSocLinksPopupState" @closeClick="closePopup" />
@@ -28,6 +31,22 @@ export default {
     quiz: Quiz,
     footerPopup: FooterPopup,
   },
+
+  data() {
+    return {
+      loading: true,
+    };
+  },
+
+  // async created() {
+  //   //   await this.$store.dispatch('stories/fetchStoryWithId');
+  //   await this.$store.dispatch('blocks/fetchBlocks');
+  //   //await this.$store.dispatch('stories/fetchStories');
+  //   console.log('loading...');
+  //   this.loading = false;
+  //   console.log('finished loading');
+  // },
+
   computed: {
     popupShown() {
       return this.$store.getters['popup/getPopupState'];
@@ -39,12 +58,31 @@ export default {
       return this.$store.getters['popup/getSocLinksPopupState'];
     },
   },
+
+  // fetch() {
+  //   this.$store.dispatch('blocks/fetchBlocks');
+  // },
+
+  // async fetch({ store, params }) {
+  //   //   await store.dispatch('stories/fetchStories');
+  //   //await store.dispatch('statistics/fetchStatistics');
+  //   await store.dispatch('blocks/fetchBlocks');
+  // },
+
+  // async fetch({ store, params }) {
+  //   await store.dispatch('stories/fetchStories');
+  //   //await store.dispatch('statistics/fetchStatistics');
+  //   // await store.dispatch('blocks/fetchBlocks');
+  // },
+
   methods: {
-    // closePopup() {
-    //   this.$store.commit('popup/closeQiuzPopup');
-    //   this.$store.commit('popup/closeSocLinksPopup');
-    //   this.$store.commit('popup/togglePopupState');
-    // },
+    blocksData(id) {
+      let arrObj = this.$store.getters['blocks/getBlocks'];
+      const arrObj2 = arrObj.filter(item => {
+        return item.id === id;
+      });
+      return arrObj2[0];
+    },
 
     closePopup() {
       this.$store.dispatch('popup/closeAllPopups');
