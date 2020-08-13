@@ -1,8 +1,10 @@
 <template>
-  <!-- <section class="stories"> -->
   <section class="stories">
     <div class="section-title-container">
-      <section-title>Истории неизлечимых привычек</section-title>
+      <section-title
+        :title="blocksData(5).title"
+        class="section-title-stories"
+      ></section-title>
     </div>
     <form class="stories__search">
       <input type="text" class="stories__input" />
@@ -11,11 +13,14 @@
     <form class="stories__search stories__search_for-mobile">
       <input type="text" class="stories__input" />
       <form-btn class="stories__button">
-        <img src="@/static/search_icon.svg" />
+        <img src="/search_icon.svg" />
       </form-btn>
     </form>
-    <story-elem :stories="storiesToRender" />
-    <!-- Необходимо настроить количество -->
+    <story-elem
+      :titleIsActive="false"
+      :dataObj="blocksData(5)"
+      :stories="storiesToRender"
+    />
     <paginator
       class="paginator-mix"
       :totalItems="stories.length"
@@ -23,7 +28,6 @@
       @OnPageChanged="changeStartIndex"
     />
   </section>
-  <!--  @OnPageChanged="changeStartIndex" </section> -->
 </template>
 
 <script>
@@ -32,6 +36,12 @@ import Button from '@/components/ui/Button';
 import Storyelem from '@/components/Story-elem';
 import Paginator from '@/components/ui/Paginator';
 export default {
+  head() {
+    return {
+      title: 'Истории неизлечимых привычек',
+    };
+  },
+
   components: {
     'form-btn': Button,
     'story-elem': Storyelem,
@@ -42,7 +52,27 @@ export default {
     changeStartIndex(index) {
       this.startIndex = (index - 1) * this.itemsPerPage;
     },
+    blocksData(id) {
+      let arrObj = this.$store.getters['blocks/getBlocks'];
+      const arrObj2 = arrObj.filter(item => {
+        return item.id === id;
+      });
+      return arrObj2[0];
+    },
   },
+
+  // fetch() {
+  //   this.$store.dispatch('stories/fetchStories');
+  // },
+
+  // async fetch({ store, params }) {
+  //   await store.dispatch('stories/fetchStories');
+  // },
+
+  // fetch({ store, params }) {
+  //   store.dispatch('stories/fetchStories');
+  // },
+
   computed: {
     stories() {
       return this.$store.getters['stories/getStories'];
@@ -59,7 +89,7 @@ export default {
   },
   data() {
     return {
-      itemsPerPage: 8,
+      itemsPerPage: 16,
       startIndex: 0,
     };
   },
@@ -67,6 +97,10 @@ export default {
 </script>
 
 <style scoped>
+.section-title-stories.section-title {
+  width: 413px;
+}
+
 .paginator-mix {
   padding-bottom: 100px;
 }
@@ -89,7 +123,7 @@ export default {
   font-weight: 600;
   font-size: 32px;
   line-height: 36px;
-  color: #000000;
+  color: #000;
   max-width: 413px;
 }
 .stories__search {
@@ -112,7 +146,7 @@ export default {
   padding-left: 15px;
   padding-top: 4px;
   padding-bottom: 4px;
-  color: #666666;
+  color: #666;
 }
 .stories__button {
   width: 226px;

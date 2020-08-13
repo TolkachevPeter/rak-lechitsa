@@ -3,30 +3,26 @@
     <div class="instagram__two-columns">
       <div class="instagram__text-column">
         <nuxt-link :to="mainInstLink" class="link">
-          <h2 class="instagram__title">Инстаграм</h2>
+          <h2 class="instagram__title">{{ dataObj.title }}</h2>
         </nuxt-link>
-        <p class="instagram__main-text">
-          Два раза в неделю мы просматриваем все посты по хештегу #этонелечится.
-          Все истории, где нет нецензурных выражений и запрещенного контента
-          попадают сюда. Следите за правильным написанием хештега, чтобы мы не
-          пропустили вашу историю.
-        </p>
+        <div class="instagram__main-text" v-html="dataObj.text"></div>
       </div>
       <div class="instagram__photo-column">
         <div
           class="instagram__item"
-          v-for="photo in instagramData"
-          :key="photo.inst_id"
+          v-for="(photo, index) in instagramData"
+          :key="index"
+          v-if="index < 8"
         >
-          <nuxt-link :to="photo.inst_post_url">
+          <a :href="photo.url" target="_blank">
             <div class="instagram__img-container">
               <img
-                v-bind:src="photo.inst_url"
+                v-bind:src="photo.display_url"
                 v-bind:alt="photo.inst_alt"
                 class="instagram__img"
               />
             </div>
-          </nuxt-link>
+          </a>
         </div>
       </div>
     </div>
@@ -35,7 +31,12 @@
 
 <script>
 export default {
-  props: ['instagramData', 'mainInstLink'],
+  // props: ['instagramData', 'mainInstLink'],
+  props: {
+    instagramData: {},
+    mainInstLink: String,
+    dataObj: {},
+  },
 };
 </script>
 
@@ -103,7 +104,7 @@ export default {
   margin-top: 32px;
   font-size: 16px;
   line-height: 20px;
-  color: #666666;
+  color: #666;
 }
 .instagram__photo-column {
   display: grid;
@@ -126,7 +127,7 @@ export default {
   max-height: 171px;
   max-width: 171px;
   background-color: #613a93;
-  color: #ffffff;
+  color: #fff;
   object-fit: cover;
 }
 

@@ -1,24 +1,50 @@
 <template>
-  <div class="story" @click="$emit('click', storyData.story_id)">
-    <a class="story__img-container">
+  <router-link
+    :to="{ path: `/stories/${storyData.id}` }"
+    class="story"
+    @click="$emit('click', storyData.id)"
+  >
+    <div class="story__img-container">
       <img
         class="story__img"
-        v-bind:src="storyData.photo_url"
-        v-bind:alt="storyData.photo_alt"
+        :src="combineUrl()"
+        alt="'Должен быть Alt text'"
       />
-    </a>
-    <h4 class="story__name">{{ storyData.name }}</h4>
-    <p class="story__text">{{ storyData.story_text }}</p>
-  </div>
+      <!-- <img
+        class="story__img"
+        src="https://images.unsplash.com/photo-1578496781985-452d4a934d50?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80"
+        alt="'Должен быть Alt text'"
+      /> -->
+      <!-- <img class="story__img" v-bind:alt="storyData.photo_alt" /> -->
+
+      <!-- <img
+        class="story__img"
+        v-bind:src="`${process.env.apiUrl}${storyData.ImageUrl[0].url}`"
+        v-bind:alt="storyData.photo_alt"
+      /> -->
+    </div>
+    <h4 class="story__name">{{ storyData.author }}</h4>
+    <p class="story__text">{{ storyData.title }}</p>
+  </router-link>
 </template>
 
 <script>
 export default {
   props: ['storyData'],
   methods: {
-    // test(storyData) {
-    //   console.log('Клик = storyData.id', storyData.story_id);
-    // },
+    combineUrl() {
+      //storyData.ImageUrl[0].url
+      // console.log('process.env.BASE_URL =', process.env.BASE_URL);
+      // console.log('process.env.BASE_URL =', $env.BASE_URL);
+      return process.env.BASE_URL + this.storyData.ImageUrl[0].url;
+      // return 'https://strapi.kruzhok.io/stories';
+    },
+  },
+  data() {
+    return {
+      // url: `/stories/${storyData.story_id}`,
+      fetchUrl: 'https://strapi.kruzhok.io/stories',
+    };
   },
 };
 </script>
@@ -29,6 +55,7 @@ export default {
   flex-direction: column;
   max-width: 300px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .story__img-container {
@@ -47,6 +74,7 @@ export default {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .story__name {
@@ -55,7 +83,7 @@ export default {
   font-weight: 600;
   font-size: 22px;
   line-height: 22px;
-  color: #000000;
+  color: #000;
   margin-top: 20px;
 }
 
@@ -65,7 +93,7 @@ export default {
   font-weight: normal;
   font-size: 14px;
   line-height: 18px;
-  color: #666666;
+  color: #666;
   margin-top: 14px;
 }
 

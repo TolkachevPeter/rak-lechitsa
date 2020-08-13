@@ -1,61 +1,60 @@
 <template>
   <div>
-    <banner />
-    <div class="container">
-      <my-video class="video-mix" />
-      <tagline>
-        <p class="tagline1">
-          <span>И В ОТЛИЧИЕ ОТ РАКА,</span>
-          <hashtext />
-        </p>
-      </tagline>
+    <cover :hashtag="blocksData(1).hashtag" @clickArrow="scrollDown" />
+    <container>
+      <div ref="nextSection">
+        <my-video
+          :dataObj="blocksData(4)"
+          :videos="getVideos"
+          class="video-mix"
+        />
+      </div>
+      <taglineText
+        :text="blocksData(2).title"
+        :hashtext="blocksData(2).hashtag"
+      ></taglineText>
 
-      <section-title class="section-title-mix"
-        >Истории неизлечимых привычек</section-title
+      <story-elem
+        :titleIsActive="true"
+        :dataObj="blocksData(5)"
+        :stories="storiesToIndexPage"
+      />
+      <link-button class="link-button-mix" @btnClick="goToStories"
+        >Больше статей</link-button
       >
 
-      <story-elem :stories="storiesToIndexPage" />
-      <div class="link-button-mix">
-        <link-button url="/stories/">Больше статей</link-button>
-      </div>
-      <tagline class="tagline-mix">
-        <p class="tagline2">
-          <span>РАССКАЗЫВАЙТЕ ВАШИ ИСТОРИИ В ИНСТАГРАМ</span>
-          <hashtext />
-        </p>
-      </tagline>
+      <taglineText
+        :extraClass="'tagline2rows'"
+        :text="blocksData(3).title"
+        :hashtext="blocksData(3).hashtag"
+        class="tagline-mix"
+      ></taglineText>
       <instagram
         class="instagram-mix"
         :instagramData="instagram"
         :mainInstLink="'#'"
+        :dataObj="blocksData(6)"
       />
-    </div>
+    </container>
 
-    <tell-your-story class="tell-your-story-mix" @click="showQiuzPopUp" />
+    <tell-your-story :dataObj="blocksData(7)" @click="showPopUp" />
     <div class="elemstat-container">
-      <section-title class="section-title-mix"
-        >Статистика по онкозаболеваниям</section-title
-      >
-
-      <elemstat
-        :maxVal="statistics.maxVal"
-        :oldValueIncr="statistics.oldValueIncr"
-        :newValueIncr="statistics.newValueIncr"
-        :oldValueDecr="statistics.oldValueDecr"
-        :newValueDecr="statistics.newValueDecr"
-      />
+      <elemstat :dataObj="blocksData(8)" :statDataObj="statDataObj" />
     </div>
-    <about class="about-mix" />
-    <overlay v-if="qiuzPopupShown" @overlayClick="showQiuzPopUp" />
-    <popup v-if="qiuzPopupShown" @closeClick="showQiuzPopUp" />
+    <about :dataObj="blocksData(9)" class="about-mix" />
+    <modal-window @overlayClick="closePopup" @closeClick="closePopup">
+      <quiz v-if="getQiuzPopupState" @closeClick="closePopup" />
+      <!-- <footerPopup v-if="getSocLinksPopupState" @closeClick="closePopup" /> -->
+      <getContactForm v-if="getContactFormState" @closeClick="closePopup" />
+    </modal-window>
   </div>
 </template>
 
 <script>
 import SectionTitle from '@/components/ui/SectionTitle';
-import Banner from '@/components/Banner';
+import Cover from '@/components/Cover';
 import Video from '@/components/Video';
-import Tagline from '@/components/Tagline';
+import TaglineText from '@/components/TaglineText';
 import TaglineHashText from '@/components/TaglineHashText';
 import Storyelem from '@/components/Story-elem';
 import Linkbutton from '@/components/ui/Link-button';
@@ -65,13 +64,22 @@ import TellYourStory from '@/components/Tell-your-story';
 import Elemstat from '@/components/Elemstat';
 import About from '@/components/About';
 import Overlay from '@/components/Overlay';
-import PopUp from '@/components/Popup';
+import Container from '@/components/Container';
+import Quiz from '@/components/Quiz';
+import ModalWindow from '@/components/ModalWindow';
+import GetContactForm from '@/components/GetContactForm';
 
 export default {
+  head() {
+    return {
+      title: this.blocksData(4).title,
+    };
+  },
+
   components: {
-    banner: Banner,
+    cover: Cover,
     'my-video': Video,
-    tagline: Tagline,
+    taglineText: TaglineText,
     hashtext: TaglineHashText,
     'story-elem': Storyelem,
     'link-button': Linkbutton,
@@ -80,25 +88,50 @@ export default {
     elemstat: elemstat,
     about: About,
     'section-title': SectionTitle,
-    overlay: Overlay,
-    popup: PopUp,
+    container: Container,
+    quiz: Quiz,
+    'modal-window': ModalWindow,
+    getContactForm: GetContactForm,
   },
 
   data() {
     return {
       itemsPerPage: 8,
-      numberStoriesToIndex: 16,
+      numberStoriesToIndex: 8,
     };
   },
 
   methods: {
-    goToDetail(id) {
-      //console.log(id);
-      this.$router.push(`/stories/${id}`);
+    scrollDown() {
+      this.$refs.nextSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    },
+    goToStories() {
+      this.$router.push('/stories/');
     },
 
-    showQiuzPopUp() {
-      this.$store.commit('popup/toggleQiuzPopUp');
+    closePopup() {
+      this.$store.dispatch('popup/closeAllPopups');
+    },
+
+    showPopUp(popupType) {
+      if (popupType === 'Заполнить форму') {
+        this.$store.commit('popup/toggleQiuzPopup');
+        this.$store.commit('popup/togglePopupState');
+      } else {
+        this.$store.commit('popup/toggleContactFormPopup');
+        this.$store.commit('popup/togglePopupState');
+      }
+    },
+    blocksData(id) {
+      let arrObj = this.$store.getters['blocks/getBlocks'];
+      const arrObj2 = arrObj.filter(item => {
+        //console.log('item', item);
+        return item.id === id;
+      });
+      return arrObj2[0];
     },
   },
 
@@ -109,18 +142,32 @@ export default {
         (item, index) => index < this.numberStoriesToIndex
       );
     },
-    qiuzPopupShown() {
-      return this.$store.getters['popup/getQiuzPopupShown'];
+    popupShown() {
+      return this.$store.getters['popup/getPopupState'];
+    },
+    getQiuzPopupState() {
+      return this.$store.getters['popup/getQiuzPopupState'];
+    },
+    getContactFormState() {
+      return this.$store.getters['popup/getContactFormState'];
     },
 
     instagram() {
       return this.$store.getters['instagram/getInstagramData'];
     },
 
-    statistics() {
+    statDataObj() {
       return this.$store.getters['statistics/getStatData'];
     },
+
+    getVideos() {
+      return this.$store.getters['videos/getVideos'];
+    },
   },
+
+  // async fetch({ store, params }) {
+  //   await store.dispatch('instagram/GET_PHOTOS');
+  // },
 };
 </script>
 
@@ -128,6 +175,7 @@ export default {
 .video-mix {
   padding-top: 100px;
   padding-bottom: 74px;
+  /* height: 650px; */
 }
 
 .tagline-mix {
@@ -140,12 +188,19 @@ export default {
   padding-bottom: 100px;
 }
 
-.section-title.section-title-mix {
+/* .section-title-mix {
+  padding: 0;
+  margin: 0;
+  margin-top: 100px;
+  padding-bottom: 70px;
+} */
+
+.section-title-mix.section-title {
   width: 413px;
   text-align: left;
   padding: 0;
   margin: 0;
-  padding-top: 70px;
+  padding-top: 100px;
   margin-bottom: 70px;
 }
 
@@ -159,14 +214,9 @@ export default {
   padding-bottom: 100px;
 }
 
-.section-title-mix {
-  padding: 0;
-  margin: 0;
-  margin-top: 100px;
-  padding-bottom: 70px;
-}
-.link-button-mix {
+.link-button-mix /deep/ .link-button {
   /* margin-bottom: 100px; */
+  height: 82px;
 }
 .container {
   margin: 0 auto;
@@ -183,11 +233,6 @@ export default {
   padding-bottom: 100px;
 }
 @media (max-width: 1440px) {
-  .container {
-    /* new */
-    width: 95%;
-    max-width: 1320px;
-  }
   .elemstat-container {
     width: 95%;
     max-width: 1320px;
@@ -212,15 +257,9 @@ export default {
     padding-bottom: 90px;
   }
 
-  .section-title-mix {
-    margin-top: 90px;
-    padding-bottom: 60px;
-  }
-
-  .container {
-    /* new */
-    width: 95%;
-    max-width: 1180px;
+  .section-title-mix.section-title {
+    padding-top: 90px;
+    margin-bottom: 60px;
   }
 
   .elemstat-container {
@@ -252,11 +291,11 @@ export default {
     padding-bottom: 80px;
   }
 
-  .container {
-    /* new */
+  /* .container {
+    
     width: 95%;
     max-width: 924px;
-  }
+  } */
 
   .elemstat-container {
     width: 95%;
@@ -269,10 +308,15 @@ export default {
     margin-top: 80px;
     padding-bottom: 46px;
   }
-  .section-title.section-title-mix {
+  /* .section-title.section-title-mix {
+    margin-bottom: 46px;
+  } */
+
+  .section-title-mix.section-title {
     padding-top: 80px;
     margin-bottom: 46px;
   }
+
   .about-mix {
     padding-top: 80px;
     padding-bottom: 90px;
@@ -292,27 +336,36 @@ export default {
     padding-top: 80px;
     padding-bottom: 80px;
   }
-
+  /* 
   .container {
-    /* new */
+   
     width: 95%;
     max-width: 688px;
-  }
+  } */
 
   .elemstat-container {
     width: 95%;
     max-width: 688px;
   }
 
-  .tagline1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .section-title-mix {
+  /* .section-title-mix {
     margin-top: 80px;
     padding-bottom: 60px;
+  } */
+
+  .section-title-mix.section-title {
+    margin: 0 auto;
+    padding-top: 80px;
+    margin-bottom: 60px;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    max-width: 380px;
   }
+
+  /* 
   .section-title.section-title-mix {
     width: 100%;
     text-align: center;
@@ -321,10 +374,9 @@ export default {
     font-weight: 600;
     font-size: 24px;
     line-height: 28px;
-    padding-top: 80px;
-    margin-bottom: 60px;
+ 
     max-width: 380px;
-  }
+  } */
 
   .about-mix {
     padding-top: 80px;
@@ -348,10 +400,10 @@ export default {
     padding-top: 50px;
     padding-bottom: 50px;
   }
-  .container {
-    /* new */
+  /* .container {
+ 
     width: 95%;
-  }
+  } */
 
   .elemstat-container {
     width: 95%;
@@ -372,7 +424,7 @@ export default {
     font-weight: 600;
     font-size: 18px;
     line-height: 21px;
-    padding-top: 50px;
+    /* padding-top: 50px; */
     margin-bottom: 40px;
     /* max-width: 380px; */
   }

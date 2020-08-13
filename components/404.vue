@@ -25,7 +25,7 @@ export default {};
   font-size: 144px;
   line-height: 174px;
   text-align: center;
-  color: #000000;
+  color: #000;
 }
 .error__subtitle {
   font-family: Inter;
@@ -34,10 +34,10 @@ export default {};
   font-size: 18px;
   line-height: 24px;
   text-align: center;
-  color: #000000;
+  color: #000;
 }
 .error__link {
-  color: #000000;
+  color: #000;
   font-size: 18px;
   line-height: 24px;
 }

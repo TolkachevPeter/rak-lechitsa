@@ -1,67 +1,52 @@
 import axios from 'axios';
 
 export const state = () => ({
-  stories: STORIES,
+  // stories: STORIES,
+  stories: {},
   currentStory: {},
 });
-
-// change state from here
 
 export const mutations = {
   setState(state, { name, value }) {
     return (state[name] = value);
   },
-
-  //   setCurrentStory(state, currentStoryId) {},
 };
 
-/*
-export const actions = {
-  fetchStories(state) {
-    return state.commit('setState', {
-      name: 'stories',
-      value: stories,
-    });
-  },
-};
-*/
 export const actions = {
   fetchStoryWithId(state, payload) {
-    let stories = STORIES;
-    let arr = stories.filter(item => {
-      return item.story_id == payload.id;
-    });
-    //console.log('arr', arr[0]);
-    return state.commit('setState', {
-      name: 'currentStory',
-      value: arr[0],
-    });
+    return axios
+      .get(process.env.BASE_URL + `/stories/${payload.id}`)
+      .then(response => {
+        return state.commit('setState', {
+          name: 'currentStory',
+          value: response.data,
+        });
+      })
+      .catch(error => console.log('fetchStoryWithId', error));
+  },
+
+  // fetchStories(state) {
+  //   return axios.get(process.env.BASE_URL + '/stories').then(response => {
+  //     return state.commit('setState', {
+  //       name: 'stories',
+  //       value: response.data,
+  //     });
+  //   });
+  // },
+
+  fetchStories(state) {
+    return axios
+      .get(process.env.BASE_URL + '/stories')
+      .then(response => {
+        return state.commit('setState', {
+          name: 'stories',
+          value: response.data,
+        });
+      })
+      .catch(error => console.log('fetchStories', error));
   },
 };
 
-/*
-export const actions = {
-  fetchLessons(state) {
-    return axios.get('https://api-test.pa7lux.ru/streams').then(response => {
-      return state.commit('setState', {
-        name: 'lessons',
-        value: response.data,
-      });
-    });
-  },
-  fetchLessonWithId(state, payload) {
-    return axios
-      .get(`https://api-test.pa7lux.ru/streams/${payload.id}`)
-      .then(response => {
-        return state.commit('setState', {
-          name: 'currentLesson',
-          value: response.data,
-        });
-      });
-  },
-};
-*/
-// get data about my state
 export const getters = {
   getStories(state) {
     return state.stories;

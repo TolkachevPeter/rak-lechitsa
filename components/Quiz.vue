@@ -1,41 +1,62 @@
 <template>
-  <div class="quiz">
-    <div class="quiz__container">
-      <h3 class="quiz__title">{{ currentQuestion.title }}</h3>
-      <p class="quiz__question">
-        <span class="quiz__question-main">{{ currentQuestion.question }}</span>
-        <span
-          v-if="currentQuestion.questionAdditional"
-          class="quiz__question-additional"
-          >{{ currentQuestion.questionAdditional }}</span
-        >
-      </p>
+  <div class="quiz-comp">
+    <img
+      src="/popupCross.svg"
+      alt
+      class="quiz-comp__cross"
+      @click="$emit('closeClick')"
+    />
+    <!-- <div class="quiz" @click="showCurrQ"> -->
+    <div class="quiz">
+      <div class="quiz__container" v-if="!showFinalScreen">
+        <h3 class="quiz__title">{{ currentQuestion.title }}</h3>
+        <p class="quiz__question">
+          <span class="quiz__question-main">{{
+            currentQuestion.question
+          }}</span>
+          <span
+            v-if="currentQuestion.questionAdditional"
+            class="quiz__question-additional"
+            >{{ currentQuestion.questionAdditional }}</span
+          >
+        </p>
 
-      <my-input
-        placeholder="Напишите тут"
-        :bottomborder="true"
-        class="quiz__input"
-        v-model="answer"
-      />
-    </div>
-    <div class="quiz__buttons-container">
-      <div class="quiz__buttons">
-        <my-button
-          :disabled="prevButtonDisabled"
-          class="my-button_mix-grey"
-          @click="prevQuestion"
-          >Назад</my-button
-        >
-        <my-button class="my-button_mix" @click="nextQuestion">{{
-          buttonLabel
-        }}</my-button>
+        <my-input
+          placeholder="Напишите тут"
+          :bottomborder="true"
+          class="quiz__input"
+          v-model="answer"
+        />
       </div>
-      <p :class="['quiz__policy', { quiz__policy_show: isLastStep }]">
-        Нажимая на кнопку «отправить», вы даете согласие на
-        <nuxt-link class="quiz__policy-link" to="/policy"
-          >обработку персональных данных</nuxt-link
-        >
-      </p>
+      <div class="quiz__buttons-container" v-if="!showFinalScreen">
+        <div class="quiz__buttons">
+          <my-button
+            :disabled="prevButtonDisabled"
+            class="my-button my-button_grey"
+            @click="prevQuestion"
+            >Назад</my-button
+          >
+          <my-button class="my-button" @click="nextQuestion">
+            {{ buttonLabel }}
+          </my-button>
+        </div>
+        <p :class="['quiz__policy', { quiz__policy_show: isLastStep }]">
+          Нажимая на кнопку «отправить», вы даете согласие на
+          <nuxt-link class="quiz__policy-link" to="/policy" target="_blank"
+            >обработку персональных данных</nuxt-link
+          >
+        </p>
+      </div>
+      <h3 class="quiz__title quiz__title_align_center" v-if="showFinalScreen">
+        Спасибо что приняли участие!
+      </h3>
+
+      <my-button
+        class="my-button my-button_align_center"
+        @click="$emit('closeClick')"
+        v-if="showFinalScreen"
+        >Закрыть</my-button
+      >
     </div>
   </div>
 </template>
@@ -51,15 +72,30 @@ export default {
   },
   methods: {
     async nextQuestion() {
-      await this.$store.dispatch('quiz/NEXT_QUESTION', {
-        answer: this.answer,
-      });
+      await this.$store.dispatch(
+        'quiz/NEXT_QUESTION',
+        {
+          answer: this.answer,
+        },
+        this.questionsNumber
+      );
+      this.nextQuestionCounter++;
       this.answer = this.initialAnswer;
+      if (this.isLastStep && this.nextQuestionCounter > this.questionsNumber) {
+        this.showFinalScreen = true;
+        await this.$store.dispatch('quiz/SET_QUESTION', { currentQuestion: 1 });
+      }
     },
     async prevQuestion() {
       await this.$store.dispatch('quiz/PREV_QUESTION');
       this.answer = this.initialAnswer;
     },
+    // showCurrQ() {
+    //   console.log(this.currentQuestion);
+    // },
+    // showFinalScreen(flag = false) {
+    //   return flag;
+    // },
   },
 
   computed: {
@@ -87,9 +123,9 @@ export default {
     isLastStep() {
       const { quiz } = this.$store.state;
       const { currentQuestion } = quiz;
-
       return currentQuestion === 12;
     },
+
     buttonLabel() {
       const { quiz } = this.$store.state;
       const { currentQuestion } = quiz;
@@ -101,6 +137,9 @@ export default {
   data() {
     return {
       answer: '',
+      showFinalScreen: false,
+      nextQuestionCounter: 1,
+      questionsNumber: 12,
       //   buttonLabel: 'Далее',
     };
   },
@@ -108,6 +147,29 @@ export default {
 </script>
 
 <style scoped>
+.quiz-comp {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+
+  background: #fff;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+}
+
+.quiz-comp__cross {
+  width: 100%;
+  position: fixed;
+  top: 35px;
+  left: calc(100% - 50px);
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
 .quiz__buttons-container {
   display: flex;
   justify-content: flex-start;
@@ -120,7 +182,7 @@ export default {
   padding-left: 30px;
   font-size: 14px;
   line-height: 17px;
-  color: #666666;
+  color: #666;
   padding-top: 5px;
   padding-bottom: 5px;
   width: 378px;
@@ -130,20 +192,27 @@ export default {
 }
 .quiz__policy-link {
   border-bottom: 1px solid currentColor;
-  color: #666666;
+  color: #666;
   text-decoration: none;
 }
 
-.my-button_mix {
+.my-button {
   width: 226px;
 }
-.my-button_mix-grey {
+
+.my-button_align_center {
+  margin: 0 auto;
+}
+
+.my-button_grey {
+  width: 80px;
   padding-left: 0;
   padding-right: 10px;
   background: none;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  /* align-items: center; */
+  /* text-align: start; */
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
@@ -152,7 +221,7 @@ export default {
   border: none;
 }
 
-.my-button_mix-grey:hover {
+.my-button_grey:hover {
   color: #c0c0c0;
   background: none;
 }
@@ -175,14 +244,19 @@ export default {
   line-height: 32px;
   display: flex;
   align-items: flex-end;
-  color: #000000;
+  color: #000;
+}
+
+.quiz__title_align_center {
+  justify-content: center;
+  text-align: center;
 }
 
 .quiz__question {
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  color: #000000;
+  color: #000;
   padding-top: 40px;
 }
 
@@ -190,9 +264,7 @@ export default {
 }
 
 .quiz__question-additional {
-  /* font-size: 18px;
-  line-height: 24px; */
-  color: #666666;
+  color: #666;
 }
 
 .quiz__input {
@@ -200,7 +272,7 @@ export default {
   padding-bottom: 5px;
   font-size: 16px;
   line-height: 24px;
-  color: #666666;
+  color: #666;
   margin-top: 100px;
   width: 100%;
   border: none;
@@ -229,22 +301,28 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .quiz-comp {
+    max-width: 580px;
+    width: 95%;
+    height: 520px;
+  }
   .quiz {
     max-width: 580px;
     width: 100%;
     height: 520px;
-    padding: 15px;
+    padding: 40px;
   }
   .quiz__buttons-container {
     flex-direction: column;
-    padding-bottom: 30px;
+    /* padding-bottom: 30px; */
+    padding-bottom: 0;
   }
 
   .quiz__question {
     font-weight: 500;
     font-size: 16px;
     line-height: 21px;
-    color: #000000;
+    color: #000;
     padding-top: 30px;
   }
 
@@ -255,27 +333,38 @@ export default {
     width: 95%;
   }
 
-  .my-button_mix {
+  .my-button {
     width: 206px;
     font-size: 13px;
     line-height: 16px;
   }
-  .my-button_mix-grey {
+  .my-button_grey {
     font-size: 13px;
     line-height: 16px;
+    width: 80px;
   }
+
   .quiz__buttons {
     width: 95%;
-    max-width: 304px;
+    max-width: 286px;
   }
   .quiz__input {
     margin-top: 50px;
   }
 }
 
+@media (max-width: 500px) {
+  .quiz-comp__cross {
+    top: 13px;
+    left: calc(100% - 35px);
+  }
+}
 @media (max-width: 320px) {
+  .quiz-comp {
+    width: 290px;
+    height: 520px;
+  }
   .quiz {
-    /* width: 290px; */
     width: 100%;
     height: 520px;
     padding: 15px;
@@ -292,27 +381,31 @@ export default {
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-    color: #000000;
+    color: #000;
     padding-top: 30px;
   }
   .quiz__policy {
     width: 95%;
   }
 
-  .my-button_mix {
+  .my-button {
     width: 190px;
     font-size: 13px;
     line-height: 16px;
   }
-  .my-button_mix-grey {
+  .my-button_grey {
     font-size: 13px;
     line-height: 16px;
+    width: 80px;
   }
   .quiz__buttons {
     width: 95%;
   }
   .quiz__input {
     margin-top: 50px;
+  }
+  .quiz__buttons-container {
+    padding-bottom: 30px;
   }
 }
 </style>

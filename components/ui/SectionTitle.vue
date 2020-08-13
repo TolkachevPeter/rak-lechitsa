@@ -1,16 +1,20 @@
 <template>
   <h2 class="section-title">
-    <slot></slot>
+    {{ title }}
   </h2>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    title: String,
+  },
+};
 </script>
 
 <style scoped>
 .section-title {
-  color: #000000;
+  color: #000;
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
